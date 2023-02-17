@@ -12,8 +12,11 @@
         android:theme="@style/Theme.Aestoreskotlin"
         tools:targetApi="31">
         <activity
+            android:name=".ui.SearchProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +25,7 @@
         </activity>
         <activity
             android:name=".ui.DashboardActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

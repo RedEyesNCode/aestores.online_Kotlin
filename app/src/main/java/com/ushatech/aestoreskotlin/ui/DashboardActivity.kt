@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -40,6 +41,10 @@ class DashboardActivity : BaseActivity() {
     private fun setupNavigationDrawer() {
         val homeNav: View = binding.drawerHome.getHeaderView(0)
         val categoryNav :View = binding.drawerCategory.getHeaderView(0)
+
+        binding.mainLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+
         val categorySideMenuBinding = CategorySideMenuBinding.bind(categoryNav)
         val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
 
@@ -131,6 +136,9 @@ class DashboardActivity : BaseActivity() {
 
         binding.ivNav.setOnClickListener {
             binding.mainLayout.openDrawer(GravityCompat.START)
+        }
+        binding.ivSearch.setOnClickListener {
+            startActivity(Intent(this@DashboardActivity,SearchProductActivity::class.java))
         }
 
     }

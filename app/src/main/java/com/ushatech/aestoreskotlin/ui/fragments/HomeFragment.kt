@@ -52,11 +52,17 @@ class HomeFragment : BaseFragment() {
 
         binding.viewPagerTrending.adapter = ImageViewPagerAdapter(fragmentContext)
         binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        binding.viewPagerRecentItems.adapter = ImageViewPagerAdapter(fragmentContext)
+        binding.viewPagerRecentItems.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
         binding.viewPagerArrival.adapter = ImageViewPagerAdapter(fragmentContext)
         binding.viewPagerArrival.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val currentPageIndex = 0
         binding.viewPagerArrival.currentItem = currentPageIndex
         binding.viewPagerTrending.currentItem = currentPageIndex
+        binding.viewPagerRecentItems.currentItem = currentPageIndex
         binding.viewPagerTrending.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
 
@@ -71,6 +77,19 @@ class HomeFragment : BaseFragment() {
             }
         )
         binding.viewPagerArrival.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                    //update the image number textview
+                    // Make ui for the dots.
+                    binding.tvNumberPagesArrival.text = "${position + 1} / 2"
+
+                }
+            }
+        )
+        binding.viewPagerRecentItems.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
 
                 override fun onPageSelected(position: Int) {

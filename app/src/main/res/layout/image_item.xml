@@ -35,26 +35,57 @@
 
                 android:id="@+id/tvCategoryNameOne"
                 android:text="@string/skin_care_u0026_beauty_care"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/mulish_bold"
-
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/rs_499"
+                    android:id="@+id/tvRealPrice"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/rs_499"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:id="@+id/tvMaxPrice"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+
+
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/_38_items"
+                android:text="0 % off"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:gravity="center"
-
-                android:textColor="@color/grey_dark"
-                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/tvDiscountPercentage"
+                android:textColor="@color/red"
                 android:fontFamily="@font/mulish_regular"
                 android:lineSpacingExtra="@dimen/_5sdp"
-
                 android:textSize="@dimen/_15sdp" />
-
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -85,20 +116,50 @@
                 android:fontFamily="@font/mulish_bold"
 
                 android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/rs_499"
+                    android:id="@+id/tvRealPrice2"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/rs_499"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:id="@+id/tvMaxPrice2"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+
+
+
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/_38_items"
+                android:text="0 % off"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:gravity="center"
-
-                android:textColor="@color/grey_dark"
-                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/tvDiscountPercentage2"
+                android:textColor="@color/red"
                 android:fontFamily="@font/mulish_regular"
                 android:lineSpacingExtra="@dimen/_5sdp"
-
                 android:textSize="@dimen/_15sdp" />
-
 
         </LinearLayout>
 

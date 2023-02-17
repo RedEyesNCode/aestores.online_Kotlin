@@ -1,7 +1,7 @@
 package com.ushatech.aestoreskotlin.ui.adapter
 
 import android.content.Context
-import android.media.Image
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,8 +24,11 @@ class ImageViewPagerAdapter(var context:Context) :RecyclerView.Adapter<ImageView
     }
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
+        holder.binding.tvMaxPrice.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+        holder.binding.tvMaxPrice2.setPaintFlags(holder.binding.tvMaxPrice2.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
     }
+
 
     override fun getItemCount(): Int {
         return 2
