@@ -14,12 +14,16 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
+import com.ushatech.aestoreskotlin.base.BaseActivity
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
+import com.ushatech.aestoreskotlin.ui.fragments.HomeFragment
+import com.ushatech.aestoreskotlin.ui.fragments.WishlistFragment
+import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity() {
 
     private lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,26 +88,31 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun initNav() {
-        val navController: NavController =
-            Navigation.findNavController(
-                this@DashboardActivity,
-                R.id.activity_main_nav_host_fragment
-            )
+//        val navController: NavController =
+//            Navigation.findNavController(
+//                this@DashboardActivity,
+//                R.id.activity_main_nav_host_fragment
+//            )
         val bottomNavigationView = binding.bottomNavigationbar
+        FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
 
 
         bottomNavigationView.getOrCreateBadge(R.id.cartFragment).number = 2
-
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+        // Using manual clicks to test along with webview in android.
+//        NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
         bottomNavigationView.setOnItemSelectedListener(object : BottomNavigationView.OnNavigationItemSelectedListener{
 
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 if(item.itemId==R.id.categoryFragment){
                     binding.mainLayout.openDrawer(binding.drawerCategory)
-                }else{
-                    binding.mainLayout.closeDrawer(binding.drawerCategory)
+                }else if(item.itemId==R.id.wishListFragment){
+                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,WishlistFragment(),WishlistFragment::class.java.canonicalName,false)
 
+                }else if(item.itemId==R.id.homeFragment){
+                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
+                }else if(item.itemId==R.id.categoryFragment){
+                    binding.mainLayout.openDrawer(binding.drawerCategory)
                 }
 
 

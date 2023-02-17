@@ -11,4 +11,11 @@
     <string name="register">Register</string>
     <string name="call_us_at_91_8553463261_free">Call us at 91-8553463261 (Free)</string>
     <string name="all_products">All Products</string>
+    <string name="featured_categories">Featured Categories</string>
+    <string name="skin_care_u0026_beauty_care">SKIN CARE U0026 BEAUTY CARE</string>
+    <string name="_38_items">38 Items</string>
+    <string name="health_care">Health Care</string>
+    <string name="hair_care">Hair Care</string>
+    <string name="skin_care_beauty">Skin Care and Beauty</string>
+    <string name="personal_care">Personal Care</string>
 </resources>
