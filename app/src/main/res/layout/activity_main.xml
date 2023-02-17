@@ -101,6 +101,15 @@
 
     </com.google.android.material.navigation.NavigationView>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/drawerCategory"
+        android:layout_width="@dimen/_260sdp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        style="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:fitsSystemWindows="false"
+        app:headerLayout="@layout/category_side_menu">
 
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

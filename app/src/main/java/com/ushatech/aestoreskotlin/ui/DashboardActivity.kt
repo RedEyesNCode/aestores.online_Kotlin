@@ -12,8 +12,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
+import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 
@@ -32,11 +34,14 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupNavigationDrawer() {
         val homeNav: View = binding.drawerHome.getHeaderView(0)
+        val categoryNav :View = binding.drawerCategory.getHeaderView(0)
+        val categorySideMenuBinding = CategorySideMenuBinding.bind(categoryNav)
         val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
 
         homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity)
         homeSideMenuBinding.recvNavDrawer.layoutManager = LinearLayoutManager(this)
-        
+        categorySideMenuBinding.recvCategoryDrawer.adapter = DrawerAdapter(this@DashboardActivity)
+        categorySideMenuBinding.recvCategoryDrawer.layoutManager = LinearLayoutManager(this)
         homeSideMenuBinding.accountLayout.setOnClickListener { 
             showPopupDrawer(it)
             
@@ -50,6 +55,9 @@ class DashboardActivity : AppCompatActivity() {
             val phone = "+91 8553463261"
             val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
             startActivity(intent)
+        }
+        categorySideMenuBinding.ivClose.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.END)
         }
 
 
@@ -88,7 +96,20 @@ class DashboardActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
+        bottomNavigationView.setOnItemSelectedListener(object : BottomNavigationView.OnNavigationItemSelectedListener{
 
+            override fun onNavigationItemSelected(item: MenuItem): Boolean {
+                if(item.itemId==R.id.categoryFragment){
+                    binding.mainLayout.openDrawer(binding.drawerCategory)
+                }else{
+                    binding.mainLayout.closeDrawer(binding.drawerCategory)
+
+                }
+
+
+                return true
+            }
+        })
 
 
     }
