@@ -20,6 +20,7 @@ import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.HomeFragment
+import com.ushatech.aestoreskotlin.ui.fragments.ProfileFragment
 import com.ushatech.aestoreskotlin.ui.fragments.WishlistFragment
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
@@ -113,6 +114,9 @@ class DashboardActivity : BaseActivity() {
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
                 }else if(item.itemId==R.id.categoryFragment){
                     binding.mainLayout.openDrawer(binding.drawerCategory)
+                }else if(item.itemId==R.id.profileFragment){
+                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,ProfileFragment(),ProfileFragment::class.java.canonicalName,false)
+
                 }
 
 

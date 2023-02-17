@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentHomeBinding
 import com.ushatech.aestoreskotlin.ui.adapter.FeaturedCategoryAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,9 +50,51 @@ class HomeFragment : BaseFragment() {
         binding.recvFeaturedCategories.adapter= FeaturedCategoryAdapter(fragmentContext)
         binding.recvFeaturedCategories.layoutManager = GridLayoutManager(fragmentContext,2,GridLayoutManager.VERTICAL,false)
 
-    }
+        binding.viewPagerTrending.adapter = ImageViewPagerAdapter(fragmentContext)
+        binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.viewPagerArrival.adapter = ImageViewPagerAdapter(fragmentContext)
+        binding.viewPagerArrival.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        val currentPageIndex = 0
+        binding.viewPagerArrival.currentItem = currentPageIndex
+        binding.viewPagerTrending.currentItem = currentPageIndex
+        binding.viewPagerTrending.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
 
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                    //update the image number textview
+                    // Make ui for the dots.
+                    binding.tvNumberImages.text = "${position + 1} / 2"
+
+                }
+            }
+        )
+        binding.viewPagerArrival.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                    //update the image number textview
+                    // Make ui for the dots.
+                    binding.tvNumberPagesArrival.text = "${position + 1} / 2"
+
+                }
+            }
+        )
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // unregistering the onPageChangedCallback
+        binding.viewPagerTrending.unregisterOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {}
+        )
+    }
     private fun initClicks() {
+
 
     }
 

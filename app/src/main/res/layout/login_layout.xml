@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/grey"
+    android:padding="@dimen/_8sdp"
+
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="@string/login"
+            android:textSize="@dimen/_19sdp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/green"
+            android:fontFamily="@font/mulish_bold"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/green"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="@dimen/_1sdp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:text="@string/login_to_your_account"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_29sdp"
+
+            android:fontFamily="@font/mulish_regular"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:maxLength="10"
+            android:layout_marginTop="@dimen/_30sdp"
+
+            android:hint="@string/mobile_number"
+
+
+            android:id="@+id/edtMobileNumber"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:id="@+id/btnLogin"
+            android:text="@string/login"
+            android:textAllCaps="true"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:textColor="@color/white"
+            android:background="@drawable/background_green_filled"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
