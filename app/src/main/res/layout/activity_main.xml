@@ -1,21 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+
     tools:context=".ui.DashboardActivity">
 
-    <fragment
-        android:id="@+id/activity_main_nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigationbar"
-        android:layout_centerInParent="true"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".customerapp.ui.home.view.HomeFragment">
+        <RelativeLayout
+            android:id="@+id/topAppbar"
+            android:layout_width="match_parent"
+            android:paddingVertical="@dimen/_12sdp"
+            android:elevation="@dimen/_9sdp"
+            android:layout_height="@dimen/_85sdp">
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/green"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_height="@dimen/_2sdp"/>
+
+
+            <ImageView
+                android:layout_width="@dimen/_45sdp"
+                android:src="@drawable/ic_app_aestores"
+                android:id="@+id/ivApp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/_45sdp"/>
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+
+                android:src="@drawable/ic_mmenu"
+                android:id="@+id/ivNav"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_height="@dimen/_25sdp"/>
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:src="@drawable/ic_search"
+                android:id="@+id/ivSearch"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_centerVertical="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_height="@dimen/_25sdp"/>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/green"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_height="@dimen/_2sdp"/>
+
+        </RelativeLayout>
+
+
+        <fragment
+            android:id="@+id/activity_main_nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topAppbar"
+            android:layout_above="@id/bottomNavigationbar"
+            android:layout_centerInParent="true"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationbar"
@@ -30,4 +89,18 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_nav_menu" />
 
-</RelativeLayout>
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/drawerHome"
+        android:layout_width="@dimen/_260sdp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        style="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:fitsSystemWindows="false"
+        app:headerLayout="@layout/home_side_menu">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

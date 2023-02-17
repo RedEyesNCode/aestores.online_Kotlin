@@ -6,4 +6,8 @@
     <string name="cart">Cart</string>
     <string name="home">Home</string>
     <string name="wishlist">Wishlist</string>
+    <string name="become_a_dealer">Become a Dealer</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="call_us_at_91_8553463261_free">Call us at 91-8553463261 (Free)</string>
 </resources>
