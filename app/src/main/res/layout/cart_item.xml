@@ -9,6 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/_18sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/_6sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_height="wrap_content">
@@ -71,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price"
+            android:text="@string/price"
             android:gravity="center"
             android:textColor="@color/grey_dark"
             android:fontFamily="@font/mulish_bold"
@@ -79,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rs. 100"
+                android:text="@string/rs_100"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:id="@+id/tvRealPrice"
                 android:gravity="center"
@@ -155,7 +157,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total : "
+                android:text="@string/total"
                 android:gravity="center"
                 android:textColor="@color/grey_dark"
                 android:fontFamily="@font/mulish_bold"

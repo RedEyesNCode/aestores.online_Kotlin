@@ -162,7 +162,7 @@
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@+id/tv_spg_price"
                             android:fontFamily="@font/mulish_regular"
-                            android:text="$"
+                            android:text="@strig/dollar"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_9ssp" />
 
