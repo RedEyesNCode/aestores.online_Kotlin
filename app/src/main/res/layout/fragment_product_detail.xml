@@ -40,26 +40,38 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_14sdp"
-
-                    android:background="@drawable/background_green_box"
                     android:layout_height="wrap_content">
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:layout_width="match_parent"
-                        android:layout_margin="@dimen/_6sdp"
-                        android:id="@+id/viewPagerProductImage"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:text="1/2 Images"
-                        android:id="@+id/tvNumberImages"
-                        android:paddingVertical="@dimen/_14sdp"
-                        android:textColor="@color/green"
-                        android:fontFamily="@font/mulish_bold"
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="@dimen/_125sdp"
+                        android:src="@drawable/ic_banner_home"
+                        android:id="@+id/ivMainProductImage"
+                        android:layout_gravity="center"
+                        app:riv_corner_radius="@dimen/_7sdp"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="@dimen/_4sdp"
+                        android:layout_height="@dimen/_125sdp">
+                    </com.makeramen.roundedimageview.RoundedImageView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        tools:itemCount="2"
+                        android:layout_gravity="center"
+                        android:id="@+id/recvProductImages"
+                        android:background="@drawable/background_green_box"
+
                         android:gravity="center"
-                        android:textSize="@dimen/_14sdp"
-                        android:layout_height="wrap_content"/>
+                        tools:listitem="@layout/product_image_item"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_height="wrap_content">
+
+
+
+
+                    </androidx.recyclerview.widget.RecyclerView>
 
 
 

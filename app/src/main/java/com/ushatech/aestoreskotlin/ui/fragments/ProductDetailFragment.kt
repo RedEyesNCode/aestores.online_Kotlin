@@ -1,22 +1,25 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.ProductImageAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ProductDetailFragment : BaseFragment() {
+class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -24,8 +27,9 @@ class ProductDetailFragment : BaseFragment() {
 
     private lateinit var binding:FragmentProductDetailBinding
 
-
-
+    override fun onImageClick(position: Int, drawable: Drawable) {
+        binding.ivMainProductImage.setImageDrawable(drawable)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,23 +47,9 @@ class ProductDetailFragment : BaseFragment() {
         binding = FragmentProductDetailBinding.inflate(layoutInflater)
 
         initClicks()
-        binding.viewPagerProductImage.adapter = ImageViewPagerAdapter(fragmentContext)
-        binding.viewPagerProductImage.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        val currentPageIndex = 0
-        binding.viewPagerProductImage.currentItem = currentPageIndex
-        binding.viewPagerProductImage.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
+        binding.recvProductImages.adapter = ProductImageAdapter(fragmentContext,this)
+        binding.recvProductImages.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.HORIZONTAL,false)
 
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-
-                    //update the image number textview
-                    // Make ui for the dots.
-                    binding.tvNumberImages.text = "${position + 1} / 2"
-
-                }
-            }
-        )
         binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
         // Inflate the layout for this fragment
