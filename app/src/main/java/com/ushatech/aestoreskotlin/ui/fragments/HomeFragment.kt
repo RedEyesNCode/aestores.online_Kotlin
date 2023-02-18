@@ -12,6 +12,7 @@ import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentHomeBinding
 import com.ushatech.aestoreskotlin.ui.adapter.FeaturedCategoryAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
+import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
 
 
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -46,8 +47,12 @@ class HomeFragment : BaseFragment() {
 
     }
 
+    override fun onCategoryClick(position: Int) {
+        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
+    }
+
     private fun setupRecyler() {
-        binding.recvFeaturedCategories.adapter= FeaturedCategoryAdapter(fragmentContext)
+        binding.recvFeaturedCategories.adapter= FeaturedCategoryAdapter(fragmentContext,this)
         binding.recvFeaturedCategories.layoutManager = GridLayoutManager(fragmentContext,2,GridLayoutManager.VERTICAL,false)
 
         binding.viewPagerTrending.adapter = ImageViewPagerAdapter(fragmentContext)

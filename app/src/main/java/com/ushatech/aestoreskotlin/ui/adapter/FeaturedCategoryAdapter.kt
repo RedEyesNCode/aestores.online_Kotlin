@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.databinding.FeaturedCategoryItemBinding
 
-class FeaturedCategoryAdapter(var context: Context):RecyclerView.Adapter<FeaturedCategoryAdapter.MyViewholder>() {
+class FeaturedCategoryAdapter(var context: Context, var onClickCategoryActivity: onClickCategory):RecyclerView.Adapter<FeaturedCategoryAdapter.MyViewholder>() {
 
 
     private lateinit var binding: FeaturedCategoryItemBinding
+
+    private var onClickEvent = onClickCategoryActivity
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewholder {
@@ -39,17 +41,22 @@ class FeaturedCategoryAdapter(var context: Context):RecyclerView.Adapter<Feature
                 holder.binding.tvCategoryName.setText(context.getString(R.string.personal_care))
 
             }
-
-
-
+        }
+        binding.mainLayout.setOnClickListener {
+            onClickEvent.onCategoryClick(position)
 
         }
+
 
     }
 
     override fun getItemCount(): Int {
 
         return 5
+
+    }
+    public interface onClickCategory{
+        fun onCategoryClick(position:Int)
 
     }
 

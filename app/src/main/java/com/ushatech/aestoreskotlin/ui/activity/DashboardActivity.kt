@@ -1,4 +1,4 @@
-package com.ushatech.aestoreskotlin.ui
+package com.ushatech.aestoreskotlin.ui.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -6,12 +6,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
@@ -138,7 +134,7 @@ class DashboardActivity : BaseActivity() {
             binding.mainLayout.openDrawer(GravityCompat.START)
         }
         binding.ivSearch.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity,SearchProductActivity::class.java))
+            startActivity(Intent(this@DashboardActivity, SearchProductActivity::class.java))
         }
 
     }

@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#F4F4F4</color>
+    <color name="grey2">#F7F7F7</color>
     <color name="grey_dark">#BABABA</color>
     <color name="green">#659041</color>
     <color name="red">#FF1F1F</color>
     <color name="green_light">#98CE44</color>
+    <color name="green_lightest">#EBFAE9</color>
 </resources>

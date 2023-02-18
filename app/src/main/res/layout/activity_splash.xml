@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SplashActivity">
-    
+    tools:context=".ui.activity.SplashActivity">
+
     <ImageView
-        android:layout_width="@dimen/_95sdp"
-        android:src="@drawable/ic_app_aestores"
+        android:layout_width="@dimen/_145sdp"
+        android:layout_height="@dimen/_145sdp"
         android:layout_centerInParent="true"
         android:elevation="@dimen/_9sdp"
-        android:layout_height="@dimen/_95sdp"/>
+        android:src="@drawable/ic_app_aestores" />
     
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.ushatech.aestoreskotlin.ui
+package com.ushatech.aestoreskotlin.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

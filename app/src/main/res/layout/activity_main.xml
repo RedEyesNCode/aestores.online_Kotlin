@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main_layout"
 
-    tools:context=".ui.DashboardActivity">
+    tools:context=".ui.activity.DashboardActivity">
 
 
 
@@ -23,29 +23,27 @@
             android:layout_width="match_parent"
             android:paddingVertical="@dimen/_12sdp"
             android:elevation="@dimen/_9sdp"
-            android:layout_height="@dimen/_85sdp">
-            <View
-                android:layout_width="match_parent"
-                android:background="@color/green"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_height="@dimen/_2sdp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_height="@dimen/_95sdp">
 
 
             <ImageView
-                android:layout_width="@dimen/_45sdp"
+                android:layout_width="@dimen/_65sdp"
                 android:src="@drawable/ic_app_aestores"
                 android:id="@+id/ivApp"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_height="@dimen/_45sdp"/>
+                android:layout_height="@dimen/_65sdp"/>
             <ImageView
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_35sdp"
 
                 android:src="@drawable/ic_mmenu"
                 android:id="@+id/ivNav"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
-                android:layout_height="@dimen/_25sdp"/>
+                android:layout_height="@dimen/_35sdp"/>
             <ImageView
                 android:layout_width="@dimen/_25sdp"
                 android:src="@drawable/ic_search"
@@ -72,7 +70,6 @@
             android:layout_below="@id/topAppbar"
             android:layout_above="@id/bottomNavigationbar"
             android:layout_centerInParent="true"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationbar"
         android:layout_width="match_parent"

@@ -23,4 +23,14 @@
     <string name="login_to_your_account">Login to your account</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="rs_499">Rs 499</string>
+    <string name="ae_naturals_activated_charcoal_soap_100g">AE Naturals Activated Charcoal soap 100g</string>
+    <string name="_0_off">0 % off</string>
+    <string name="availability">Availability :</string>
+    <string name="_50_in_stock">50 in Stock</string>
+    <string name="enter_pincode">Enter PINCODE</string>
+    <string name="check_pincode">Check Pincode</string>
+    <string name="eg_462003">eg : 462003</string>
+    <string name="_1">1</string>
+    <string name="free_shipping_applies_to_all_orders_above_100">Free Shipping applies to all orders above 100</string>
+    <string name="add_to_cart">Add to Cart</string>
 </resources>
