@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.databinding.FragmentCartBinding
+import com.ushatech.aestoreskotlin.ui.adapter.CartAdapter
+import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +27,8 @@ class CartFragment : BaseFragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding:FragmentCartBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,10 +41,34 @@ class CartFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentCartBinding.inflate(LayoutInflater.from(fragmentContext))
+        binding.recvCart.adapter = CartAdapter(fragmentContext)
+        binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
 
+        initClicks()
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        return binding.root
+    }
+
+    private fun initClicks() {
+        binding.btnCheckoutProceed.setOnClickListener {
+
+            FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,BillingFragment(),BillingFragment::class.java.canonicalName,true)
+
+
+        }
+
+        binding.btnContinueShopping.setOnClickListener {
+
+            // Need to implement logic for returning back
+
+            showToast("Under development")
+
+
+        }
+
+
     }
 
     companion object {

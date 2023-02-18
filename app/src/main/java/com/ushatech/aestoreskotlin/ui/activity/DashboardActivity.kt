@@ -16,10 +16,7 @@ import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
-import com.ushatech.aestoreskotlin.ui.fragments.CartFragment
-import com.ushatech.aestoreskotlin.ui.fragments.HomeFragment
-import com.ushatech.aestoreskotlin.ui.fragments.ProfileFragment
-import com.ushatech.aestoreskotlin.ui.fragments.WishlistFragment
+import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 class DashboardActivity : BaseActivity() {
@@ -125,9 +122,7 @@ class DashboardActivity : BaseActivity() {
         bottomNavigationView.setOnItemSelectedListener(object : BottomNavigationView.OnNavigationItemSelectedListener{
 
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                if(item.itemId==R.id.categoryFragment){
-                    binding.mainLayout.openDrawer(binding.drawerCategory)
-                }else if(item.itemId==R.id.wishListFragment){
+                if(item.itemId==R.id.wishListFragment){
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,WishlistFragment(),WishlistFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.homeFragment){
@@ -152,7 +147,9 @@ class DashboardActivity : BaseActivity() {
 
 
                 }else if(item.itemId==R.id.categoryFragment){
-                    binding.mainLayout.openDrawer(binding.drawerCategory)
+//                    binding.mainLayout.openDrawer(binding.drawerCategory)
+                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,CategoryFragment(),CategoryFragment::class.java.canonicalName,false)
+
                 }else if(item.itemId==R.id.profileFragment){
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,ProfileFragment(),ProfileFragment::class.java.canonicalName,false)
 

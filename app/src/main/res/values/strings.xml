@@ -43,4 +43,7 @@
     <string name="PRIVACY_POLICY">https://aestores.online/privacy-policy</string>
     <string name="TERMS_AND_CONDITIONS">https://aestores.online/terms-of-service</string>
     <string name="terms_u0026_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="continue_shopping">Continue Shopping</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="whole_total">Whole TOTAL</string>
 </resources>
