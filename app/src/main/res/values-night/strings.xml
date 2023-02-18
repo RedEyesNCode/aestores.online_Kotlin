@@ -64,4 +64,11 @@
     <string name="tax_included">Tax (included)</string>
     <string name="shipping">Shipping</string>
     <string name="place_an_order">Place an order</string>
+    <string name="dollar">$</string>
+    <string name="h_no_street">H.no / Street</string>
+    <string name="quantity">Quantity :</string>
+    <string name="garanteed_100_organic_from_natural_farms">Garanteed 100 % organic from natural farms</string>
+    <string name="_1_day_return_if_you_change_your_mind">1 Day Return if you change your mind.</string>
+    <string name="_1_2_images">1/2 Images</string>
+    <string name="hi">Hi,</string>
 </resources>
