@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentBillingBinding
+import com.ushatech.aestoreskotlin.ui.adapter.OrderItemAdapter
 
 
 private const val ARG_PARAM1 = "param1"
@@ -38,6 +40,14 @@ class BillingFragment : BaseFragment() {
 
         binding = FragmentBillingBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
+
+        binding.recvOrderItems.adapter = OrderItemAdapter(fragmentContext)
+        binding.recvOrderItems.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
+
+
+        binding.btnPay.setOnClickListener {
+            showToast("Order placed !")
+        }
 
 
 

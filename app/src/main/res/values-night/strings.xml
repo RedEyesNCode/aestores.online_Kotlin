@@ -42,4 +42,18 @@
     <string name="continue_shopping">Continue Shopping</string>
     <string name="proceed_to_checkout">Proceed to Checkout</string>
     <string name="whole_total">Whole TOTAL</string>
+    <string name="billing_details">Billing Details</string>
+    <string name="name">Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="address">Address</string>
+    <string name="postalcode_zip">Postalcode/ZIP*</string>
+    <string name="total">TOTAL</string>
+    <string name="product">PRODUCT</string>
+    <string name="use_bonus_wallet_amount">Use Bonus Wallet Amount</string>
+    <string name="use_bonus_wallet">Use Bonus Wallet</string>
+    <string name="bonus_cash">Bonus Cash</string>
+    <string name="select_payment">Select Payment</string>
+    <string name="pay_online">Pay-online</string>
+    <string name="cash_on_delivery">Cash on Delivery</string>
+    <string name="enter_bonus_cash_to_be_used">Enter Bonus cash to be used</string>
 </resources>
