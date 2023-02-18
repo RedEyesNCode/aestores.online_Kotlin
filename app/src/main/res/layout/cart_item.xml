@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginBottom="@dimen/_6sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="@dimen/_65sdp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:riv_corner_radius="@dimen/_8sdp"
+            app:tint="@color/green"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_banner_home"
+            android:id="@+id/ivFeatureOne"
+            android:layout_height="@dimen/_65sdp"/>
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="@dimen/_20sdp"
+
+            android:layout_alignParentEnd="true"
+            app:tint="@color/green"
+            android:src="@drawable/ic_trash"
+            android:id="@+id/ivDelete"
+            android:layout_height="@dimen/_20sdp"/>
+        <TextView
+            android:id="@+id/tvFeatureOneTitle"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/ivFeatureOne"
+            android:layout_toStartOf="@id/ivDelete"
+            android:layout_height="wrap_content"
+            android:text="@string/ae_naturals_activated_charcoal_soap_100g"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/mulish_bold"
+            android:layout_alignParentTop="true"
+            android:lineSpacingExtra="@dimen/_5sdp"
+
+            android:textSize="@dimen/_12sdp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/ivFeatureOne"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_below="@id/tvFeatureOneTitle"
+            android:layout_height="wrap_content"
+            android:text="@string/_520_gms"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:gravity="center"
+            android:id="@+id/tvItemWeight"
+            android:textColor="@color/grey_dark"
+            android:fontFamily="@font/mulish_regular"
+            android:lineSpacingExtra="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toEndOf="@id/ivFeatureOne"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:id="@+id/priceLayout"
+            android:layout_below="@id/tvItemWeight"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:gravity="center"
+            android:textColor="@color/grey_dark"
+            android:fontFamily="@font/mulish_bold"
+            android:textSize="@dimen/_12sdp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs. 100"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/tvRealPrice"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_18sdp" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_below="@id/priceLayout"
+            android:layout_toEndOf="@id/ivFeatureOne"
+            android:layout_marginEnd="@dimen/_38sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:id="@+id/quantityLayout"
+            android:weightSum="2"
+
+            android:background="@drawable/background_green_box"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentStart="true"
+                android:padding="@dimen/_5sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:background="@color/grey2"
+                android:src="@drawable/ic_plus" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1"
+                android:layout_centerInParent="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/mulish_regular"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/_5sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:background="@color/grey2"
+                android:src="@drawable/ic_minus" />
+
+
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toEndOf="@id/ivFeatureOne"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:id="@+id/realPriceLayout"
+            android:layout_below="@id/quantityLayout"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total : "
+                android:gravity="center"
+                android:textColor="@color/grey_dark"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_12sdp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rs_100"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/tvTotalPrice"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_18sdp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_below="@id/realPriceLayout"
+            android:background="@color/green"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_height="@dimen/_1sdp"/>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

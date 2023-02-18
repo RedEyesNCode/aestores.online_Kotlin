@@ -35,4 +35,12 @@
     <string name="_1">1</string>
     <string name="free_shipping_applies_to_all_orders_above_100">Free Shipping applies to all orders above 100</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="_520_gms">520 gms</string>
+    <string name="rs_100">Rs. 100</string>
+    <string name="price">Price</string>
+    <string name="update_cart">Update Cart</string>
+    <string name="recently_viewed">Recently Viewed</string>
+    <string name="PRIVACY_POLICY">https://aestores.online/privacy-policy</string>
+    <string name="TERMS_AND_CONDITIONS">https://aestores.online/terms-of-service</string>
+    <string name="terms_u0026_conditions"><![CDATA[Terms & Conditions]]></string>
 </resources>

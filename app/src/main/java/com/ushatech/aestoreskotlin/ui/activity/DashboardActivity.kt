@@ -16,6 +16,7 @@ import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
+import com.ushatech.aestoreskotlin.ui.fragments.CartFragment
 import com.ushatech.aestoreskotlin.ui.fragments.HomeFragment
 import com.ushatech.aestoreskotlin.ui.fragments.ProfileFragment
 import com.ushatech.aestoreskotlin.ui.fragments.WishlistFragment
@@ -56,12 +57,30 @@ class DashboardActivity : BaseActivity() {
             binding.mainLayout.closeDrawer(GravityCompat.START)
 
         }
-        homeSideMenuBinding.tvCallUs.setOnClickListener {
 
-            val phone = "+91 8553463261"
-            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
-            startActivity(intent)
+
+
+
+
+        homeSideMenuBinding.tvPrivacyPolicy.setOnClickListener {
+
+//            val phone = "+91 8553463261"
+//            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
+//            startActivity(intent)
+            val url = getString(R.string.PRIVACY_POLICY)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+
         }
+        homeSideMenuBinding.tvTerms.setOnClickListener {
+            val url = getString(R.string.TERMS_AND_CONDITIONS)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+
+        }
+
         categorySideMenuBinding.ivClose.setOnClickListener {
             binding.mainLayout.closeDrawer(GravityCompat.END)
         }
@@ -112,11 +131,33 @@ class DashboardActivity : BaseActivity() {
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,WishlistFragment(),WishlistFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.homeFragment){
-                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
+                    // ADDING CHECKS FOR THE BACK STACK MANAGE.
+                    if(supportFragmentManager.backStackEntryCount==1){
+                        supportFragmentManager.popBackStack()
+                        // Means only CategoryProduct stack is present.
+                    }else if(supportFragmentManager.backStackEntryCount==2){
+                        //Means CategoryProduct , Product details stacks are present
+                        supportFragmentManager.popBackStack()
+                        supportFragmentManager.popBackStack()
+                    }else if(supportFragmentManager.backStackEntryCount==3){
+                        //Means CategoryProduct , Product details, Cart screens (3) stacks are present
+                        supportFragmentManager.popBackStack()
+                        supportFragmentManager.popBackStack()
+                        supportFragmentManager.popBackStack()
+                    }else{
+                        FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
+
+                    }
+
+
+
                 }else if(item.itemId==R.id.categoryFragment){
                     binding.mainLayout.openDrawer(binding.drawerCategory)
                 }else if(item.itemId==R.id.profileFragment){
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,ProfileFragment(),ProfileFragment::class.java.canonicalName,false)
+
+                }else if(item.itemId==R.id.cartFragment){
+                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,false)
 
                 }
 

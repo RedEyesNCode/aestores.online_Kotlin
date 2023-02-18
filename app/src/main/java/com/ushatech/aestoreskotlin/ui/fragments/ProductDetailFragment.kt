@@ -11,6 +11,7 @@ import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
+import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -61,12 +62,16 @@ class ProductDetailFragment : BaseFragment() {
         )
         binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
-
         // Inflate the layout for this fragment
         return binding.root
     }
 
     private fun initClicks() {
+        binding.ivCart.setOnClickListener {
+            FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,true)
+
+
+        }
 
     }
 

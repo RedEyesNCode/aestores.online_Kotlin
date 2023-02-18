@@ -73,6 +73,7 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/_18sdp"
         android:layout_marginBottom="@dimen/_6sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
@@ -106,7 +107,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginBottom="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_height="wrap_content">
         <com.makeramen.roundedimageview.RoundedImageView
@@ -117,17 +118,52 @@
             android:id="@+id/ivFeatureTwo"
             app:tint="@color/black"
             android:layout_height="@dimen/_15sdp"/>
+
         <TextView
             android:id="@+id/tvFeatureTitleTwo"
             android:layout_width="wrap_content"
-            android:layout_toEndOf="@id/ivFeatureTwo"
             android:layout_height="wrap_content"
-            android:text="@string/become_a_dealer"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/mulish_bold"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toEndOf="@id/ivFeatureTwo"
+            android:fontFamily="@font/mulish_bold"
             android:lineSpacingExtra="@dimen/_5sdp"
+            android:text="@string/become_a_dealer"
+            android:textColor="@color/black"
+
+            android:textSize="@dimen/_12sdp" />
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:id="@+id/termsLayout"
+
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_cube"
+            android:id="@+id/ivTerms"
+            app:tint="@color/black"
+            android:layout_height="@dimen/_15sdp"/>
+
+        <TextView
+            android:id="@+id/tvTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toEndOf="@id/ivTerms"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="@dimen/_5sdp"
+            android:text="@string/terms_u0026_conditions"
+            android:textColor="@color/black"
 
             android:textSize="@dimen/_12sdp" />
 
@@ -135,29 +171,35 @@
 
     </RelativeLayout>
 
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/_18sdp"
         android:layout_marginBottom="@dimen/_6sdp"
+        android:visibility="visible"
+        android:id="@+id/policyLayout"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_height="wrap_content">
         <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="@dimen/_20sdp"
+            android:layout_width="@dimen/_15sdp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_call"
+            android:background="@drawable/ic_cube"
             android:id="@+id/ivFeatureThree"
             app:tint="@color/black"
-            android:layout_height="@dimen/_20sdp"/>
+            android:layout_height="@dimen/_15sdp"/>
         <TextView
-            android:id="@+id/tvCallUs"
+            android:id="@+id/tvPrivacyPolicy"
             android:layout_width="wrap_content"
             android:layout_toEndOf="@id/ivFeatureThree"
             android:layout_height="wrap_content"
-            android:text="@string/call_us_at_91_8553463261_free"
-            android:layout_marginStart="@dimen/_12sdp"
+            android:text="Privacy Policy"
             android:textColor="@color/black"
             android:fontFamily="@font/mulish_bold"
+            android:layout_marginStart="@dimen/_12sdp"
+
             android:layout_alignParentTop="true"
             android:lineSpacingExtra="@dimen/_5sdp"
 

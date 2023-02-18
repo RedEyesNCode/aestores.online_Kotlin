@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_19sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:text="@string/featured_categories"
                     android:id="@+id/tvFeaturedCategory"
                     android:textAllCaps="false"
@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_19sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:text="@string/trending"
                     android:id="@+id/tvTrending"
                     android:textAllCaps="false"
@@ -95,7 +95,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_19sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:text="@string/new_arrival"
                     android:id="@+id/tvNewArrival"
                     android:textAllCaps="false"
@@ -133,8 +133,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_19sdp"
-                    android:text="Recently Viewed"
+                    android:textSize="@dimen/_15sdp"
+                    android:text="@string/recently_viewed"
                     android:id="@+id/tvRecentlyViewed"
                     android:textAllCaps="false"
                     android:layout_marginBottom="@dimen/_8sdp"
