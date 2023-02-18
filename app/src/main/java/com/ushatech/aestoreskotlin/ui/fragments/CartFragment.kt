@@ -46,9 +46,14 @@ class CartFragment : BaseFragment() {
         binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
 
         initClicks()
-
+        if(fragmentManager?.backStackEntryCount==3){
+            binding.btnContinueShopping.visibility=View.VISIBLE
+        }else{
+            binding.btnContinueShopping.visibility=View.GONE
+        }
         // Inflate the layout for this fragment
         return binding.root
+
     }
 
     private fun initClicks() {
@@ -62,9 +67,11 @@ class CartFragment : BaseFragment() {
         binding.btnContinueShopping.setOnClickListener {
 
             // Need to implement logic for returning back
+            if(fragmentManager?.backStackEntryCount==3){
+                fragmentManager?.popBackStack()
+                fragmentManager?.popBackStack()
 
-            showToast("Under development")
-
+            }
 
         }
 

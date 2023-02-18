@@ -1,5 +1,6 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
@@ -18,6 +20,7 @@ import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
+
 
 class DashboardActivity : BaseActivity() {
 
@@ -105,6 +108,31 @@ class DashboardActivity : BaseActivity() {
         popupMenu.show()
     }
 
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount==0){
+
+            val alertDialog = AlertDialog.Builder(this@DashboardActivity)
+            alertDialog.setTitle("Exit App ?")
+            alertDialog.setCancelable(true)
+            alertDialog.setPositiveButton("Yes",{dialog, which ->
+                run {
+
+                    finish()
+
+
+                }
+            })
+            alertDialog.setNegativeButton("CANCEL",null)
+            alertDialog.create()
+
+            alertDialog.show()
+        }else{
+            super.onBackPressed()
+        }
+
+    }
+
+
     private fun initNav() {
 //        val navController: NavController =
 //            Navigation.findNavController(
@@ -123,37 +151,59 @@ class DashboardActivity : BaseActivity() {
 
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 if(item.itemId==R.id.wishListFragment){
+                    val fm: FragmentManager = supportFragmentManager
+                    for (i in 0 until fm.getBackStackEntryCount()) {
+                        fm.popBackStack()
+                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,WishlistFragment(),WishlistFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.homeFragment){
                     // ADDING CHECKS FOR THE BACK STACK MANAGE.
-                    if(supportFragmentManager.backStackEntryCount==1){
-                        supportFragmentManager.popBackStack()
-                        // Means only CategoryProduct stack is present.
-                    }else if(supportFragmentManager.backStackEntryCount==2){
-                        //Means CategoryProduct , Product details stacks are present
-                        supportFragmentManager.popBackStack()
-                        supportFragmentManager.popBackStack()
-                    }else if(supportFragmentManager.backStackEntryCount==3){
-                        //Means CategoryProduct , Product details, Cart screens (3) stacks are present
-                        supportFragmentManager.popBackStack()
-                        supportFragmentManager.popBackStack()
-                        supportFragmentManager.popBackStack()
-                    }else{
-                        FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
 
+                    val fm: FragmentManager = supportFragmentManager
+                    for (i in 0 until fm.getBackStackEntryCount()) {
+                        fm.popBackStack()
                     }
+                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
+
+//                    if(supportFragmentManager.backStackEntryCount==1){
+//                        supportFragmentManager.popBackStack()
+//                        // Means only CategoryProduct stack is present.
+//                    }else if(supportFragmentManager.backStackEntryCount==2){
+//                        //Means CategoryProduct , Product details stacks are present
+//                        supportFragmentManager.popBackStack()
+//                        supportFragmentManager.popBackStack()
+//                    }else if(supportFragmentManager.backStackEntryCount==3){
+//                        //Means CategoryProduct , Product details, Cart screens (3) stacks are present
+//                        supportFragmentManager.popBackStack()
+//                        supportFragmentManager.popBackStack()
+//                        supportFragmentManager.popBackStack()
+//                    }else{
+//
+//                    }
 
 
 
                 }else if(item.itemId==R.id.categoryFragment){
 //                    binding.mainLayout.openDrawer(binding.drawerCategory)
+                    val fm: FragmentManager = supportFragmentManager
+                    for (i in 0 until fm.getBackStackEntryCount()) {
+                        fm.popBackStack()
+                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,CategoryFragment(),CategoryFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.profileFragment){
+                    val fm: FragmentManager = supportFragmentManager
+                    for (i in 0 until fm.getBackStackEntryCount()) {
+                        fm.popBackStack()
+                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,ProfileFragment(),ProfileFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.cartFragment){
+                    val fm: FragmentManager = supportFragmentManager
+                    for (i in 0 until fm.getBackStackEntryCount()) {
+                        fm.popBackStack()
+                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,false)
 
                 }
