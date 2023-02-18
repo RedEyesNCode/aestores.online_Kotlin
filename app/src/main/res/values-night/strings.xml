@@ -56,4 +56,12 @@
     <string name="pay_online">Pay-online</string>
     <string name="cash_on_delivery">Cash on Delivery</string>
     <string name="enter_bonus_cash_to_be_used">Enter Bonus cash to be used</string>
+    <string name="select_country">Select Country</string>
+    <string name="select_state">Select State</string>
+    <string name="select_city">Select City</string>
+    <string name="your_order">Your Order</string>
+    <string name="cart_total">Cart Total</string>
+    <string name="tax_included">Tax (included)</string>
+    <string name="shipping">Shipping</string>
+    <string name="place_an_order">Place an order</string>
 </resources>
