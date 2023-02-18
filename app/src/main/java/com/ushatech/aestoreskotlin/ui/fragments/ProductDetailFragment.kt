@@ -1,5 +1,6 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
+import android.app.Dialog
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
+import com.ushatech.aestoreskotlin.databinding.ImageDialogBinding
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.ProductImageAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
@@ -52,6 +54,8 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
         binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -60,6 +64,14 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         binding.ivCart.setOnClickListener {
             FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,true)
 
+
+        }
+        binding.ivMainProductImage.setOnClickListener {
+            var dialogBinding = ImageDialogBinding.inflate(LayoutInflater.from(fragmentContext))
+            var dialog = Dialog(fragmentContext)
+            dialog.setContentView(dialogBinding.root)
+            dialogBinding.imageDilag.setImageDrawable(binding.ivMainProductImage.drawable)
+            dialog.show()
 
         }
 
