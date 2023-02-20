@@ -66,6 +66,7 @@ class LoginActivity : BaseActivity() {
             if(it!=null){
                 showToast("$it.message")
                 AppSession(this@LoginActivity).put(Constant.IS_LOGGED_IN,true)
+                AppSession(this@LoginActivity).putObject(Constant.USER_INFO,it)
                 val IntentDashboard = Intent(this@LoginActivity,DashboardActivity::class.java)
                 IntentDashboard.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(IntentDashboard)

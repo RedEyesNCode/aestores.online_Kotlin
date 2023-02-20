@@ -42,6 +42,9 @@
     <string name="recently_viewed">Recently Viewed</string>
     <string name="PRIVACY_POLICY">https://aestores.online/privacy-policy</string>
     <string name="TERMS_AND_CONDITIONS">https://aestores.online/terms-of-service</string>
+    <string name="EXCHANGE_POLICY">https://aestores.online/exchange-policy</string>
+    <string name="SHIPPING_POLICY">https://aestores.online/shipping-policy</string>
+    <string name="ABOUT_US">https://aestores.online/about-us</string>
     <string name="terms_u0026_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="continue_shopping">Continue Shopping</string>
     <string name="proceed_to_checkout">Proceed to Checkout</string>
@@ -78,4 +81,5 @@
     <string name="we_have_sent_otp_to_entered_number_please_check">We have sent OTP to entered number. Please check</string>
     <string name="verify_mobile_number">Verify Mobile Number</string>
     <string name="signup">Signup</string>
+    <string name="help_u0026_info"><![CDATA[Help & Info]]></string>
 </resources>

@@ -13,8 +13,6 @@
         android:elevation="@dimen/_6sdp"
         android:layout_margin="@dimen/_5sdp"
         android:scaleType="centerCrop"
-        android:layout_height="@dimen/_105sdp">
-
-
+        android:layout_height="@dimen/_145sdp">
     </com.makeramen.roundedimageview.RoundedImageView>
 </LinearLayout>

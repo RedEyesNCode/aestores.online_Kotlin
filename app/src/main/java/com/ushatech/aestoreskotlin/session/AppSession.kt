@@ -3,6 +3,7 @@ package com.ushatech.aestoreskotlin.session
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.ushatech.aestoreskotlin.data.LoginUserResponse
 
 class AppSession(context: Context) {
     private val PREFS_NAME =Constant.PREFERENCES_NAME
@@ -63,10 +64,10 @@ class AppSession(context: Context) {
 
     // Below function can be used to getSession Json object directly from the key.
 
-//    fun getUser(): LoginResponse? {
-//        return getObject(
-//            Constants.KEY_NAME_HERE,
-//            LoginResponse::class.java
-//        ) as LoginResponse?
-//    }
+    fun getUser(): LoginUserResponse? {
+        return getObject(
+            Constant.USER_INFO,
+            LoginUserResponse::class.java
+        ) as LoginUserResponse?
+    }
 }

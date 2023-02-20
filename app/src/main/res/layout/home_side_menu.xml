@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/hi"
                 android:textColor="@color/white"
+                android:id="@+id/tvName"
                 android:layout_marginStart="@dimen/_8sdp"
 
                 android:fontFamily="@font/mulish_bold"
@@ -53,6 +54,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/white"
+        android:orientation="vertical"
         android:layout_marginBottom="@dimen/_12sdp"
 
         android:layout_height="wrap_content">
@@ -69,145 +71,202 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:id="@+id/helpInfoLayout"
+            android:layout_height="@dimen/_45sdp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/help_u0026_info"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:id="@+id/tvHelpAndInfo"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_15sdp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:src="@drawable/ic_dropdown"
+                android:padding="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:id="@+id/ivDown"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_8sdp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_height="@dimen/_25sdp"/>
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:src="@drawable/ic_dropdown"
+                android:padding="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:id="@+id/ivUp"
+                android:visibility="gone"
+                android:rotation="180"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_8sdp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_height="@dimen/_25sdp"/>
+
+
+
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/dropDownHelpInfo"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/termsLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="@string/terms_u0026_conditions"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/policyLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvPrivacyPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/shippingLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvShippingPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Shipping Policy"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/exchangeLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvExchangePolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Exchange Policy"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/aboutUsLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvAboutUs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="About Us"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
 
     </LinearLayout>
-    <RelativeLayout
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginBottom="@dimen/_6sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_height="wrap_content">
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="@dimen/_15sdp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_cube"
-            android:id="@+id/ivFeatureOne"
-            app:tint="@color/black"
-            android:layout_height="@dimen/_15sdp"/>
-        <TextView
-            android:id="@+id/tvFeatureOneTitle"
-            android:layout_width="wrap_content"
-            android:layout_toEndOf="@id/ivFeatureOne"
-            android:layout_height="wrap_content"
-            android:text="Blogs"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/mulish_bold"
-            android:layout_alignParentTop="true"
-            android:lineSpacingExtra="@dimen/_5sdp"
-
-            android:textSize="@dimen/_12sdp" />
+        android:text="Logout"
+        android:id="@+id/btnLogout"
+        android:textColor="@color/white"
+        android:background="@drawable/background_green_filled"
+        android:layout_height="wrap_content"/>
 
 
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginBottom="@dimen/_16sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_height="wrap_content">
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="@dimen/_15sdp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_cube"
-            android:id="@+id/ivFeatureTwo"
-            app:tint="@color/black"
-            android:layout_height="@dimen/_15sdp"/>
-
-        <TextView
-            android:id="@+id/tvFeatureTitleTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_toEndOf="@id/ivFeatureTwo"
-            android:fontFamily="@font/mulish_bold"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:text="@string/become_a_dealer"
-            android:textColor="@color/black"
-
-            android:textSize="@dimen/_12sdp" />
-
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginBottom="@dimen/_16sdp"
-        android:id="@+id/termsLayout"
-
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_height="wrap_content">
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="@dimen/_15sdp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_cube"
-            android:id="@+id/ivTerms"
-            app:tint="@color/black"
-            android:layout_height="@dimen/_15sdp"/>
-
-        <TextView
-            android:id="@+id/tvTerms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_toEndOf="@id/ivTerms"
-            android:fontFamily="@font/mulish_bold"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:text="@string/terms_u0026_conditions"
-            android:textColor="@color/black"
-
-            android:textSize="@dimen/_12sdp" />
-
-
-
-    </RelativeLayout>
-
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginBottom="@dimen/_6sdp"
-        android:visibility="visible"
-        android:id="@+id/policyLayout"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_height="wrap_content">
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="@dimen/_15sdp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_cube"
-            android:id="@+id/ivFeatureThree"
-            app:tint="@color/black"
-            android:layout_height="@dimen/_15sdp"/>
-        <TextView
-            android:id="@+id/tvPrivacyPolicy"
-            android:layout_width="wrap_content"
-            android:layout_toEndOf="@id/ivFeatureThree"
-            android:layout_height="wrap_content"
-            android:text="Privacy Policy"
-            android:textColor="@color/black"
-            android:fontFamily="@font/mulish_bold"
-            android:layout_marginStart="@dimen/_12sdp"
-
-            android:layout_alignParentTop="true"
-            android:lineSpacingExtra="@dimen/_5sdp"
-
-            android:textSize="@dimen/_12sdp" />
-
-
-
-    </RelativeLayout>
 
 
 

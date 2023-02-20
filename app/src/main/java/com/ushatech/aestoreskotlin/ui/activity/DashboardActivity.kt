@@ -14,9 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
+import com.ushatech.aestoreskotlin.data.LoginUserResponse
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
+import com.ushatech.aestoreskotlin.session.AppSession
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
@@ -58,6 +61,29 @@ class DashboardActivity : BaseActivity() {
 
         }
 
+        homeSideMenuBinding.helpInfoLayout.setOnClickListener {
+
+
+            if(homeSideMenuBinding.dropDownHelpInfo.visibility==View.VISIBLE){
+                homeSideMenuBinding.ivDown.visibility = View.VISIBLE
+                homeSideMenuBinding.ivUp.visibility = View.GONE
+                homeSideMenuBinding.dropDownHelpInfo.visibility = View.GONE
+            }else{
+                homeSideMenuBinding.ivDown.visibility = View.GONE
+                homeSideMenuBinding.ivUp.visibility = View.VISIBLE
+
+                homeSideMenuBinding.dropDownHelpInfo.visibility = View.VISIBLE
+            }
+
+
+
+
+        }
+        val userData =  AppSession(this@DashboardActivity).getUser()
+
+        homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
+
+
 
 
 
@@ -80,6 +106,53 @@ class DashboardActivity : BaseActivity() {
             startActivity(i)
 
         }
+        
+        homeSideMenuBinding.exchangeLayout.setOnClickListener {
+
+            val url = getString(R.string.EXCHANGE_POLICY)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+
+        }
+        homeSideMenuBinding.shippingLayout.setOnClickListener {
+            val url = getString(R.string.SHIPPING_POLICY)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
+        homeSideMenuBinding.aboutUsLayout.setOnClickListener {
+            val url = getString(R.string.ABOUT_US)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+
+
+        }
+        homeSideMenuBinding.btnLogout.setOnClickListener {
+            val alertDialog = AlertDialog.Builder(this@DashboardActivity)
+            alertDialog.setTitle("Logout from App ?")
+            alertDialog.setCancelable(true)
+            alertDialog.setPositiveButton("Yes",{dialog, which ->
+                run {
+                    AppSession(this@DashboardActivity).clear()
+                    showToast("Logged Out !")
+                    val loginIntent = Intent(this@DashboardActivity,LoginActivity::class.java)
+
+                    loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(loginIntent)
+                }
+            })
+            alertDialog.setNegativeButton("CANCEL",null)
+            alertDialog.create()
+
+            alertDialog.show()
+
+
+
+        }
+        
+        
 
         categorySideMenuBinding.ivClose.setOnClickListener {
             binding.mainLayout.closeDrawer(GravityCompat.END)
