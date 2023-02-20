@@ -75,4 +75,6 @@
     <string name="_1_day_return_if_you_change_your_mind">1 Day Return if you change your mind.</string>
     <string name="_1_2_images">1/2 Images</string>
     <string name="hi">Hi,</string>
+    <string name="we_have_sent_otp_to_entered_number_please_check">We have sent OTP to entered number. Please check</string>
+    <string name="verify_mobile_number">Verify Mobile Number</string>
 </resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/_10sdp"
+
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/verify_mobile_number"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mulish_bold"
+            android:textSize="@dimen/_15sdp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@string/we_have_sent_otp_to_entered_number_please_check"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mulish_regular"
+            android:textSize="@dimen/_10sdp"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp"
+
+            android:layout_height="wrap_content">
+            <in.aabhasjindal.otptextview.OtpTextView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                app:height="@dimen/_40sdp"
+                app:width="@dimen/_40sdp"
+                app:bar_enabled="true"
+                app:bar_height="@dimen/_2sdp"
+                app:bar_active_color="@color/black"
+                app:bar_inactive_color="@color/black"
+                app:length="4"
+                app:otp=""
+                app:otp_text_size="@dimen/_20sdp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:id="@+id/btnVerifyOtp"
+            android:text="Verify Otp"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
