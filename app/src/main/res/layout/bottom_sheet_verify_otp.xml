@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bottom_sheet_background"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="@string/verify_mobile_number"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:fontFamily="@font/mulish_bold"
             android:textSize="@dimen/_15sdp"
             android:layout_height="wrap_content"/>
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:text="@string/we_have_sent_otp_to_entered_number_please_check"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:fontFamily="@font/mulish_regular"
             android:textSize="@dimen/_10sdp"
             android:layout_height="wrap_content"/>
@@ -31,13 +31,13 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/_12sdp"
-
+            android:gravity="center"
             android:layout_height="wrap_content">
             <in.aabhasjindal.otptextview.OtpTextView
                 android:id="@+id/otp_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 app:height="@dimen/_40sdp"
                 app:width="@dimen/_40sdp"
                 app:bar_enabled="true"
@@ -55,6 +55,7 @@
             android:text="Verify Otp"
             android:textAllCaps="false"
             android:layout_marginTop="@dimen/_18sdp"
+            android:background="@drawable/background_green_solid"
             android:textColor="@color/black"
             android:layout_height="wrap_content"/>
 

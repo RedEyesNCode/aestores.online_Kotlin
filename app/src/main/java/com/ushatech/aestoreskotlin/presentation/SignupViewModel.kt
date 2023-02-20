@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.ushatech.aestoreskotlin.data.OtpSendResponse
 import com.ushatech.aestoreskotlin.data.RegisterUserStepTwoResponse
 import com.ushatech.aestoreskotlin.domain.MainRepository
+import com.ushatech.aestoreskotlin.session.Constant
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -108,7 +109,7 @@ class SignupViewModel():ViewModel() {
                     if (response.code() == 200) {
                         _otpSendResponse.postValue(response.body())
                     } else {
-                        _isFailed.value = "Record Not Found !."
+                        _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
                     }
                 }
 

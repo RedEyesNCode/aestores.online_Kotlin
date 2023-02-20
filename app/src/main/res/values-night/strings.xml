@@ -73,4 +73,5 @@
     <string name="hi">Hi,</string>
     <string name="we_have_sent_otp_to_entered_number_please_check">We have sent OTP to entered number. Please check</string>
     <string name="verify_mobile_number">Verify Mobile Number</string>
+    <string name="signup">Signup</string>
 </resources>

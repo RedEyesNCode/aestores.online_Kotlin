@@ -117,14 +117,19 @@ class SignupActivity : BaseActivity() {
         if(binding.edtName.text.toString().isEmpty()){
 
             showToast("Please enter your name")
+            binding.edtName.setError("Please enter your name")
+
             return false
         }else if(binding.edtMobileNumber.text.toString().isEmpty()){
 
             showToast("Please enter mobile number")
+            binding.edtMobileNumber.setError("Please enter your mobile number")
 
             return false
         }else if(binding.edtMobileNumber.text.toString().length<10){
             showToast("Please enter valid number")
+            binding.edtMobileNumber.setError("Please enter valid mobile number.")
+
             return false
         }else{
             return true
@@ -142,6 +147,9 @@ class SignupActivity : BaseActivity() {
                signupViewModel.registerUserStepOne(binding.edtName.text.toString().trim(),binding.edtMobileNumber.text.toString())
            }
 
+        }
+        binding.btnLogin.setOnClickListener {
+            finish()
         }
 
 
