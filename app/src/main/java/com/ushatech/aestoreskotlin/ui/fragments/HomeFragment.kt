@@ -1,17 +1,21 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.data.HomeScreenResponse
 import com.ushatech.aestoreskotlin.databinding.FragmentHomeBinding
+import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 import com.ushatech.aestoreskotlin.ui.adapter.FeaturedCategoryAdapter
-import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerArrivalAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerTrendingAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.ViewPagerBanner
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +31,11 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
     private var param2: String? = null
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var dashBoardViewModel:DashboardViewModel
+
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,31 +52,92 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         initClicks()
         setupRecyler()
+        setupViewModel()
+        attachObservers()
+        initApiCall()
         return binding.root
 
     }
 
-    override fun onCategoryClick(position: Int) {
-        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
+    private fun initApiCall() {
+        dashBoardViewModel.getHomeScreenResponse()
     }
 
-    private fun setupRecyler() {
-        binding.recvFeaturedCategories.adapter= FeaturedCategoryAdapter(fragmentContext,this)
-        binding.recvFeaturedCategories.layoutManager = GridLayoutManager(fragmentContext,2,GridLayoutManager.VERTICAL,false)
-
-        binding.viewPagerTrending.adapter = ImageViewPagerAdapter(fragmentContext)
-        binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-        binding.viewPagerRecentItems.adapter = ImageViewPagerAdapter(fragmentContext)
-        binding.viewPagerRecentItems.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+    private fun attachObservers() {
 
 
-        binding.viewPagerArrival.adapter = ImageViewPagerAdapter(fragmentContext)
+        dashBoardViewModel.isFailed.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                showToast(it)
+            }
+        }
+        dashBoardViewModel.isSuccess.observe((viewLifecycleOwner)){
+            if(it){
+                showLoader()
+            }else{
+                hideLoader()
+            }
+        }
+
+        dashBoardViewModel.homeScreenResponse.observe((viewLifecycleOwner)){
+            hideLoader()
+            showLog("${it.data?.categories?.size}")
+            setupFeaturedCategories(it.data?.categories)
+            setupTrendingViewPager(it.data?.trending)
+            setupArrivalViewPager(it.data?.arrival)
+            setupBannerViewPager(it.data?.slides)
+        }
+
+
+    }
+
+    private fun setupBannerViewPager(slides: java.util.ArrayList<HomeScreenResponse.Slides>?) {
+        binding.viewPagerBanner.adapter = ViewPagerBanner(fragmentContext,slides!!)
+        binding.viewPagerBanner.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        val currentPageIndex = 0
+        binding.viewPagerBanner.currentItem = currentPageIndex
+
+        binding.viewPagerBanner.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                    //update the image number textview
+                    // Make ui for the dots.
+                    binding.tvBannerNumber.text = "${position + 1} / ${slides.size}"
+
+                }
+            }
+        )
+
+    }
+
+    private fun setupArrivalViewPager(arrival: java.util.ArrayList<HomeScreenResponse.Arrival>?) {
+        binding.viewPagerArrival.adapter = ImageViewPagerArrivalAdapter(fragmentContext, arrival!!)
         binding.viewPagerArrival.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val currentPageIndex = 0
         binding.viewPagerArrival.currentItem = currentPageIndex
-        binding.viewPagerTrending.currentItem = currentPageIndex
-        binding.viewPagerRecentItems.currentItem = currentPageIndex
+
+        binding.viewPagerArrival.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                    //update the image number textview
+                    // Make ui for the dots.
+                    binding.tvNumberPagesArrival.text = "${position + 1} / ${arrival.size}"
+
+                }
+            }
+        )
+    }
+
+    private fun setupTrendingViewPager(trending: java.util.ArrayList<HomeScreenResponse.Trending>?) {
+        binding.viewPagerTrending.adapter = ImageViewPagerTrendingAdapter(fragmentContext, trending!!)
+        binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.viewPagerTrending.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
 
@@ -81,19 +151,46 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
                 }
             }
         )
-        binding.viewPagerArrival.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
+        binding.viewPagerTrending.currentItem = 0
+    }
 
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
+    private fun setupFeaturedCategories(categories: ArrayList<HomeScreenResponse.Categories>?) {
+        binding.recvFeaturedCategories.adapter= FeaturedCategoryAdapter(fragmentContext,categories!!,this)
+        binding.recvFeaturedCategories.layoutManager = GridLayoutManager(fragmentContext,2,GridLayoutManager.VERTICAL,false)
 
-                    //update the image number textview
-                    // Make ui for the dots.
-                    binding.tvNumberPagesArrival.text = "${position + 1} / 2"
 
-                }
-            }
-        )
+    }
+
+    private fun setupViewModel() {
+        dashBoardViewModel = DashboardViewModel()
+        dashBoardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
+
+        binding.viewmodel = dashBoardViewModel
+
+
+    }
+
+    override fun onCategoryClick(position: Int) {
+        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
+    }
+
+    private fun setupRecyler() {
+
+//        binding.viewPagerTrending.adapter = ImageViewPagerAdapter(fragmentContext)
+//        binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+//
+//        binding.viewPagerRecentItems.adapter = ImageViewPagerAdapter(fragmentContext)
+//        binding.viewPagerRecentItems.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+//
+//
+//        binding.viewPagerArrival.adapter = ImageViewPagerAdapter(fragmentContext)
+//        binding.viewPagerArrival.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        val currentPageIndex = 0
+        binding.viewPagerArrival.currentItem = currentPageIndex
+        binding.viewPagerTrending.currentItem = currentPageIndex
+        binding.viewPagerRecentItems.currentItem = currentPageIndex
+
+
         binding.viewPagerRecentItems.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
 

@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ushatech.aestoreskotlin.R
+import com.ushatech.aestoreskotlin.data.HomeScreenResponse
 import com.ushatech.aestoreskotlin.databinding.FeaturedCategoryItemBinding
 
-class FeaturedCategoryAdapter(var context: Context, var onClickCategoryActivity: onClickCategory):RecyclerView.Adapter<FeaturedCategoryAdapter.MyViewholder>() {
+class FeaturedCategoryAdapter(var context: Context, var data:ArrayList<HomeScreenResponse.Categories>,var onClickCategoryActivity: onClickCategory):RecyclerView.Adapter<FeaturedCategoryAdapter.MyViewholder>() {
 
 
     private lateinit var binding: FeaturedCategoryItemBinding
@@ -24,24 +26,10 @@ class FeaturedCategoryAdapter(var context: Context, var onClickCategoryActivity:
     }
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
-        when(position){
-            0->{
-                holder.binding.tvCategoryName.setText(context.getString(R.string.skin_care_beauty))
-            }
-            1->{
-                holder.binding.tvCategoryName.setText(context.getString(R.string.hair_care))
+        holder.binding.tvCategoryName.text = data.get(position).name
+        Glide.with(context).load(data.get(position).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivCategory)
+        holder.binding.tvItemCount.text = "${data.get(position).productCounts.toString()} Items. "
 
-            }
-            2->{
-
-                holder.binding.tvCategoryName.setText(context.getString(R.string.health_care))
-
-            }
-            3->{
-                holder.binding.tvCategoryName.setText(context.getString(R.string.personal_care))
-
-            }
-        }
         binding.mainLayout.setOnClickListener {
             onClickEvent.onCategoryClick(position)
 
@@ -52,7 +40,7 @@ class FeaturedCategoryAdapter(var context: Context, var onClickCategoryActivity:
 
     override fun getItemCount(): Int {
 
-        return 5
+        return data.size
 
     }
     public interface onClickCategory{

@@ -4,17 +4,14 @@ import android.app.Dialog
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
 import com.ushatech.aestoreskotlin.databinding.ImageDialogBinding
-import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.ProductImageAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 

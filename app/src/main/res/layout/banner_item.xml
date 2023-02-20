@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="match_parent"
+        android:src="@drawable/ic_banner_home"
+        app:riv_corner_radius="@dimen/_6sdp"
+        android:id="@+id/ivBanner"
+        android:elevation="@dimen/_6sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:scaleType="centerCrop"
+        android:layout_height="@dimen/_105sdp">
+
+
+    </com.makeramen.roundedimageview.RoundedImageView>
+</LinearLayout>

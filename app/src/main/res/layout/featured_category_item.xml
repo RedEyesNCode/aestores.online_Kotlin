@@ -17,6 +17,7 @@
             android:src="@drawable/ic_banner_home"
             android:layout_gravity="center"
             app:riv_corner_radius="@dimen/_7sdp"
+            android:id="@+id/ivCategory"
             android:scaleType="centerCrop"
             android:layout_margin="@dimen/_4sdp"
             android:layout_height="@dimen/_125sdp">
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/_38_items"
             android:layout_marginTop="@dimen/_2sdp"
+            android:id="@+id/tvItemCount"
             android:gravity="center"
 
             android:textColor="@color/grey_dark"

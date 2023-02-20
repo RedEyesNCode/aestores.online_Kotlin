@@ -79,5 +79,7 @@ dependencies {
     //OTP DEPENDENCY
 
     implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx' // kotlin
-
+//GLIDE_FOR_LOADING_IMAGES
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 }
