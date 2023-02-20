@@ -8,6 +8,7 @@ object Constant {
     const val GOOGLE_BASE_URL = "REQUIRED"
 
     const val USER_ID:String = "USER_ID"
+    const val IS_LOGGED_IN:String = "IS_LOGGED_IN"
     const val USER_INFO = "USER_INFO"
 
 }

@@ -66,7 +66,8 @@ class SignupActivity : BaseActivity() {
             if(bottomSheetDialog!=null){
                 bottomSheetDialog.dismiss()
             }
-
+            // User has siggned in.
+            AppSession(this@SignupActivity).put(Constant.IS_LOGGED_IN,true)
             val IntentDashboard = Intent(this@SignupActivity,DashboardActivity::class.java)
             IntentDashboard.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(IntentDashboard)
