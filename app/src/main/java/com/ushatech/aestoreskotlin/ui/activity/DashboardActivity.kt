@@ -1,17 +1,22 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.permissionx.guolindev.PermissionX
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
 import com.ushatech.aestoreskotlin.data.LoginUserResponse
@@ -35,8 +40,11 @@ class DashboardActivity : BaseActivity() {
         initClicks()
         // Please call methods after setContentView for Navigation UI Component
         initNav()
+
         setupNavigationDrawer()
     }
+
+
 
     private fun setupNavigationDrawer() {
         val homeNav: View = binding.drawerHome.getHeaderView(0)

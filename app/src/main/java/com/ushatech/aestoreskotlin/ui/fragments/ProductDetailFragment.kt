@@ -4,9 +4,12 @@ import android.app.Dialog
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
@@ -14,6 +17,7 @@ import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
 import com.ushatech.aestoreskotlin.databinding.ImageDialogBinding
 import com.ushatech.aestoreskotlin.ui.adapter.ProductImageAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -59,18 +63,23 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
     private fun initClicks() {
         binding.ivCart.setOnClickListener {
-            FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,true)
+            FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
+                com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,true)
 
 
         }
         binding.ivMainProductImage.setOnClickListener {
-            var dialogBinding = ImageDialogBinding.inflate(LayoutInflater.from(fragmentContext))
-            var dialog = Dialog(fragmentContext)
+            val dialogBinding = ImageDialogBinding.inflate(LayoutInflater.from(fragmentContext))
+            val dialog = Dialog(fragmentContext)
             dialog.setContentView(dialogBinding.root)
             dialogBinding.imageDilag.setImageDrawable(binding.ivMainProductImage.drawable)
             dialog.show()
 
         }
+
+        val content = SpannableString("DESCRIPTION")
+        content.setSpan(UnderlineSpan(), 0, content.length, 0)
+        binding.tvTitleDescription.text = content
 
     }
 

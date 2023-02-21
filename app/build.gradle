@@ -91,5 +91,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
+    // For checking the notification permission in Android 13 and Plus
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
+
 
 }

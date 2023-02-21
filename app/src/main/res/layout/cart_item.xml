@@ -70,89 +70,69 @@
             android:id="@+id/priceLayout"
             android:layout_below="@id/tvItemWeight"
             android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/price"
-            android:gravity="center"
-            android:textColor="@color/grey_dark"
-            android:fontFamily="@font/mulish_bold"
-            android:textSize="@dimen/_12sdp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rs_100"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:id="@+id/tvRealPrice"
-                android:gravity="center"
-                android:textColor="@color/green"
-                android:fontFamily="@font/mulish_bold"
-                android:textSize="@dimen/_18sdp" />
 
+            <RelativeLayout
+                android:layout_width="@dimen/_95sdp"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_below="@id/priceLayout"
+                android:layout_toEndOf="@id/ivFeatureOne"
+                android:layout_marginEnd="@dimen/_38sdp"
+                android:id="@+id/quantityLayout"
+                android:weightSum="2"
+
+                android:background="@drawable/background_green_box"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentStart="true"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:background="@color/grey2"
+                    android:src="@drawable/ic_minus" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_1"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:background="@color/grey2"
+                    android:src="@drawable/ic_plus" />
+
+
+
+
+            </RelativeLayout>
         </LinearLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_below="@id/priceLayout"
-            android:layout_toEndOf="@id/ivFeatureOne"
-            android:layout_marginEnd="@dimen/_38sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:id="@+id/quantityLayout"
-            android:weightSum="2"
-
-            android:background="@drawable/background_green_box"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_alignParentStart="true"
-                android:padding="@dimen/_5sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/_3sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:layout_marginEnd="@dimen/_3sdp"
-                android:layout_marginBottom="@dimen/_3sdp"
-                android:background="@color/grey2"
-                android:src="@drawable/ic_plus" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/_1"
-                android:layout_centerInParent="true"
-                android:textColor="@color/black"
-                android:fontFamily="@font/mulish_regular"
-                android:lineSpacingExtra="@dimen/_5sdp"
-                android:textSize="@dimen/_15sdp" />
-
-            <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_alignParentEnd="true"
-                android:padding="@dimen/_5sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/_3sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:layout_marginEnd="@dimen/_3sdp"
-                android:layout_marginBottom="@dimen/_3sdp"
-                android:background="@color/grey2"
-                android:src="@drawable/ic_minus" />
-
-
-
-
-        </RelativeLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="start"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_toEndOf="@id/ivFeatureOne"
+            android:layout_below="@id/priceLayout"
             android:layout_marginTop="@dimen/_8sdp"
             android:id="@+id/realPriceLayout"
-            android:layout_below="@id/quantityLayout"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
@@ -172,8 +152,27 @@
                 android:textColor="@color/green"
                 android:fontFamily="@font/mulish_bold"
                 android:textSize="@dimen/_18sdp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:textColor="@color/grey_dark"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_12sdp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rs_100"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/tvRealPrice"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_18sdp" />
         </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"

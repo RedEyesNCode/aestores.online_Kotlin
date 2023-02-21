@@ -1,12 +1,16 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.permissionx.guolindev.PermissionX
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.data.HomeScreenResponse
@@ -80,14 +84,17 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
             }
         }
 
-        dashBoardViewModel.homeScreenResponse.observe((viewLifecycleOwner)){
+        dashBoardViewModel.homeScreenResponse.observe((viewLifecycleOwner), {
             hideLoader()
             showLog("${it.data?.categories?.size}")
             setupFeaturedCategories(it.data?.categories)
             setupTrendingViewPager(it.data?.trending)
             setupArrivalViewPager(it.data?.arrival)
             setupBannerViewPager(it.data?.slides)
-        }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                checkForNotificationPermission()
+//            }
+        })
 
 
     }
@@ -160,7 +167,26 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
 
 
     }
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun checkForNotificationPermission() {
+        PermissionX.init(requireActivity())
+            .permissions(Manifest.permission.POST_NOTIFICATIONS)
+            .request { allGranted, grantedList, deniedList ->
+                if (allGranted) {
+                    hideLoader()
 
+                    showLog("Granted for notifications")
+                } else {
+                    hideLoader()
+                    showLog("Not granted for notifications")
+                }
+            }
+
+
+
+
+
+    }
     private fun setupViewModel() {
         dashBoardViewModel = DashboardViewModel()
         dashBoardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
