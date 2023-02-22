@@ -13,13 +13,14 @@
         android:layout_height="@dimen/_130sdp">
 
         <ImageView
-            android:layout_width="@dimen/_15sdp"
+            android:layout_width="@dimen/_25sdp"
             android:src="@drawable/ic_close"
             android:id="@+id/ivClose"
+            android:padding="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_28sdp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="@dimen/_8sdp"
-            android:layout_height="@dimen/_15sdp"
+            android:layout_height="@dimen/_25sdp"
             app:tint="@color/white" />
         <LinearLayout
             android:layout_width="wrap_content"

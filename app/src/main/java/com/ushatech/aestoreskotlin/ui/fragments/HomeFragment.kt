@@ -10,6 +10,8 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.permissionx.guolindev.PermissionX
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
@@ -105,6 +107,14 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
         val currentPageIndex = 0
         binding.viewPagerBanner.currentItem = currentPageIndex
 
+
+        for (index in slides){
+            binding.tabsViewPager.addTab(binding.tabsViewPager.newTab())
+        }
+        TabLayoutMediator(binding.tabsViewPager, binding.viewPagerBanner) { tab, position ->
+            binding.tabsViewPager.selectTab(tab)
+        }.attach()
+
         binding.viewPagerBanner.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
 
@@ -113,7 +123,6 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
 
                     //update the image number textview
                     // Make ui for the dots.
-                    binding.tvBannerNumber.text = "${position + 1} / ${slides.size}"
 
                 }
             }

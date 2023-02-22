@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/green"
-        android:layout_height="@dimen/_130sdp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="@dimen/_15sdp"

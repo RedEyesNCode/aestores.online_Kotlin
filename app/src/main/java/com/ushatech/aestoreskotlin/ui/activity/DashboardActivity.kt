@@ -53,9 +53,11 @@ class DashboardActivity : BaseActivity() {
         homeSideMenuBinding.recvNavDrawer.layoutManager = LinearLayoutManager(this)
         categorySideMenuBinding.recvCategoryDrawer.adapter = DrawerAdapter(this@DashboardActivity)
         categorySideMenuBinding.recvCategoryDrawer.layoutManager = LinearLayoutManager(this)
-        homeSideMenuBinding.accountLayout.setOnClickListener { 
+        homeSideMenuBinding.accountLayout.setOnClickListener {
 //            showPopupDrawer(it)
             // Do not show any popup for it. (Client requirement)
+            //
+            // }
         }
         homeSideMenuBinding.ivClose.setOnClickListener {
             binding.mainLayout.closeDrawer(GravityCompat.START)
@@ -80,6 +82,7 @@ class DashboardActivity : BaseActivity() {
 
 
         }
+
         val userData =  AppSession(this@DashboardActivity).getUser()
 
         homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
@@ -163,7 +166,8 @@ class DashboardActivity : BaseActivity() {
 
     }
 
-    private fun showPopupDrawer(it: View?) {
+
+    fun showPopupDrawer(it: View?) {
         val popupMenu = PopupMenu(this@DashboardActivity, it)
 
         // Inflating popup menu from popup_menu.xml file
