@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.LearningProfileFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_9sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:paddingHorizontal="@dimen/_4sdp"
+        android:fontFamily="@font/mulish_bold"
+        android:background="@drawable/background_grey_box"
+        android:gravity="start"
+        android:text="You are not eligible for Learning Program. get More 1000 Personal Volume."
+        android:textColor="@color/red"
+        android:textSize="@dimen/_10sdp" />
+
+</LinearLayout>

@@ -129,9 +129,16 @@ class SignupActivity : BaseActivity() {
         }else if(binding.edtMobileNumber.text.toString().length<10){
             showToast("Please enter valid number")
             binding.edtMobileNumber.setError("Please enter valid mobile number.")
-
             return false
-        }else{
+        }else if(binding.edtEmail.text.toString().isEmpty()){
+
+            showToast("Please enter your email")
+            return false
+
+        }else if(!binding.checkBoxOnline.isChecked){
+            showToast("Please agree to Terms & Conditions")
+            return false
+        }else {
             return true
         }
 

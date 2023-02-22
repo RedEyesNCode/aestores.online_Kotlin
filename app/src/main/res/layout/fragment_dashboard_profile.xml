@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.fragments.profileFragments.DashboardProfileFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/green_gradiant"
+        android:layout_height="@dimen/_150sdp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="@dimen/_45sdp"
+            android:src="@drawable/ic_banner_home"
+            android:layout_alignParentTop="true"
+            android:id="@+id/ivProfileImage"
+            android:layout_marginTop="@dimen/_11sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="@dimen/_45sdp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:fontFamily="@font/mulish_bold"
+            android:layout_below="@id/ivProfileImage"
+            android:gravity="center"
+            android:id="@+id/tvProfileName"
+            android:text="Profile Name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:fontFamily="@font/mulish_bold"
+            android:layout_below="@id/tvProfileName"
+            android:gravity="center"
+            android:id="@+id/tvRefferalCode"
+            android:text="Refferal Code"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+                android:text="@string/profile_information"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/green" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Email"
+                android:id="@+id/tvEmail"
+                android:lineSpacingExtra="@dimen/_3sdp"
+
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Mobile"
+                android:id="@+id/tvMobileNumber"
+                android:lineSpacingExtra="@dimen/_3sdp"
+
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+
+                android:text="@string/address_details"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/green" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="HNO./ Street"
+                android:id="@+id/tvStreet"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Address"
+                android:id="@+id/tvAddress"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="City"
+                android:id="@+id/tvCity"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="State"
+                android:id="@+id/tvState"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Country"
+                android:id="@+id/tvCountry"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Pincode"
+                android:id="@+id/tvPincode"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+
+                android:text="Account Information"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/green" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Account Name"
+                android:id="@+id/tvAccountName"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Account Number"
+                android:id="@+id/tvAccountNumber"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Bank Name"
+                android:id="@+id/tvBankName"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="IFSC Code"
+                android:id="@+id/tvIFSCCode"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+
+                android:text="KYC Information"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/green" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Aadhar Number"
+                android:id="@+id/tvAadharNumber"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Pancard Number"
+                android:id="@+id/tvPancardNumber"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Aadhar Front Image"
+                android:id="@+id/tvAadharImageFront"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Aadhar Back Image"
+                android:id="@+id/tvAadharImageBack"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:text="Pancard Image"
+                android:id="@+id/tvPancardImage"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/_45sdp"
+
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>

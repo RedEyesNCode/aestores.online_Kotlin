@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.profileFragments.EditProfileFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+                android:text="Account Profile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+                android:text="Personal Details"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+                android:text="Profile Image"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:text="Choose File"
+                    android:id="@+id/btnChooseFile"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_regular"
+                    android:gravity="start"
+                    android:text="No File chosen for profile image"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_10sdp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/name"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtName"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/mobile_number"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:maxLength="10"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtMobileNumber"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Hno/ Street"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtHno"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Address"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtAddress"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Postalcode/ ZIP (optional)"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtPostalCode"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/menuCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/menuState"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/menuCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+                android:text="KYC Details"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Aadhar Card Number"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtAdharNumber"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:fontFamily="@font/mulish_bold"
+                        android:gravity="start"
+                        android:text="Aadhar Card Front"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:text="Choose File"
+                            android:id="@+id/btnChooseAadharCard"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mulish_regular"
+                            android:gravity="start"
+                            android:text="No File chosen"
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_10sdp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:fontFamily="@font/mulish_bold"
+                        android:gravity="start"
+                        android:text="Aadhar Card Back"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:text="Choose File"
+                            android:id="@+id/btnChooseAadharCardBack"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mulish_regular"
+                            android:gravity="start"
+                            android:text="No File chosen"
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_10sdp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="50"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="PAN Card Number"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/mulish_regular"
+                        android:textSize="@dimen/_14sdp"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:inputType="number"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:paddingHorizontal="@dimen/_4sdp"
+                        android:background="@drawable/background_grey_box"
+                        android:id="@+id/edtPanCardNumber"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish_bold"
+                        android:gravity="start"
+                        android:text="PAN Card Front"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:text="Choose File"
+                            android:id="@+id/btnChoosePan"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:gravity="start"
+                android:text="Bank Details"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Account Name"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtAccountName"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Account Number"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtAccountNumber"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Bank Name"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtBankName"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/_45sdp"
+
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="IFSC Name"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/mulish_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/background_grey_box"
+                    android:id="@+id/edtIFSCCODE"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
