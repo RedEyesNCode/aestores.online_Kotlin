@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
 
+            android:layout_marginHorizontal="@dimen/_4sdp"
 
             android:orientation="vertical"
             android:layout_height="wrap_content">
@@ -85,6 +86,84 @@
                 android:gravity="center"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:id="@+id/tvDiscountPercentageOne"
+                android:textColor="@color/red"
+                android:fontFamily="@font/mulish_regular"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/productTwoLayout"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="@dimen/_125sdp"
+                android:src="@drawable/ic_banner_home"
+                android:id="@+id/ivProductImage2"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:layout_margin="@dimen/_4sdp"
+                android:layout_height="@dimen/_125sdp">
+
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+
+                android:id="@+id/tvProductNameTwo"
+                android:text="@string/skin_care_u0026_beauty_care"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/rs_499"
+                    android:id="@+id/tvRealPriceTwo"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/rs_499"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:id="@+id/tvMaxPriceTwo"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/mulish_regular"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp" />
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 % off"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/tvDiscountPercentageTwo"
                 android:textColor="@color/red"
                 android:fontFamily="@font/mulish_regular"
                 android:lineSpacingExtra="@dimen/_5sdp"

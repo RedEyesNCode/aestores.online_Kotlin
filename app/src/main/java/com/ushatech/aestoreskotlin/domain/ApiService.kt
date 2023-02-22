@@ -1,9 +1,6 @@
 package com.ushatech.aestoreskotlin.domain
 
-import com.ushatech.aestoreskotlin.data.HomeScreenResponse
-import com.ushatech.aestoreskotlin.data.LoginUserResponse
-import com.ushatech.aestoreskotlin.data.OtpSendResponse
-import com.ushatech.aestoreskotlin.data.RegisterUserStepTwoResponse
+import com.ushatech.aestoreskotlin.data.*
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -33,6 +30,10 @@ interface ApiService {
 
     @GET("api/v1/homescreen")
     fun getHomeScreen():Call<HomeScreenResponse>
+
+
+    @GET("/api/v1/allCategories")
+    fun getAllCategories() :Call<AllCategoryResponse>
 
 
 }

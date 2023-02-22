@@ -13,5 +13,6 @@ class MainRepository {
 
     suspend fun getHomeScreenData() = AndroidClient().apiInterface.getHomeScreen()
 
+    suspend fun getAllCategories() = AndroidClient().apiInterface.getAllCategories()
 
 }

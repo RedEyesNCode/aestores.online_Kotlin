@@ -67,6 +67,10 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
 
     private fun initApiCall() {
         dashBoardViewModel.getHomeScreenResponse()
+
+        // For setting up the category and subCategory Shown in the navigation drawer.
+
+
     }
 
     private fun attachObservers() {
@@ -97,6 +101,8 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
 //                checkForNotificationPermission()
 //            }
         })
+
+
 
 
     }

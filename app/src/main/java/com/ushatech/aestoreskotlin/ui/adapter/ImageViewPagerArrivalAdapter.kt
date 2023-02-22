@@ -2,6 +2,7 @@ package com.ushatech.aestoreskotlin.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,12 +28,49 @@ class ImageViewPagerArrivalAdapter(var context: Context, var array:ArrayList<Hom
         position: Int
     ) {
 
-        var arrival = array.get(position)
+        val arrival = array.get(position)
 
-        holder.binding.tvProductNameOne.text = arrival.name
-        Glide.with(context).load(arrival.image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
-        holder.binding.tvMaxPrice.text ="Rs ${arrival.mrp}"
-        holder.binding.tvRealPrice.text = "Rs ${arrival.price}"
+        if(array.size%2==0){
+
+            //even size.
+            if(position==0){
+                // For position 0,1.
+
+                holder.binding.tvProductNameOne.text = arrival.name
+                Glide.with(context).load(arrival.image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+                holder.binding.tvMaxPrice.text ="Rs ${arrival.mrp}"
+                holder.binding.tvRealPrice.text = "Rs ${arrival.price}"
+
+                holder.binding.tvProductNameTwo.text = array.get(position+1).name
+                Glide.with(context).load(array.get(position+1).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage2)
+                holder.binding.tvMaxPriceTwo.text ="Rs ${array.get(position+1).mrp}"
+                holder.binding.tvRealPriceTwo.text = "Rs ${array.get(position+1).price}"
+            }else {
+
+                try {
+                    holder.binding.tvProductNameOne.text = array.get(position+1).name
+                    Glide.with(context).load(array.get(position+1).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+                    holder.binding.tvMaxPrice.text ="Rs ${array.get(position+1).mrp}"
+                    holder.binding.tvRealPrice.text = "Rs ${array.get(position+1).price}"
+
+                    holder.binding.tvProductNameTwo.text = array.get(position+2).name
+                    Glide.with(context).load(array.get(position+2).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage2)
+                    holder.binding.tvMaxPriceTwo.text ="Rs ${array.get(position+2).mrp}"
+                    holder.binding.tvRealPriceTwo.text = "Rs ${array.get(position+2).price}"
+                }catch (e:java.lang.Exception){
+                    e.printStackTrace()
+                }
+
+            }
+        }
+
+
+
+
+
+
+
+        // Checking if the size coming from the Api is odd or even
 
 
 
@@ -40,7 +78,7 @@ class ImageViewPagerArrivalAdapter(var context: Context, var array:ArrayList<Hom
     }
 
     override fun getItemCount(): Int {
-        return array.size
+        return array.size/2
     }
 
     class MyViewholder(var binding: ImageItemBinding): RecyclerView.ViewHolder(binding.root)

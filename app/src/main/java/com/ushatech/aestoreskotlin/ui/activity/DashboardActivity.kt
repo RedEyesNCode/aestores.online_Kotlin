@@ -10,15 +10,19 @@ import android.widget.PopupMenu
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
+import com.ushatech.aestoreskotlin.data.AllCategoryResponse
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
+import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.SubcategoryAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
@@ -26,6 +30,11 @@ import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 class DashboardActivity : BaseActivity() {
 
     private lateinit var binding:ActivityMainBinding
+    private lateinit var dashboardViewModel: DashboardViewModel
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,32 +42,78 @@ class DashboardActivity : BaseActivity() {
         initClicks()
         // Please call methods after setContentView for Navigation UI Component
         initNav()
+        setupViewModel()
+        attachObservers()
+        intialApiCall()
 
         setupNavigationDrawer()
     }
 
+    private fun intialApiCall() {
+        dashboardViewModel.getAllCategory()
+    }
+
+    private fun attachObservers() {
+        dashboardViewModel.isFailed.observe((this)){
+            hideLoader()
+            if(it!=null){
+                showToast(it)
+            }
+        }
+        dashboardViewModel.isSuccess.observe((this)){
+            if(it){
+                showLoader()
+            }else{
+                hideLoader()
+            }
+        }
+        dashboardViewModel.categoryResponse.observe((this)){
+            setupCategoryInSideBar(it)
+
+
+        }
+    }
+
+    private fun setupCategoryInSideBar(it: AllCategoryResponse?) {
+        val homeNav: View = binding.drawerHome.getHeaderView(0)
+        val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
+
+        val  subCategories = ArrayList<AllCategoryResponse.Subcategories>()
+        for(index in it!!.data.indices){
+            for (subcategory in it.data.get(index).subcategories){
+                subCategories.add(subcategory)
+            }
+
+
+        }
+
+
+
+        homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity,it!!,subCategories)
+        homeSideMenuBinding.recvNavDrawer.layoutManager = LinearLayoutManager(this)
+
+
+
+    }
+
+    private fun setupViewModel() {
+        dashboardViewModel = DashboardViewModel()
+        dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
+        binding.viewmodel = dashboardViewModel
+
+
+    }
 
 
     private fun setupNavigationDrawer() {
         val homeNav: View = binding.drawerHome.getHeaderView(0)
         val categoryNav :View = binding.drawerCategory.getHeaderView(0)
-
         binding.mainLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-
-
         val categorySideMenuBinding = CategorySideMenuBinding.bind(categoryNav)
         val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
+        val userData =  AppSession(this@DashboardActivity).getUser()
+        homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
 
-        homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity)
-        homeSideMenuBinding.recvNavDrawer.layoutManager = LinearLayoutManager(this)
-        categorySideMenuBinding.recvCategoryDrawer.adapter = DrawerAdapter(this@DashboardActivity)
-        categorySideMenuBinding.recvCategoryDrawer.layoutManager = LinearLayoutManager(this)
-        homeSideMenuBinding.accountLayout.setOnClickListener {
-//            showPopupDrawer(it)
-            // Do not show any popup for it. (Client requirement)
-            //
-            // }
-        }
         homeSideMenuBinding.ivClose.setOnClickListener {
             binding.mainLayout.closeDrawer(GravityCompat.START)
 
@@ -82,13 +137,6 @@ class DashboardActivity : BaseActivity() {
 
 
         }
-
-        val userData =  AppSession(this@DashboardActivity).getUser()
-
-        homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
-
-
-
 
 
 
