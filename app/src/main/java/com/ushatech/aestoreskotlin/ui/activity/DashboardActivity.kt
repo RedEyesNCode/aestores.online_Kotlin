@@ -54,8 +54,8 @@ class DashboardActivity : BaseActivity() {
         categorySideMenuBinding.recvCategoryDrawer.adapter = DrawerAdapter(this@DashboardActivity)
         categorySideMenuBinding.recvCategoryDrawer.layoutManager = LinearLayoutManager(this)
         homeSideMenuBinding.accountLayout.setOnClickListener { 
-            showPopupDrawer(it)
-            
+//            showPopupDrawer(it)
+            // Do not show any popup for it. (Client requirement)
         }
         homeSideMenuBinding.ivClose.setOnClickListener {
             binding.mainLayout.closeDrawer(GravityCompat.START)

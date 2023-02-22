@@ -170,7 +170,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:hint="@string/eg_462003"
-                        android:layout_weight="70"
+                        android:layout_weight="50"
                         android:id="@+id/edtPincode"
 
                         android:inputType="number"
@@ -181,7 +181,7 @@
                         android:text="@string/check_pincode"
                         android:padding="@dimen/_4sdp"
 
-                        android:layout_weight="30"
+                        android:layout_weight="50"
 
                         android:textAllCaps="false"
                         android:textColor="@color/black"
@@ -208,18 +208,22 @@
                     android:textSize="@dimen/_15sdp" />
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="3"
                     android:layout_height="wrap_content">
                     <RelativeLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/_95sdp"
                         android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_below="@id/priceLayout"
+                        android:layout_toEndOf="@id/ivFeatureOne"
+                        android:layout_marginEnd="@dimen/_38sdp"
+                        android:id="@+id/quantityLayout"
                         android:weightSum="2"
-                        android:layout_weight="2"
+
                         android:background="@drawable/background_green_box"
-                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_height="wrap_content">
 
                         <ImageView
@@ -238,11 +242,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/_1"
                             android:layout_centerInParent="true"
-                            android:textColor="@color/black"
                             android:fontFamily="@font/mulish_regular"
                             android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="@string/_1"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_15sdp" />
 
                         <ImageView
@@ -264,15 +268,18 @@
                     </RelativeLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_45sdp"
+                        android:layout_width="@dimen/_25sdp"
                         android:src="@drawable/ic_heart_black"
                         android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:padding="@dimen/_2sdp"
-                        android:layout_height="@dimen/_45sdp"/>
+                        android:layout_height="@dimen/_25sdp"/>
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
 
 
@@ -314,7 +321,7 @@
                             android:layout_alignParentTop="true"
                             android:lineSpacingExtra="@dimen/_5sdp"
 
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
 
 
@@ -351,7 +358,7 @@
                             android:fontFamily="@font/mulish_bold"
                             android:layout_alignParentTop="true"
                             android:lineSpacingExtra="@dimen/_5sdp"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
 
 
@@ -382,7 +389,6 @@
                             android:layout_width="wrap_content"
                             android:layout_toEndOf="@id/ivFeatureThree"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_8sdp"
                             android:text="@string/_1_day_return_if_you_change_your_mind"
                             android:layout_marginStart="@dimen/_12sdp"
                             android:textColor="@color/black"
@@ -390,7 +396,7 @@
                             android:layout_alignParentTop="true"
                             android:lineSpacingExtra="@dimen/_5sdp"
 
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
 
 
