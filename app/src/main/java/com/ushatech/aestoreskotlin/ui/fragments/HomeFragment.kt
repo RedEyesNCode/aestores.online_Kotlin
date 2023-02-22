@@ -150,7 +150,7 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
 
                     //update the image number textview
                     // Make ui for the dots.
-                    binding.tvNumberPagesArrival.text = "${position + 1} / ${arrival.size}"
+                    binding.tvNumberPagesArrival.text = "${position + 1} / ${arrival.size/2}"
 
                 }
             }
@@ -168,7 +168,7 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
 
                     //update the image number textview
                     // Make ui for the dots.
-                    binding.tvNumberImages.text = "${position + 1} / 2"
+                    binding.tvNumberImages.text = "${position + 1} / ${trending.size/2}"
 
                 }
             }

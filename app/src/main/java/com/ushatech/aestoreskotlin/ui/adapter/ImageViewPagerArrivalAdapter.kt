@@ -1,6 +1,7 @@
 package com.ushatech.aestoreskotlin.ui.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,8 @@ class ImageViewPagerArrivalAdapter(var context: Context, var array:ArrayList<Hom
     ) {
 
         val arrival = array.get(position)
-
+        holder.binding.tvMaxPrice.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+        holder.binding.tvMaxPriceTwo.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
         if(array.size%2==0){
 
             //even size.

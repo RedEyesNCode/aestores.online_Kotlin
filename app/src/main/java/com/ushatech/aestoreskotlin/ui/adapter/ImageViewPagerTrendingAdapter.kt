@@ -28,30 +28,47 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
         holder.binding.tvMaxPrice.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
-        holder.binding.tvMaxPrice.text = "Rs "+array.get(position).mrp.toString()
-        holder.binding.tvRealPrice.text = "Rs "+array.get(position).price.toString()
-        holder.binding.tvDiscountPercentageOne.text = ""
+        holder.binding.tvMaxPriceTwo.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+//        holder.binding.tvMaxPrice.text = "Rs "+array.get(position).mrp.toString()
+//        holder.binding.tvRealPrice.text = "Rs "+array.get(position).price.toString()
+//        holder.binding.tvDiscountPercentageOne.text = ""
+//
+//        holder.binding.tvProductNameOne.text = array.get(position).name
+//        Glide.with(context).load(array.get(position).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
 
-        holder.binding.tvProductNameOne.text = array.get(position).name
-        Glide.with(context).load(array.get(position).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+        if(array.size%2==0){
 
-//        if(array.get(position).mrp.toString().equals(array.get(position).price.toString())){
-//
-//            holder.binding.tvDiscountPercentageOne.text = ""
-//
-//        }else {
-//            try {
-//                holder.binding.tvDiscountPercentageOne.text = calcuateDiscount(array.get(position).mrp!!.toDouble(),array.get(position).price!!.toDouble()).toString()
-//            }catch (e:java.lang.Exception){
-//                e.printStackTrace()
-//
-//                holder.binding.tvDiscountPercentageOne.text = ""
-//
-//            }
-//
-//
-//        }
+            //even size.
+            if(position==0){
+                // For position 0,1.
 
+                holder.binding.tvProductNameOne.text = array.get(position).name
+                Glide.with(context).load(array.get(position).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+                holder.binding.tvMaxPrice.text ="Rs ${array.get(position).mrp}"
+                holder.binding.tvRealPrice.text = "Rs ${array.get(position).price}"
+
+                holder.binding.tvProductNameTwo.text = array.get(position+1).name
+                Glide.with(context).load(array.get(position+1).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage2)
+                holder.binding.tvMaxPriceTwo.text ="Rs ${array.get(position+1).mrp}"
+                holder.binding.tvRealPriceTwo.text = "Rs ${array.get(position+1).price}"
+            }else {
+
+                try {
+                    holder.binding.tvProductNameOne.text = array.get(position+1).name
+                    Glide.with(context).load(array.get(position+1).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+                    holder.binding.tvMaxPrice.text ="Rs ${array.get(position+1).mrp}"
+                    holder.binding.tvRealPrice.text = "Rs ${array.get(position+1).price}"
+
+                    holder.binding.tvProductNameTwo.text = array.get(position+2).name
+                    Glide.with(context).load(array.get(position+2).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage2)
+                    holder.binding.tvMaxPriceTwo.text ="Rs ${array.get(position+2).mrp}"
+                    holder.binding.tvRealPriceTwo.text = "Rs ${array.get(position+2).price}"
+                }catch (e:java.lang.Exception){
+                    e.printStackTrace()
+                }
+
+            }
+        }
 
 
     }
@@ -60,7 +77,7 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return array.size/2
     }
 
     class MyViewholder(var binding:ImageItemBinding):RecyclerView.ViewHolder(binding.root)
