@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ushatech.aestoreskotlin.data.AllCategoryResponse
 import com.ushatech.aestoreskotlin.databinding.CategoryItemBinding
@@ -35,6 +35,10 @@ class DrawerAdapter(
 
 
 
+
+
+        holder.categoryItemBinding.recvSubCategory.adapter = SubcategoryAdapter(context,subCategories.get(position),subCategories.size)
+        holder.categoryItemBinding.recvSubCategory.layoutManager = LinearLayoutManager(context)
 
 
 

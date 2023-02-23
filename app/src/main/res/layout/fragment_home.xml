@@ -85,20 +85,18 @@
                         android:layout_margin="@dimen/_6sdp"
                         android:id="@+id/viewPagerTrending"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:text="@string/_1_2_images"
-                        android:id="@+id/tvNumberImages"
-                        android:paddingVertical="@dimen/_14sdp"
-                        android:textColor="@color/green"
-                        android:fontFamily="@font/mulish_bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/_14sdp"
-                        android:layout_height="wrap_content"/>
+
 
 
 
                 </LinearLayout>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabsTrending"
+                    android:layout_width="match_parent"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
@@ -122,21 +120,15 @@
                         android:layout_margin="@dimen/_6sdp"
                         android:id="@+id/viewPagerArrival"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:text="@string/_1_2_images"
-                        android:id="@+id/tvNumberPagesArrival"
-                        android:paddingVertical="@dimen/_14sdp"
-                        android:textColor="@color/green"
-                        android:fontFamily="@font/mulish_bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/_14sdp"
-                        android:layout_height="wrap_content"/>
-
-
 
                 </LinearLayout>
-
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabsArrivals"
+                    android:layout_width="match_parent"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"

@@ -142,37 +142,33 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
         val currentPageIndex = 0
         binding.viewPagerArrival.currentItem = currentPageIndex
 
-        binding.viewPagerArrival.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
+        for (index in arrival){
+            binding.tabsArrivals.addTab(binding.tabsArrivals.newTab())
+        }
 
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
+        TabLayoutMediator(binding.tabsArrivals, binding.viewPagerArrival) { tab, position ->
+            binding.tabsArrivals.selectTab(tab)
+        }.attach()
 
-                    //update the image number textview
-                    // Make ui for the dots.
-                    binding.tvNumberPagesArrival.text = "${position + 1} / ${arrival.size/2}"
-
-                }
-            }
-        )
     }
 
     private fun setupTrendingViewPager(trending: java.util.ArrayList<HomeScreenResponse.Trending>?) {
         binding.viewPagerTrending.adapter = ImageViewPagerTrendingAdapter(fragmentContext, trending!!)
         binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding.viewPagerTrending.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
 
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
 
-                    //update the image number textview
-                    // Make ui for the dots.
-                    binding.tvNumberImages.text = "${position + 1} / ${trending.size/2}"
 
-                }
-            }
-        )
+
+        for (index in trending){
+            binding.tabsTrending.addTab(binding.tabsTrending.newTab())
+        }
+
+        TabLayoutMediator(binding.tabsTrending, binding.viewPagerTrending) { tab, position ->
+            binding.tabsTrending.selectTab(tab)
+        }.attach()
+
+
+
         binding.viewPagerTrending.currentItem = 0
     }
 
@@ -231,20 +227,6 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
         binding.viewPagerTrending.currentItem = currentPageIndex
         binding.viewPagerRecentItems.currentItem = currentPageIndex
 
-
-        binding.viewPagerRecentItems.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
-
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-
-                    //update the image number textview
-                    // Make ui for the dots.
-                    binding.tvNumberPagesArrival.text = "${position + 1} / 2"
-
-                }
-            }
-        )
 
     }
     override fun onDestroy() {

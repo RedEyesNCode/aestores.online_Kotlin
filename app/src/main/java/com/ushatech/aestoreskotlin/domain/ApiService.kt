@@ -6,6 +6,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -34,6 +35,10 @@ interface ApiService {
 
     @GET("/api/v1/allCategories")
     fun getAllCategories() :Call<AllCategoryResponse>
+
+
+    @GET("api/v1/products")
+    fun searchProducts(@Query ("search") searchTerm:String, @Query("categoryId") categoryId: Int?, @Query("subCategoryId") subCategoryId: Int?, @Query("page") page: Int?, @Query("superCategoryId") superCategoryId: Int?):Call<SearchProductResponse>
 
 
 }

@@ -22,7 +22,6 @@ import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
-import com.ushatech.aestoreskotlin.ui.adapter.SubcategoryAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
@@ -114,14 +113,10 @@ class DashboardActivity : BaseActivity() {
         val userData =  AppSession(this@DashboardActivity).getUser()
         homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
 
-        homeSideMenuBinding.ivClose.setOnClickListener {
-            binding.mainLayout.closeDrawer(GravityCompat.START)
 
-        }
+        setupNavClicks(homeSideMenuBinding)
 
         homeSideMenuBinding.helpInfoLayout.setOnClickListener {
-
-
             if(homeSideMenuBinding.dropDownHelpInfo.visibility==View.VISIBLE){
                 homeSideMenuBinding.ivDown.visibility = View.VISIBLE
                 homeSideMenuBinding.ivUp.visibility = View.GONE
@@ -132,19 +127,8 @@ class DashboardActivity : BaseActivity() {
 
                 homeSideMenuBinding.dropDownHelpInfo.visibility = View.VISIBLE
             }
-
-
-
-
         }
-
-
-
         homeSideMenuBinding.tvPrivacyPolicy.setOnClickListener {
-
-//            val phone = "+91 8553463261"
-//            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
-//            startActivity(intent)
             val url = getString(R.string.PRIVACY_POLICY)
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
@@ -160,12 +144,10 @@ class DashboardActivity : BaseActivity() {
         }
         
         homeSideMenuBinding.exchangeLayout.setOnClickListener {
-
             val url = getString(R.string.EXCHANGE_POLICY)
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)
-
         }
         homeSideMenuBinding.shippingLayout.setOnClickListener {
             val url = getString(R.string.SHIPPING_POLICY)
@@ -214,6 +196,13 @@ class DashboardActivity : BaseActivity() {
 
     }
 
+    private fun setupNavClicks(homeSideMenuBinding: HomeSideMenuBinding) {
+        homeSideMenuBinding.ivClose.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+
+        }
+    }
+
 
     fun showPopupDrawer(it: View?) {
         val popupMenu = PopupMenu(this@DashboardActivity, it)
@@ -260,11 +249,7 @@ class DashboardActivity : BaseActivity() {
 
 
     private fun initNav() {
-//        val navController: NavController =
-//            Navigation.findNavController(
-//                this@DashboardActivity,
-//                R.id.activity_main_nav_host_fragment
-//            )
+
         val bottomNavigationView = binding.bottomNavigationbar
         FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
 

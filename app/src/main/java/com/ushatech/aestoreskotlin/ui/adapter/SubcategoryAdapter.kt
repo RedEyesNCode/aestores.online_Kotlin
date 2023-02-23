@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ushatech.aestoreskotlin.data.AllCategoryResponse
-import com.ushatech.aestoreskotlin.databinding.CategoryItemBinding
 import com.ushatech.aestoreskotlin.databinding.SubcategoryItemBinding
 
-class SubcategoryAdapter(var context:Context,var subcategories: ArrayList<AllCategoryResponse.Subcategories>):RecyclerView.Adapter<SubcategoryAdapter.MyViewholder> (){
+class SubcategoryAdapter(
+    var context: Context,
+    var subcategories: AllCategoryResponse.Subcategories,
+    var size: Int
+):RecyclerView.Adapter<SubcategoryAdapter.MyViewholder> (){
 
 
     lateinit var binding: SubcategoryItemBinding
@@ -26,15 +29,15 @@ class SubcategoryAdapter(var context:Context,var subcategories: ArrayList<AllCat
     }
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
-        Log.i("DEV_ASHUTOSH", "onBindViewHolder: ${subcategories.get(position).name}")
-        holder.subcategoryItemBinding.tvSubcategoryName.text = subcategories.get(position).name
+        Log.i("DEV_ASHUTOSH", "onBindViewHolder: ${subcategories.name}")
+        holder.subcategoryItemBinding.tvSubcategoryName.text = subcategories.name
 
 
 
     }
 
     override fun getItemCount(): Int {
-        return subcategories.size
+        return size
     }
 
     class MyViewholder(var subcategoryItemBinding: SubcategoryItemBinding): RecyclerView.ViewHolder(subcategoryItemBinding.root)

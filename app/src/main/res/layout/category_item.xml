@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_below="@id/tvCategoryName"
         android:layout_marginStart="@dimen/_10sdp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_marginTop="@dimen/_4sdp"
         tools:itemCount="5"
         tools:listitem="@layout/subcategory_item"

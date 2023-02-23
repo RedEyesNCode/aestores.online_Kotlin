@@ -15,4 +15,11 @@ class MainRepository {
 
     suspend fun getAllCategories() = AndroidClient().apiInterface.getAllCategories()
 
+    suspend fun searchProduct(
+        searchTerm:String,
+        categoryId: Int?,
+        subCategoryId: Int?,
+        superCateogryId: Int?,
+        page:Int) = AndroidClient().apiInterface.searchProducts(searchTerm, categoryId, subCategoryId,page,superCateogryId)
+
 }
