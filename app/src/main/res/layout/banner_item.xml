@@ -12,7 +12,7 @@
         android:id="@+id/ivBanner"
         android:elevation="@dimen/_6sdp"
         android:layout_margin="@dimen/_5sdp"
-        android:scaleType="centerCrop"
-        android:layout_height="@dimen/_145sdp">
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/_175sdp">
     </com.makeramen.roundedimageview.RoundedImageView>
 </LinearLayout>
