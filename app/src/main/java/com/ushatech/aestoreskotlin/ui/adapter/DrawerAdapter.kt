@@ -1,6 +1,7 @@
 package com.ushatech.aestoreskotlin.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,7 +68,9 @@ class DrawerAdapter(
                     dashboardViewModel.getAllSubCategory(masterCategoryModel.category.id.toString())
                     dashboardViewModel.subCategoryResponse.observe((context as LifecycleOwner),{
                         if(it!=null){
-                            (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.adapter =SubcategoryAdapter(context,it.data,it.data.size)
+                            Log.i("DEV_ASHUTOSH", "showLog: SET SUB ADAPTER")
+
+                            (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.adapter =SubcategoryAdapter(context,it.data,it.data.size,masterCategoryModel)
                             (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.layoutManager =LinearLayoutManager(context)
                         }
                     })

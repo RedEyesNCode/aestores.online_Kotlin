@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_marginVertical="@dimen/_4sdp"
+
+    android:layout_height="wrap_content">
+
     <TextView
         android:layout_width="wrap_content"
-        android:text="Home"
+        android:layout_marginStart="@dimen/_18sdp"
         android:id="@+id/tvSuperCategoryName"
+        android:buttonTint="@color/green"
+        android:fontFamily="@font/mulish_medium"
+        android:textSize="@dimen/_10sdp"
         android:textColor="@color/black"
-        android:layout_marginStart="@dimen/_28sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-
-        android:fontFamily="@font/mulish_bold"
-        android:textSize="@dimen/_15sdp"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>
