@@ -83,6 +83,7 @@
     <string name="signup">Signup</string>
     <string name="help_u0026_info"><![CDATA[Help & Info]]></string>
     <string name="description"><![CDATA[<u>Description</u>.]]></string>
+    <string name="reviews"><![CDATA[<u>Reviews</u>.]]></string>
     <string name="agree_to_terms_u0026_conditons"><![CDATA[Agree to Terms & Conditons.]]></string>
     <string name="profile_information">Profile Information.</string>
     <string name="address_details">Address Details</string>
@@ -90,4 +91,6 @@
     <string name="copy_to_clipboard">Copy to Clipboard</string>
     <string name="search_product">Search Product</string>
     <string name="searching_for_results">Searching for Results</string>
+    <string name="avg_star_rating_0_ratings">Avg. Star Rating (0 Ratings)</string>
+    <string name="_5_stars">5 Stars</string>
 </resources>

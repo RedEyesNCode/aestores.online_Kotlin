@@ -82,4 +82,6 @@
     <string name="copy_to_clipboard">Copy to Clipboard</string>
     <string name="search_product">Search Product</string>
     <string name="searching_for_results">Searching for Results</string>
+    <string name="avg_star_rating_0_ratings">Avg. Star Rating (0 Ratings)</string>
+    <string name="_5_stars">5 Stars</string>
 </resources>

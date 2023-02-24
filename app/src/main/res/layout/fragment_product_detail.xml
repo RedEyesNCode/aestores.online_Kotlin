@@ -174,19 +174,26 @@
 
                         android:inputType="number"
                         android:layout_height="wrap_content"/>
-                    <androidx.appcompat.widget.AppCompatButton
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:id="@+id/btnCheckPincode"
-                        android:text="@string/check_pincode"
-                        android:padding="@dimen/_4sdp"
-
                         android:layout_weight="50"
+                        android:orientation="vertical"
+                        android:gravity="center"
 
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
                         android:background="@drawable/background_grey_box"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/check_pincode"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/mulish_regular"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:textSize="@dimen/_15sdp" />
 
-                        android:layout_height="wrap_content"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -219,7 +226,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:layout_toEndOf="@id/quantityLayout"
-                        android:background="@drawable/background_green_filled"
+                        android:background="@drawable/background_green_rounded"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingHorizontal="@dimen/_6sdp"
@@ -465,6 +472,80 @@
 
                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/grey"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_9sdp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="@font/mulish_bold"
+                        android:gravity="start"
+                        android:id="@+id/tvReviews"
+                        android:lineSpacingExtra="@dimen/_5sdp"
+                        android:text="@string/reviews"
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/_15sdp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/background_green_box"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_8sdp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="0"
+                        android:gravity="start"
+                        android:textColor="@color/green"
+                        android:fontFamily="@font/mulish_bold"
+                        android:lineSpacingExtra="@dimen/_5sdp"
+                        android:textSize="@dimen/_21sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/avg_star_rating_0_ratings"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/mulish_regular"
+                        android:lineSpacingExtra="@dimen/_5sdp"
+                        android:textSize="@dimen/_11sdp" />
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_height="wrap_content"
+                        layout="@layout/star_progress"/>
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_height="wrap_content"
+                        layout="@layout/star_progress"/>
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_height="wrap_content"
+                        layout="@layout/star_progress"/>
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_height="wrap_content"
+                        layout="@layout/star_progress"/>
+
+
+                </LinearLayout>
 
 
 
