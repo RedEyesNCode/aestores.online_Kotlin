@@ -64,7 +64,6 @@ class LoginActivity : BaseActivity() {
         loginViewModel.loginUserResponse.observe((this)){
             hideLoader()
             if(it!=null){
-                showToast("$it.message")
                 AppSession(this@LoginActivity).put(Constant.IS_LOGGED_IN,true)
                 AppSession(this@LoginActivity).putObject(Constant.USER_INFO,it)
                 val IntentDashboard = Intent(this@LoginActivity,DashboardActivity::class.java)

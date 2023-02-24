@@ -1,11 +1,14 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
 import com.ushatech.aestoreskotlin.data.SearchProductResponse
 import com.ushatech.aestoreskotlin.databinding.ActivitySearchProductBinding
@@ -37,6 +40,16 @@ class SearchProductActivity : BaseActivity() {
     private fun editTextListeners() {
         binding.searchView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
+                binding.tvSearchStatus.setTextColor(getColor(R.color.black))
+                binding.searchStatusLayout.background = ContextCompat.getDrawable(this@SearchProductActivity,R.drawable.background_green_solid)
+                binding.searchProgress.visibility = View.VISIBLE
+                binding.tvSearchStatus.text = "Searching for products"
+                binding.searchView.visibility = View.VISIBLE
+
+                showLog(s.toString())
+
+                Handler().postDelayed(Runnable {  searchViewModel.searchProduct(s.toString(),null,null,null)  },2000)
+
 
 
             }
@@ -44,9 +57,11 @@ class SearchProductActivity : BaseActivity() {
                 s: CharSequence, start: Int,
                 count: Int, after: Int
             ) {
-                showLoader()
-                showLog(s.toString())
-                searchViewModel.searchProduct(s.toString(),null,null,null)
+                // Showloader will cause leaked window error
+//                showLoader()
+
+
+
             }
 
             override fun onTextChanged(
@@ -75,7 +90,7 @@ class SearchProductActivity : BaseActivity() {
                 showToast(it)
             }
         }
-        searchViewModel.isSuccess.observe((this)){
+        searchViewModel.isLoading.observe((this)){
             if(it){
                 showLoader()
             }else{
@@ -86,12 +101,24 @@ class SearchProductActivity : BaseActivity() {
             hideLoader()
 
             if(it.status==1){
+                binding.searchStatusLayout.visibility = View.GONE
+
                 updateSearchRecycler(it.data!!.products)
                 binding.recvSearchProducts.visibility = View.VISIBLE
                 binding.ivNotFound.visibility = View.GONE
             }else{
                 binding.recvSearchProducts.visibility = View.GONE
-                binding.ivNotFound.visibility = View.VISIBLE
+                binding.ivNotFound.visibility = View.GONE
+
+                binding.searchStatusLayout.visibility = View.VISIBLE
+                binding.searchStatusLayout.background = ContextCompat.getDrawable(this@SearchProductActivity,
+                    R.drawable.background_red_solid)
+                binding.tvSearchStatus.setTextColor(getColor(R.color.white))
+                binding.searchProgress.visibility = View.GONE
+                binding.tvSearchStatus.text = "No Products found"
+
+
+
 
             }
 

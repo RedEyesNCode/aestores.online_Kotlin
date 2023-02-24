@@ -19,7 +19,7 @@ class SearchProductViewModel():ViewModel() {
     private val _isFailed = MutableLiveData<String>()
     val isFailed: LiveData<String> = _isFailed
     private val _isLoading = MutableLiveData<Boolean>()
-    val isSuccess: LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _searchProductsResponse = MutableLiveData<SearchProductResponse>()
     val searchProductResponse:LiveData<SearchProductResponse> = _searchProductsResponse
@@ -44,14 +44,15 @@ class SearchProductViewModel():ViewModel() {
         try {
 
             val response = mainRepository.searchProduct(searchTerm,categoryId,subCategoryId,superCateogryId,1)
-            _isLoading.value = true
+//            _isLoading.value = true
             response.enqueue(object : Callback<SearchProductResponse> {
 
                 override fun onResponse(
                     call: Call<SearchProductResponse>,
                     response: Response<SearchProductResponse>
                 ) {
-                    _isLoading.value = false
+                    // Dont show the default progress in search screen
+//                    _isLoading.value = false
                     if (response.code() == 200) {
                         _searchProductsResponse.postValue(response.body())
                     } else {

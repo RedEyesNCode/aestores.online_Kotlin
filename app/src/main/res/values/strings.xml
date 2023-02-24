@@ -89,4 +89,5 @@
     <string name="your_refferal_code">Your refferal code.</string>
     <string name="copy_to_clipboard">Copy to Clipboard</string>
     <string name="search_product">Search Product</string>
+    <string name="searching_for_results">Searching for Results</string>
 </resources>

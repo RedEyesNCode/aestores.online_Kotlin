@@ -1,6 +1,7 @@
 package com.ushatech.aestoreskotlin.ui.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ class SearchProductAdapter(var context:Context,var resultList:ArrayList<SearchPr
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
         val productDetail = resultList.get(position)
-
+        holder.binding.tvMaxPrice.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
         holder.binding.tvRealPrice.text = productDetail.price
         holder.binding.tvMaxPrice.text = productDetail.mrp
         holder.binding.tvProductName.text = productDetail.name
