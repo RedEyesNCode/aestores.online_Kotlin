@@ -62,7 +62,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
     }
 
     private fun initClicks() {
-        binding.ivCart.setOnClickListener {
+        binding.addToCartLayout.setOnClickListener {
             FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
                 com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,true)
 
