@@ -5,12 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ushatech.aestoreskotlin.data.AllCategoryResponse
+import com.ushatech.aestoreskotlin.data.SubCateogryResponse
 import com.ushatech.aestoreskotlin.databinding.SubcategoryItemBinding
 
 class SubcategoryAdapter(
     var context: Context,
-    var subcategories: AllCategoryResponse.Subcategories,
+    var subcategories: ArrayList<SubCateogryResponse.Data>,
     var size: Int
 ):RecyclerView.Adapter<SubcategoryAdapter.MyViewholder> (){
 
@@ -29,8 +29,8 @@ class SubcategoryAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
-        Log.i("DEV_ASHUTOSH", "onBindViewHolder: ${subcategories.name}")
-        holder.subcategoryItemBinding.tvSubcategoryName.text = subcategories.name
+        Log.i("DEV_ASHUTOSH", "onBindViewHolder: ${subcategories.get(position).name}")
+        holder.subcategoryItemBinding.tvSubcategoryName.text = subcategories.get(position).name
 
 
 

@@ -4,55 +4,85 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ushatech.aestoreskotlin.data.AllCategoryResponse
+import com.ushatech.aestoreskotlin.data.MasterCategoryModel
 import com.ushatech.aestoreskotlin.databinding.CategoryItemBinding
 import com.ushatech.aestoreskotlin.databinding.SubcategoryItemBinding
+import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 
 
 class DrawerAdapter(
     var context: Context,
     var allCategoryResponse: AllCategoryResponse,
-    var subCategories: ArrayList<AllCategoryResponse.Subcategories>
-) :RecyclerView.Adapter<DrawerAdapter.MyViewholder>(){
+    var subCategories: ArrayList<AllCategoryResponse.Subcategories>,
+    var masterCategoryModel:MutableList<MasterCategoryModel>,
+) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    lateinit var binding: CategoryItemBinding
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewholder {
-        binding = CategoryItemBinding.inflate(LayoutInflater.from(context),parent,false)
-
+    lateinit var categoryBinding: CategoryItemBinding
+    lateinit var subCategoryBinding :SubcategoryItemBinding
+    private var actionLock = false
 
 
-        return MyViewholder(binding)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        categoryBinding = CategoryItemBinding.inflate(LayoutInflater.from(context),parent,false)
+        subCategoryBinding = SubcategoryItemBinding.inflate(LayoutInflater.from(context),parent,false)
+        val viewHolder:RecyclerView.ViewHolder = when(viewType){
+            MasterCategoryModel.CATEGORY -> CategoryViewHolder(categoryBinding)
+            MasterCategoryModel.SUB_CATEGORY -> SubCategoryViewHolder(subCategoryBinding)
+            else -> CategoryViewHolder(categoryBinding)
+
+        }
+
+        return viewHolder
     }
 
-    override fun onBindViewHolder(holder: MyViewholder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        val categories = allCategoryResponse.data.get(position)
+        val masterCategoryModel = masterCategoryModel.get(position)
 
-        holder.categoryItemBinding.tvCategoryName.text = categories.name
-
-
-
-
-
-        holder.categoryItemBinding.recvSubCategory.adapter = SubcategoryAdapter(context,subCategories.get(position),subCategories.size)
-        holder.categoryItemBinding.recvSubCategory.layoutManager = LinearLayoutManager(context)
+        when(masterCategoryModel.type){
+            MasterCategoryModel.CATEGORY ->{
+                (holder as CategoryViewHolder).categoryItemBinding.tvCategoryName.text = masterCategoryModel.category.name
 
 
+                holder.categoryItemBinding.ivUp.setOnClickListener {
+                    holder.categoryItemBinding.ivUp.visibility = View.GONE
+                    holder.categoryItemBinding.ivDown.visibility = View.VISIBLE
+                    holder.categoryItemBinding.recvSubCategory.visibility =View.GONE
+                    //CLOSE
+
+                }
+                holder.categoryItemBinding.ivDown.setOnClickListener {
+                    holder.categoryItemBinding.ivUp.visibility = View.VISIBLE
+                    holder.categoryItemBinding.ivDown.visibility = View.GONE
+                    holder.categoryItemBinding.recvSubCategory.visibility =View.VISIBLE
+                    // EXPAND
+                    // Filter the subCategory list. for the certain category ID.
+                    val dashboardViewModel = DashboardViewModel()
+                    dashboardViewModel.getAllSubCategory(masterCategoryModel.category.id.toString())
+                    dashboardViewModel.subCategoryResponse.observe((context as LifecycleOwner),{
+                        if(it!=null){
+                            (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.adapter =SubcategoryAdapter(context,it.data,it.data.size)
+                            (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.layoutManager =LinearLayoutManager(context)
+                        }
+                    })
+                    
 
 
-        holder.categoryItemBinding.tvCategoryName.setOnClickListener {
 
-            if(binding.recvSubCategory.visibility== View.VISIBLE){
-                binding.recvSubCategory.visibility = View.GONE
-                binding.ivDown.visibility = View.VISIBLE
-                binding.ivUp.visibility = View.GONE
-            }else{
-                binding.recvSubCategory.visibility = View.VISIBLE
-                binding.ivDown.visibility = View.GONE
-                binding.ivUp.visibility = View.VISIBLE
+
+
+                }
+
+
+            }
+            MasterCategoryModel.SUB_CATEGORY->{
+                (holder as SubCategoryViewHolder).subcategoryBinding.tvSubcategoryName.text = masterCategoryModel.subCategory.name
             }
         }
 
@@ -60,11 +90,32 @@ class DrawerAdapter(
 
     }
 
+    public interface onEvent{
+        fun categoryClick(position: Int,categoryId:String)
+
+    }
+
     override fun getItemCount(): Int {
         return allCategoryResponse.data.size
     }
 
-    class MyViewholder(var categoryItemBinding: CategoryItemBinding):RecyclerView.ViewHolder(categoryItemBinding.root)
-    class MyViewholderSubCategory(var subcategoryItemBinding: SubcategoryItemBinding): RecyclerView.ViewHolder(subcategoryItemBinding.root)
+    override fun getItemViewType(position: Int): Int {
+        return masterCategoryModel.get(position).type
+    }
+
+
+
+
+
+    class CategoryViewHolder(var categoryItemBinding: CategoryItemBinding):RecyclerView.ViewHolder(categoryItemBinding.root)
+
+    class SubCategoryViewHolder(var subcategoryBinding: SubcategoryItemBinding) : RecyclerView.ViewHolder(subcategoryBinding.root) {
+    }
+
+
+
+    // Need another viewholder for showing superCategories
+
+
 
 }

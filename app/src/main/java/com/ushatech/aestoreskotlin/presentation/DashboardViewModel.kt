@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.ushatech.aestoreskotlin.data.AllCategoryResponse
 import com.ushatech.aestoreskotlin.data.HomeScreenResponse
 import com.ushatech.aestoreskotlin.data.LoginUserResponse
+import com.ushatech.aestoreskotlin.data.SubCateogryResponse
 import com.ushatech.aestoreskotlin.domain.MainRepository
 import com.ushatech.aestoreskotlin.session.Constant
 import kotlinx.coroutines.launch
@@ -30,12 +31,61 @@ class DashboardViewModel(): ViewModel(){
     val categoryResponse :LiveData<AllCategoryResponse> = _categoryResponse
 
 
+    private val _subCategoryResponse = MutableLiveData<SubCateogryResponse>()
+    val subCategoryResponse :LiveData<SubCateogryResponse> = _subCategoryResponse
+
+
     val mainRepository = MainRepository()
 
     fun getAllCategory() = viewModelScope.launch {
         getAllCategoryCoroutine()
 
 
+    }
+    fun getAllSubCategory(categoryId:String)= viewModelScope.launch {
+        getAllSubCategoryCouroutine(categoryId)
+
+    }
+
+    private suspend fun getAllSubCategoryCouroutine(categoryId: String) {
+        try {
+
+            val response = mainRepository.getAllSubcategoryForCategory(categoryId)
+            _isLoading.value = true
+            response.enqueue(object : Callback<SubCateogryResponse> {
+
+                override fun onResponse(
+                    call: Call<SubCateogryResponse>,
+                    response: Response<SubCateogryResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.code() == 200) {
+                        _subCategoryResponse.postValue(response.body())
+                    } else {
+                        _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
+                    }
+                }
+
+                override fun onFailure(call: Call<SubCateogryResponse>, t: Throwable) {
+                    _isFailed.value = t.message
+                }
+            })
+        } catch (t: Throwable) {
+
+            when (t) {
+                is IOException -> {
+                    _isFailed.value = "IO Exception"
+                }
+                else -> {
+                    _isFailed.value = "Exception." + t.message
+
+                    Log.i("RETROFIT", t.message!!)
+                }
+
+
+            }
+
+        }
     }
 
     private suspend fun getAllCategoryCoroutine() {

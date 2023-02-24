@@ -16,6 +16,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
 import com.ushatech.aestoreskotlin.data.AllCategoryResponse
+import com.ushatech.aestoreskotlin.data.CategorySubCategoryData
+import com.ushatech.aestoreskotlin.data.MasterCategoryModel
+import com.ushatech.aestoreskotlin.data.SubSuperCategoryData
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
@@ -77,18 +80,39 @@ class DashboardActivity : BaseActivity() {
         val homeNav: View = binding.drawerHome.getHeaderView(0)
         val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
 
-        val  subCategories = ArrayList<AllCategoryResponse.Subcategories>()
+        val  subCategoriesSubAdapter = ArrayList<AllCategoryResponse.Subcategories>()
+
+        val subCategoryDataMutableList : MutableList<CategorySubCategoryData> =  mutableListOf()
+        val subSuperCategoryDataMutableList : MutableList<SubSuperCategoryData> =  mutableListOf()
+        val masterCategoryModelMutableList :MutableList<MasterCategoryModel> = mutableListOf()
         for(index in it!!.data.indices){
-            for (subcategory in it.data.get(index).subcategories){
-                subCategories.add(subcategory)
+            // Adding All the Category Views.
+            for(subcategories in it.data.get(index).subcategories){
+                val subSuperCategoryData = SubSuperCategoryData(subcategories.name.toString(),subcategories.supercategories)
+                subSuperCategoryDataMutableList.add(subSuperCategoryData)
+                subCategoriesSubAdapter.add(subcategories)
+//                masterCategoryModelMutableList.add(MasterCategoryModel(MasterCategoryModel.SUB_CATEGORY,subSuperCategoryData,false))
+
             }
+        }
+        for (category in it.data){
+            val categorySubCategoryData = CategorySubCategoryData(category.name.toString(),subSuperCategoryDataMutableList)
+            subCategoryDataMutableList.add(categorySubCategoryData)
+            masterCategoryModelMutableList.add(MasterCategoryModel(MasterCategoryModel.CATEGORY,category,true))
+        }
 
+        for(index in it!!.data.indices){
+            // Adding All the Category Views.
+            for(subcategories in it.data.get(index).subcategories){
+                val subSuperCategoryData = SubSuperCategoryData(subcategories.name.toString(),subcategories.supercategories)
+                subSuperCategoryDataMutableList.add(subSuperCategoryData)
+                masterCategoryModelMutableList.add(MasterCategoryModel(MasterCategoryModel.SUB_CATEGORY,subcategories,false))
 
+            }
         }
 
 
-
-        homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity,it!!,subCategories)
+        homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity,it!!,subCategoriesSubAdapter,masterCategoryModelMutableList)
         homeSideMenuBinding.recvNavDrawer.layoutManager = LinearLayoutManager(this)
 
 
