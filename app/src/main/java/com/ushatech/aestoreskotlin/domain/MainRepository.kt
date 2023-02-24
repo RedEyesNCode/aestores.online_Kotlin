@@ -16,7 +16,7 @@ class MainRepository {
     suspend fun getAllCategories() = AndroidClient().apiInterface.getAllCategories()
 
     suspend fun getAllSubcategoryForCategory(categoryId:String) = AndroidClient().apiInterface.getAllSubCategoryForCategory(categoryId)
-
+    suspend fun  getAllSuperCategory(subCategoryId: String) = AndroidClient().apiInterface.getAllSuperCateogryByCategory(subCategoryId)
     suspend fun searchProduct(
         searchTerm:String,
         categoryId: Int?,

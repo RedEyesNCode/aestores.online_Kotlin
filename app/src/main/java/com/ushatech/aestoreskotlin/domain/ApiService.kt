@@ -40,6 +40,10 @@ interface ApiService {
     fun getAllSubCategoryForCategory(@Query("categoryId") categoryId:String):Call<SubCateogryResponse>
 
 
+    @GET("api/v1/superCategoriesBySubcategoryId")
+    fun getAllSuperCateogryByCategory(@Query("subCategoryId") subCategoryId:String):Call<SubCateogryResponse>
+
+
     @GET("api/v1/products")
     fun searchProducts(@Query ("search") searchTerm:String, @Query("categoryId") categoryId: Int?, @Query("subCategoryId") subCategoryId: Int?, @Query("page") page: Int?, @Query("superCategoryId") superCategoryId: Int?):Call<SearchProductResponse>
 

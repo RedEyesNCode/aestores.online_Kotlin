@@ -31,11 +31,70 @@ class DashboardViewModel(): ViewModel(){
     val categoryResponse :LiveData<AllCategoryResponse> = _categoryResponse
 
 
+
+
+
     private val _subCategoryResponse = MutableLiveData<SubCateogryResponse>()
     val subCategoryResponse :LiveData<SubCateogryResponse> = _subCategoryResponse
 
+    private val _superCategoryResponse = MutableLiveData<SubCateogryResponse>()
+    val superCategoryResponse :LiveData<SubCateogryResponse> = _superCategoryResponse
+
+
+
 
     val mainRepository = MainRepository()
+
+
+    fun getAllSuperCategory(subCategory:String) = viewModelScope.launch {
+
+        getSuperCategoryCoroutine(subCategory)
+
+    }
+
+    private suspend fun getSuperCategoryCoroutine(subCategory: String) {
+        try {
+
+            val response = mainRepository.getAllSuperCategory(subCategory)
+            _isLoading.value = true
+            response.enqueue(object : Callback<SubCateogryResponse> {
+
+                override fun onResponse(
+                    call: Call<SubCateogryResponse>,
+                    response: Response<SubCateogryResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.code() == 200) {
+                        _superCategoryResponse.postValue(response.body())
+                    } else {
+                        _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
+                    }
+                }
+
+                override fun onFailure(call: Call<SubCateogryResponse>, t: Throwable) {
+                    _isFailed.value = t.message
+                }
+            })
+        } catch (t: Throwable) {
+
+            when (t) {
+                is IOException -> {
+                    _isFailed.value = "IO Exception"
+                }
+                else -> {
+                    _isFailed.value = "Exception." + t.message
+
+                    Log.i("RETROFIT", t.message!!)
+                }
+
+
+            }
+
+        }
+
+
+
+    }
 
     fun getAllCategory() = viewModelScope.launch {
         getAllCategoryCoroutine()
