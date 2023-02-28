@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/green"
@@ -72,6 +71,209 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:id="@+id/myAccountLayout"
+            android:layout_height="@dimen/_45sdp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/my_account"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="@dimen/_15sdp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:src="@drawable/ic_dropdown"
+                android:padding="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:id="@+id/ivDownAccount"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_8sdp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_height="@dimen/_25sdp"/>
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:src="@drawable/ic_dropdown"
+                android:padding="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:id="@+id/ivUpAccount"
+                android:visibility="gone"
+                android:rotation="180"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_8sdp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_height="@dimen/_25sdp"/>
+
+
+
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/dropDownMyAccount"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/infoSettingsLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="@string/my_info_u0026_settings"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/myPurchaseLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="@string/my_purchase"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/myBalanceLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="@string/my_balance"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/myTeamLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="My Team"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/earningLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Earning Report"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:id="@+id/wishlistLayout"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/mulish_bold"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="My Wishlist"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/grey"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="@dimen/_2sdp"/>
         <RelativeLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -119,6 +321,9 @@
 
 
         </RelativeLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -253,7 +458,11 @@
 
         </LinearLayout>
 
-
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/grey"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="@dimen/_2sdp"/>
 
 
 

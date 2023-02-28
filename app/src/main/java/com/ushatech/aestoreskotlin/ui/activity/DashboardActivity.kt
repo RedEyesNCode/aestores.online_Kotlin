@@ -140,6 +140,38 @@ class DashboardActivity : BaseActivity() {
 
         setupNavClicks(homeSideMenuBinding)
 
+        homeSideMenuBinding.myAccountLayout.setOnClickListener {
+
+            if(homeSideMenuBinding.dropDownMyAccount.visibility==View.VISIBLE){
+                homeSideMenuBinding.ivDownAccount.visibility = View.VISIBLE
+                homeSideMenuBinding.ivUpAccount.visibility = View.GONE
+                homeSideMenuBinding.dropDownMyAccount.visibility = View.GONE
+            }else{
+                homeSideMenuBinding.ivDownAccount.visibility = View.GONE
+                homeSideMenuBinding.ivUpAccount.visibility = View.VISIBLE
+
+                homeSideMenuBinding.dropDownMyAccount.visibility = View.VISIBLE
+            }
+
+        }
+
+        homeSideMenuBinding.wishlistLayout.setOnClickListener {
+
+            binding.bottomNavigationbar.selectedItemId = R.id.wishListFragment
+
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+
+        }
+        homeSideMenuBinding.infoSettingsLayout.setOnClickListener {
+
+            binding.bottomNavigationbar.selectedItemId = R.id.profileFragment
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+
+
+        }
+
+
+
         homeSideMenuBinding.helpInfoLayout.setOnClickListener {
             if(homeSideMenuBinding.dropDownHelpInfo.visibility==View.VISIBLE){
                 homeSideMenuBinding.ivDown.visibility = View.VISIBLE

@@ -93,4 +93,8 @@
     <string name="searching_for_results">Searching for Results</string>
     <string name="avg_star_rating_0_ratings">Avg. Star Rating (0 Ratings)</string>
     <string name="_5_stars">5 Stars</string>
+    <string name="my_account">My Account</string>
+    <string name="my_purchase">My Purchase</string>
+    <string name="my_balance">My Balance</string>
+    <string name="my_info_u0026_settings"><![CDATA[My Info & Settings]]></string>
 </resources>
