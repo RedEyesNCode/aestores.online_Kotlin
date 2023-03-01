@@ -12,12 +12,12 @@ class AndroidClient {
 
 
     val retrofitClient: Retrofit.Builder by lazy {
-        val levelType: HttpLoggingInterceptor.Level
-        if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
-            levelType = HttpLoggingInterceptor.Level.BODY else levelType = HttpLoggingInterceptor.Level.NONE
+        val levelType = HttpLoggingInterceptor.Level.BODY
         val loggingInterceptor= BasicAuthInterceptor()
+        val debugInterceptor=HttpLoggingInterceptor().setLevel(levelType)
         val okHttpClient = OkHttpClient.Builder()
         okHttpClient.addInterceptor(loggingInterceptor)
+        okHttpClient.addInterceptor(debugInterceptor)
 
         Retrofit.Builder().baseUrl(AE_STORES_LIVE_URL).client(okHttpClient.build()).addConverterFactory(
             GsonConverterFactory.create())

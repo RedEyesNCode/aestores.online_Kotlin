@@ -24,4 +24,10 @@ class MainRepository {
         superCateogryId: Int?,
         page:Int) = AndroidClient().apiInterface.searchProducts(searchTerm, categoryId, subCategoryId,page,superCateogryId)
 
+    suspend fun getCountries() = AndroidClient().apiInterface.getCountries()
+    suspend fun getStates(countryId:String) = AndroidClient().apiInterface.getStates(countryId)
+
+    suspend fun getCities(stateId:String) = AndroidClient().apiInterface.getCities(stateId)
+
+
 }

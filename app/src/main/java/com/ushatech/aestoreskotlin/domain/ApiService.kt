@@ -48,6 +48,16 @@ interface ApiService {
     fun searchProducts(@Query ("search") searchTerm:String, @Query("categoryId") categoryId: Int?, @Query("subCategoryId") subCategoryId: Int?, @Query("page") page: Int?, @Query("superCategoryId") superCategoryId: Int?):Call<SearchProductResponse>
 
 
+    // For Country, state and City
+
+    @GET("api/v1/countries")
+    fun getCountries():Call<SelectionResponseData>
+
+    @GET("api/v1/states")
+    fun getStates(@Query("countryId") countryId:String):Call<SelectionResponseData>
+
+    @GET("api/v1/cities")
+    fun getCities(@Query("stateId") stateId:String):Call<SelectionResponseData>
 }
 
 
