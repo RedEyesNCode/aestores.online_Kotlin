@@ -47,6 +47,11 @@ interface ApiService {
     @GET("api/v1/products")
     fun searchProducts(@Query ("search") searchTerm:String, @Query("categoryId") categoryId: Int?, @Query("subCategoryId") subCategoryId: Int?, @Query("page") page: Int?, @Query("superCategoryId") superCategoryId: Int?):Call<SearchProductResponse>
 
+    // Product detail api
+
+    @GET("api/v1/product")
+    fun getProductDetail(@Query("productId") productId:String,@Query("userid") userId: String):Call<ProductDetailResponseData>
+
 
     // For Country, state and City
 

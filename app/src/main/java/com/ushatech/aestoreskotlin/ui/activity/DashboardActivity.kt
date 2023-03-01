@@ -1,5 +1,6 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
@@ -400,7 +401,25 @@ class DashboardActivity : BaseActivity() {
             binding.mainLayout.openDrawer(GravityCompat.START)
         }
         binding.ivSearch.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity, SearchProductActivity::class.java))
+            val searchIntent = Intent(this@DashboardActivity, SearchProductActivity::class.java)
+            startActivityForResult(searchIntent,77)
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode== Activity.RESULT_OK){
+            if(requestCode==77){
+                // load the product details fragment
+                val productId = data?.getStringExtra("PRODUCT_ID")
+                showToast(productId.toString())
+                FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
+                            ProductDetailFragment.newInstance(productId.toString(),""),
+                            ProductDetailFragment::class.java.canonicalName,false)
+
+
+            }
         }
 
     }

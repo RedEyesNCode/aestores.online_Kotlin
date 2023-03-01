@@ -11,7 +11,7 @@ import com.ushatech.aestoreskotlin.data.SearchProductResponse
 import com.ushatech.aestoreskotlin.databinding.CategoryProductListBinding
 import com.ushatech.aestoreskotlin.databinding.ProductGridListBinding
 
-class SearchProductAdapter(var context:Context,var resultList:ArrayList<SearchProductResponse.Products>) :RecyclerView.Adapter<SearchProductAdapter.MyViewholder>(){
+class SearchProductAdapter(var context:Context,var resultList:ArrayList<SearchProductResponse.Products>,var onEventClick:onClickSearch) :RecyclerView.Adapter<SearchProductAdapter.MyViewholder>(){
 
     private lateinit var binding:ProductGridListBinding
 
@@ -32,10 +32,16 @@ class SearchProductAdapter(var context:Context,var resultList:ArrayList<SearchPr
         holder.binding.tvProductName.text = productDetail.name
         Glide.with(context).load(productDetail.image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage)
 
+        holder.binding.mainLayout.setOnClickListener {
+            onEventClick.onProductClick(position,productDetail.id.toString())
+
+        }
 
 
 
-
+    }
+    interface onClickSearch{
+        fun onProductClick(position: Int,productId:String)
 
     }
 

@@ -1,5 +1,6 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -14,15 +15,34 @@ import com.ushatech.aestoreskotlin.data.SearchProductResponse
 import com.ushatech.aestoreskotlin.databinding.ActivitySearchProductBinding
 import com.ushatech.aestoreskotlin.presentation.SearchProductViewModel
 import com.ushatech.aestoreskotlin.ui.adapter.SearchProductAdapter
+import com.ushatech.aestoreskotlin.ui.fragments.HomeFragment
+import com.ushatech.aestoreskotlin.ui.fragments.ProductDetailFragment
+import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 
-class SearchProductActivity : BaseActivity() {
+class SearchProductActivity : BaseActivity() ,SearchProductAdapter.onClickSearch{
 
     private lateinit var binding:ActivitySearchProductBinding
 
     private  var arrayListSearchProduct :ArrayList<SearchProductResponse.Products> = ArrayList()
     private lateinit var searchViewModel:SearchProductViewModel
     private lateinit var searchAdapter :SearchProductAdapter
+
+    override fun onProductClick(position: Int, productId: String) {
+
+        // Move to the Product detail fragment. but container is gone revert back to dashboard with data.
+        val intent = Intent()
+        intent.putExtra("PRODUCT_ID", productId)
+        setResult(RESULT_OK, intent)
+        finish()
+
+        /*FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
+            ProductDetailFragment.newInstance(productId,""),
+            ProductDetailFragment::class.java.canonicalName,false)*/
+
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchProductBinding.inflate(layoutInflater)
@@ -76,7 +96,7 @@ class SearchProductActivity : BaseActivity() {
     }
 
     private fun setupSearchRecycler() {
-        searchAdapter =SearchProductAdapter(this,arrayListSearchProduct)
+        searchAdapter =SearchProductAdapter(this,arrayListSearchProduct,this)
         binding.recvSearchProducts.adapter = searchAdapter
         binding.recvSearchProducts.layoutManager = GridLayoutManager(this@SearchProductActivity,2)
 
@@ -128,7 +148,7 @@ class SearchProductActivity : BaseActivity() {
 
     private fun updateSearchRecycler(products: ArrayList<SearchProductResponse.Products>) {
         arrayListSearchProduct = products
-        searchAdapter = SearchProductAdapter(this@SearchProductActivity,arrayListSearchProduct)
+        searchAdapter = SearchProductAdapter(this@SearchProductActivity,arrayListSearchProduct,this)
         binding.recvSearchProducts.adapter = searchAdapter
         binding.recvSearchProducts.layoutManager = GridLayoutManager(this@SearchProductActivity,2)
 

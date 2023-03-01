@@ -29,5 +29,8 @@ class MainRepository {
 
     suspend fun getCities(stateId:String) = AndroidClient().apiInterface.getCities(stateId)
 
+    suspend fun getProductDetail(productId:String,userId:String) = AndroidClient().apiInterface.getProductDetail(productId, userId)
+
+
 
 }

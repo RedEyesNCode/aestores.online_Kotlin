@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.ushatech.aestoreskotlin.presentation.ProductDetailViewModel" />
+    </data>
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".ui.fragments.ProductDetailFragment">
@@ -28,6 +35,7 @@
                     android:textSize="@dimen/_19sdp"
                     android:gravity="start"
                     android:textAllCaps="false"
+                    android:id="@+id/tvProductName"
                     android:textColor="@color/green"
                     android:fontFamily="@font/mulish_bold"
                     android:layout_height="wrap_content"/>
@@ -138,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/_50_in_stock"
                         android:layout_marginStart="@dimen/_8sdp"
-
+                        android:id="@+id/tvStock"
                         android:textColor="@color/green"
                         android:fontFamily="@font/mulish_bold"
                         android:lineSpacingExtra="@dimen/_5sdp"
@@ -600,3 +608,4 @@
 
 
 </RelativeLayout>
+</layout>

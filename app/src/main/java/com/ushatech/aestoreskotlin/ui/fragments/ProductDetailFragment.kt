@@ -10,11 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.data.ProductDetailResponseData
 import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
 import com.ushatech.aestoreskotlin.databinding.ImageDialogBinding
+import com.ushatech.aestoreskotlin.presentation.ProductDetailViewModel
+import com.ushatech.aestoreskotlin.session.AppSession
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.ProductImageAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
@@ -27,8 +32,12 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
     private var param1: String? = null
     private var param2: String? = null
 
-
     private lateinit var binding:FragmentProductDetailBinding
+
+    private lateinit var viewModel:ProductDetailViewModel
+
+
+
 
     override fun onImageClick(position: Int, drawable: Drawable) {
         binding.ivMainProductImage.setImageDrawable(drawable)
@@ -53,12 +62,69 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         binding.recvProductImages.adapter = ProductImageAdapter(fragmentContext,this)
         binding.recvProductImages.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.HORIZONTAL,false)
 
-        binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
+        setupViewModel()
+        attachObservers()
+        initialApiCall()
 
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    private fun initialApiCall() {
+        val userId = AppSession(fragmentContext).getUser()?.data?.id
+        if(param1!=null){
+            viewModel.getProductDetail(param1!!,userId.toString())
+        }else{
+            showToast("Showing static screen.")
+        }
+    }
+
+    private fun attachObservers() {
+        viewModel.isFailed.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                showToast(it)
+            }
+        }
+        viewModel.isSuccess.observe((viewLifecycleOwner)){
+            if(it){
+                showLoader()
+            }else{
+                hideLoader()
+            }
+        }
+        viewModel.productResponse.observe((viewLifecycleOwner)){
+            if(it!=null){
+                updateUi(it)
+
+            }else{
+                showToast(Constant.OOPS_SW)
+            }
+
+
+        }
+
+    }
+
+    private fun updateUi(product: ProductDetailResponseData) {
+        binding.tvProductName.text = product.data?.name
+        binding.tvMaxPrice.text = product.data?.mrp
+        binding.tvRealPrice.text = product.data?.price
+        binding.tvStock.text = "${product.data?.stock} are available."
+        binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+
+
+
+
+    }
+
+    private fun setupViewModel() {
+        viewModel = ProductDetailViewModel()
+        viewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
+        binding.viewmodel = viewModel
+
     }
 
     private fun initClicks() {
