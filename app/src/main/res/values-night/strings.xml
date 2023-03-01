@@ -88,4 +88,6 @@
     <string name="my_purchase">My Purchase</string>
     <string name="my_balance">My Balance</string>
     <string name="my_info_u0026_settings"><![CDATA[My Info & Settings]]></string>
+    <string name="add_cash">Add Cash</string>
+    <string name="referral_code">Referral Code</string>
 </resources>

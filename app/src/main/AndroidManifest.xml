@@ -16,7 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".OrdersActivity"
+            android:name=".ui.activity.EarningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.BalanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.OrdersActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.LoginActivity"

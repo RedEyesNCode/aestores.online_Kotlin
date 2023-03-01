@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.EarningActivity">
+    <include
+        android:layout_width="match_parent"
+        android:id="@+id/commonTitleBar"
+        android:layout_height="wrap_content"
+        layout="@layout/common_title_bar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="From Date"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+
+                android:fontFamily="@font/mulish_regular"
+                android:textSize="@dimen/_14sdp"
+                android:layout_height="0dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:focusable="false"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:background="@drawable/background_grey_box"
+                android:id="@+id/edtFromDate"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="To Date"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+
+                android:fontFamily="@font/mulish_regular"
+                android:textSize="@dimen/_14sdp"
+                android:layout_height="0dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:focusable="false"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:background="@drawable/background_grey_box"
+                android:id="@+id/edtToDate"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/addToCartLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_green_rounded"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:paddingVertical="@dimen/_9sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:fontFamily="@font/mulish_regular"
+                android:gravity="start"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:text="Search"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+        <TableRow android:background="@color/grey" android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:text="@string/referral_code" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:text="@string/address" />
+
+        </TableRow>
+
+
+
+    </TableLayout>
+
+    <ScrollView
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dip"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:scrollbars="horizontal|vertical">
+
+            <TableLayout
+                android:id="@+id/tlGridTable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:background="#51B435"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="S No."
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+                        android:text="Member ID"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+                        android:text="Member GET"
+
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+                        android:layout_weight="1"
+
+                        android:text="Purchase Amount"
+
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+                        android:text="Purchase Volume"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Earn TYPE"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+
+                        android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Earns"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+
+                        android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Date"
+                        android:layout_marginHorizontal="@dimen/_28sdp"
+
+                        android:textColor="@color/white" />
+                </TableRow>
+
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+    </ScrollView>
+</LinearLayout>

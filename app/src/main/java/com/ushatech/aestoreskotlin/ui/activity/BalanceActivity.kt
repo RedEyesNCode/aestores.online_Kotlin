@@ -1,19 +1,19 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ushatech.aestoreskotlin.base.BaseActivity
-import com.ushatech.aestoreskotlin.databinding.ActivityOrdersBinding
+import com.ushatech.aestoreskotlin.databinding.ActivityBalanceBinding
 
-class OrdersActivity : BaseActivity() {
+class BalanceActivity : BaseActivity() {
 
-    private lateinit var binding:ActivityOrdersBinding
+    private lateinit var binding:ActivityBalanceBinding
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityOrdersBinding.inflate(layoutInflater)
-
+        binding = ActivityBalanceBinding.inflate(layoutInflater)
         initClicks()
         setContentView(binding.root)
     }
@@ -23,8 +23,7 @@ class OrdersActivity : BaseActivity() {
             finish()
         }
 
-        binding.commonTitleBar.tvTitle.text = "My Orders"
-
+        binding.commonTitleBar.tvTitle.text = "My Balance"
 
 
     }

@@ -130,15 +130,41 @@ class DashboardActivity : BaseActivity() {
 
     private fun setupNavigationDrawer() {
         val homeNav: View = binding.drawerHome.getHeaderView(0)
-        val categoryNav :View = binding.drawerCategory.getHeaderView(0)
         binding.mainLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        val categorySideMenuBinding = CategorySideMenuBinding.bind(categoryNav)
         val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
         val userData =  AppSession(this@DashboardActivity).getUser()
         homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
-
-
         setupNavClicks(homeSideMenuBinding)
+        initMyAccountClicks(homeSideMenuBinding)
+        initHelpLayoutClicks(homeSideMenuBinding)
+
+        homeSideMenuBinding.btnLogout.setOnClickListener {
+            val alertDialog = AlertDialog.Builder(this@DashboardActivity)
+            alertDialog.setTitle("Logout from App ?")
+            alertDialog.setCancelable(true)
+            alertDialog.setPositiveButton("Yes",{dialog, which ->
+                run {
+                    AppSession(this@DashboardActivity).clear()
+                    showToast("Logged Out !")
+                    val loginIntent = Intent(this@DashboardActivity,LoginActivity::class.java)
+
+                    loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(loginIntent)
+                }
+            })
+            alertDialog.setNegativeButton("CANCEL",null)
+            alertDialog.create()
+
+            alertDialog.show()
+
+
+
+        }
+
+
+    }
+
+    private fun initMyAccountClicks(homeSideMenuBinding: HomeSideMenuBinding) {
 
         homeSideMenuBinding.myAccountLayout.setOnClickListener {
 
@@ -154,7 +180,6 @@ class DashboardActivity : BaseActivity() {
             }
 
         }
-
         homeSideMenuBinding.wishlistLayout.setOnClickListener {
 
             binding.bottomNavigationbar.selectedItemId = R.id.wishListFragment
@@ -169,8 +194,25 @@ class DashboardActivity : BaseActivity() {
 
 
         }
+        homeSideMenuBinding.myPurchaseLayout.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,OrdersActivity::class.java))
 
 
+
+        }
+        homeSideMenuBinding.myBalanceLayout.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,BalanceActivity::class.java))
+        }
+        homeSideMenuBinding.earningLayout.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,EarningActivity::class.java))
+
+        }
+    }
+
+    private fun initHelpLayoutClicks(homeSideMenuBinding: HomeSideMenuBinding) {
 
         homeSideMenuBinding.helpInfoLayout.setOnClickListener {
             if(homeSideMenuBinding.dropDownHelpInfo.visibility==View.VISIBLE){
@@ -198,7 +240,7 @@ class DashboardActivity : BaseActivity() {
             startActivity(i)
 
         }
-        
+
         homeSideMenuBinding.exchangeLayout.setOnClickListener {
             val url = getString(R.string.EXCHANGE_POLICY)
             val i = Intent(Intent.ACTION_VIEW)
@@ -219,37 +261,6 @@ class DashboardActivity : BaseActivity() {
 
 
         }
-        homeSideMenuBinding.btnLogout.setOnClickListener {
-            val alertDialog = AlertDialog.Builder(this@DashboardActivity)
-            alertDialog.setTitle("Logout from App ?")
-            alertDialog.setCancelable(true)
-            alertDialog.setPositiveButton("Yes",{dialog, which ->
-                run {
-                    AppSession(this@DashboardActivity).clear()
-                    showToast("Logged Out !")
-                    val loginIntent = Intent(this@DashboardActivity,LoginActivity::class.java)
-
-                    loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(loginIntent)
-                }
-            })
-            alertDialog.setNegativeButton("CANCEL",null)
-            alertDialog.create()
-
-            alertDialog.show()
-
-
-
-        }
-        
-        
-
-        categorySideMenuBinding.ivClose.setOnClickListener {
-            binding.mainLayout.closeDrawer(GravityCompat.END)
-        }
-
-
-
     }
 
     private fun setupNavClicks(homeSideMenuBinding: HomeSideMenuBinding) {
