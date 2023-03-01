@@ -2,16 +2,16 @@ package com.ushatech.aestoreskotlin.ui.fragments
 
 import android.app.Dialog
 import android.graphics.Paint
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.data.ProductDetailResponseData
@@ -39,8 +39,9 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
 
 
-    override fun onImageClick(position: Int, drawable: Drawable) {
-        binding.ivMainProductImage.setImageDrawable(drawable)
+    override fun onImageClick(position: Int, drawable: String) {
+        Glide.with(fragmentContext).load(drawable).placeholder(R.drawable.ic_banner_home).into(binding.ivMainProductImage)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,9 +60,6 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         binding = FragmentProductDetailBinding.inflate(layoutInflater)
 
         initClicks()
-        binding.recvProductImages.adapter = ProductImageAdapter(fragmentContext,this)
-        binding.recvProductImages.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.HORIZONTAL,false)
-
 
         setupViewModel()
         attachObservers()
@@ -105,15 +103,46 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
 
         }
+        viewModel.commonResponseData.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it.status==1){
+                Snackbar.make(binding.root,it.message.toString(),Snackbar.LENGTH_LONG).show()
+
+            }else{
+                Snackbar.make(binding.root,it.message.toString(),Snackbar.LENGTH_LONG).show()
+            }
+
+
+
+
+        }
 
     }
 
     private fun updateUi(product: ProductDetailResponseData) {
         binding.tvProductName.text = product.data?.name
-        binding.tvMaxPrice.text = product.data?.mrp
-        binding.tvRealPrice.text = product.data?.price
+        binding.tvMaxPrice.text = "Rs ${product.data?.mrp}"
+        binding.tvRealPrice.text = "Rs ${product.data?.price}"
         binding.tvStock.text = "${product.data?.stock} are available."
         binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+
+
+        Glide.with(fragmentContext).load(product.data?.image).placeholder(R.drawable.ic_banner_home).into(binding.ivMainProductImage)
+
+        if(product.data!!.moreImages.isEmpty()){
+
+            binding.recvProductImages.visibility = View.GONE
+
+        }else{
+            val productCover = ProductDetailResponseData.MoreImages(product.data?.image)
+            val productImagesModified = arrayListOf<ProductDetailResponseData.MoreImages>()
+            productImagesModified.add(productCover)
+            productImagesModified.addAll(product.data!!.moreImages)
+
+            binding.recvProductImages.adapter = ProductImageAdapter(fragmentContext,productImagesModified,this)
+            binding.recvProductImages.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.HORIZONTAL,false)
+            binding.recvProductImages.visibility = View.VISIBLE
+        }
 
 
 
@@ -140,6 +169,19 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
             dialog.setContentView(dialogBinding.root)
             dialogBinding.imageDilag.setImageDrawable(binding.ivMainProductImage.drawable)
             dialog.show()
+
+        }
+
+        binding.btnCheckPincode.setOnClickListener {
+            if(binding.edtPincode.text.toString().isEmpty()){
+                binding.edtPincode.setError("Please enter pincode.")
+
+            }else{
+                showLoader()
+                viewModel.checkPincode(param1.toString(),binding.edtPincode.text.toString())
+
+            }
+
 
         }
 

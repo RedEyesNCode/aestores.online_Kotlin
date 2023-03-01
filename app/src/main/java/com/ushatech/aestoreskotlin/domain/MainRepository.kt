@@ -32,5 +32,7 @@ class MainRepository {
     suspend fun getProductDetail(productId:String,userId:String) = AndroidClient().apiInterface.getProductDetail(productId, userId)
 
 
+    suspend fun checkPincode(productId:String,pincode:String) = AndroidClient().apiInterface.checkPincode(productId, pincode)
+
 
 }

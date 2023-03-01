@@ -413,7 +413,7 @@ class DashboardActivity : BaseActivity() {
             if(requestCode==77){
                 // load the product details fragment
                 val productId = data?.getStringExtra("PRODUCT_ID")
-                showToast(productId.toString())
+//                showToast(productId.toString())
                 FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
                             ProductDetailFragment.newInstance(productId.toString(),""),
                             ProductDetailFragment::class.java.canonicalName,false)

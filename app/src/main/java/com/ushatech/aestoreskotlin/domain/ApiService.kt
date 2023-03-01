@@ -52,6 +52,10 @@ interface ApiService {
     @GET("api/v1/product")
     fun getProductDetail(@Query("productId") productId:String,@Query("userid") userId: String):Call<ProductDetailResponseData>
 
+    @GET("api/v1/checkPincode")
+    fun checkPincode(@Query("productId") productId: String,@Query("pincode") pincode:String):Call<CommonResponseData>
+
+
 
     // For Country, state and City
 
