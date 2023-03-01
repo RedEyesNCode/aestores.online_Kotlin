@@ -68,7 +68,9 @@ class SearchProductActivity : BaseActivity() ,SearchProductAdapter.onClickSearch
 
                 showLog(s.toString())
 
-                Handler().postDelayed(Runnable {  searchViewModel.searchProduct(s.toString(),null,null,null)  },2000)
+                Handler().postDelayed(Runnable {
+                    showLoader()
+                    searchViewModel.searchProduct(s.toString(),null,null,null)  },1000)
 
 
 

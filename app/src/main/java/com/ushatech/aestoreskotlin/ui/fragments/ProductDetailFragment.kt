@@ -106,16 +106,10 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         viewModel.commonResponseData.observe((viewLifecycleOwner)){
             hideLoader()
             if(it.status==1){
-                Snackbar.make(binding.root,it.message.toString(),Snackbar.LENGTH_INDEFINITE).setAction("Dismiss",View.OnClickListener {
-
-
-                }).show()
+              showToastLong(it.message.toString())
 
             }else{
-                Snackbar.make(binding.root,it.message.toString(),Snackbar.LENGTH_INDEFINITE).setAction("Dismiss",View.OnClickListener {
-
-
-                })       .show()
+                showToastLong(it.message.toString())
             }
 
 

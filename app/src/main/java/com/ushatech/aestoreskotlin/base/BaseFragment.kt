@@ -45,6 +45,10 @@ open class BaseFragment(): Fragment() {
         Toast.makeText(fragmentContext,message,Toast.LENGTH_SHORT).show()
 
     }
+    fun showToastLong(message: String){
+        Toast.makeText(fragmentContext,message,Toast.LENGTH_LONG).show()
+
+    }
     fun showLoader(){
         commonProgressDialog.show()
 

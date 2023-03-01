@@ -28,6 +28,8 @@ open class BaseActivity():AppCompatActivity() {
     fun showLoader(){
         commonProgressDialog.show()
 
+
+
     }
     public fun showLog(message:String){
         Log.i("DEV_ASHUTOSH", "showLog: $message")
