@@ -237,6 +237,7 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         }
 
         homeSideMenuBinding.myTeamLayout.setOnClickListener {
+
             if(homeSideMenuBinding.TeamLinearLayout.visibility==View.VISIBLE){
                 homeSideMenuBinding.ivDownTeam.visibility = View.VISIBLE
                 homeSideMenuBinding.ivUpTeam.visibility = View.GONE
@@ -252,10 +253,20 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         }
 
         homeSideMenuBinding.tvTeamEarn.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+
             startActivity(Intent(this@DashboardActivity,TeamEarningActivity::class.java))
+        }
+
+        homeSideMenuBinding.myOffers.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,OffersActivity::class.java))
 
 
         }
+
+
+
 
 
 

@@ -114,4 +114,12 @@
     <string name="direct_earnings">Direct Earnings</string>
     <string name="my_offers">My Offers</string>
     <string name="direct_earning">Direct Earning</string>
+    <string name="s_no">S.NO</string>
+    <string name="amount">Amount</string>
+    <string name="date">Date</string>
+    <string name="offers_">My Offers</string>
+    <string name="sponser_id">Sponser ID</string>
+    <string name="team_volume">Team Volume</string>
+    <string name="personal_volume">Personal Volume</string>
+    <string name="refferal_code">Refferal Code</string>
 </resources>
