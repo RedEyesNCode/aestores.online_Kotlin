@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentWishlistBinding
+import com.ushatech.aestoreskotlin.ui.adapter.WishlistAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,15 +21,21 @@ private const val ARG_PARAM2 = "param2"
  * Use the [WishlistFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class WishlistFragment : BaseFragment() {
+class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var binding:FragmentWishlistBinding
 
+    override fun onDeleteClick() {
 
+        showToastLong("Perform Delete Operation.")
+    }
 
+    override fun onProductClick() {
+        showToastLong("Clicked on Product")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +53,11 @@ class WishlistFragment : BaseFragment() {
         binding = FragmentWishlistBinding.inflate(layoutInflater)
 
         // Inflate the layout for this fragment
-        binding.mainWebView.loadUrl("https://aestores.online/login")
+//        binding.mainWebView.loadUrl("https://aestores.online/login")
+
+        // Setting up basic adapter
+        binding.recvWishlist.adapter =WishlistAdapter(fragmentContext,this)
+        binding.recvWishlist.layoutManager= GridLayoutManager(fragmentContext,2)
 
 
         return binding.root

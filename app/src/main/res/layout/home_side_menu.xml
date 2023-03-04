@@ -202,7 +202,26 @@
                 android:id="@+id/myTeamLayout"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_height="wrap_content">
-
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:src="@drawable/ic_dropdown"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/ivDownTeam"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="@dimen/_15sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:src="@drawable/ic_dropdown"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:id="@+id/ivUpTeam"
+                    android:visibility="gone"
+                    android:rotation="180"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="@dimen/_15sdp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -210,10 +229,164 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:fontFamily="@font/mulish_bold"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="My Team"
+                    android:text="@string/my_team"
+                    android:id="@+id/tvMyTeam"
                     android:textColor="@color/black"
-
                     android:textSize="@dimen/_12sdp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_below="@id/tvMyTeam"
+                    android:id="@+id/TeamLinearLayout"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:id="@+id/myrefferals"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/MyRefferals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="@string/my_refferals"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:id="@+id/teamRefferals"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvTeamRefferals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="Team Refferals"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_12sdp" />
+
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:id="@+id/tvDirectEarn"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvDirectEarning"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="@string/direct_earnings"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_12sdp" />
+
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:id="@+id/tvTeamEarn"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvTeamEarning"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="Team Earning"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_12sdp" />
+
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:id="@+id/myOffers"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvMyOffers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="@string/my_offers"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_12sdp" />
+
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:id="@+id/unfinishedKyc"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvUnfinishedKYC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="Unfinished KYC"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_12sdp" />
+
+
+
+                    </RelativeLayout>
+
+
+
+
+                </LinearLayout>
 
 
 
@@ -233,7 +406,7 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:fontFamily="@font/mulish_bold"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="Earning Report"
+                    android:text="@string/earning_report"
                     android:textColor="@color/black"
 
                     android:textSize="@dimen/_12sdp" />
@@ -257,7 +430,7 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:fontFamily="@font/mulish_bold"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="My Wishlist"
+                    android:text="@string/my_wishlist"
                     android:textColor="@color/black"
 
                     android:textSize="@dimen/_12sdp" />
@@ -372,7 +545,7 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:fontFamily="@font/mulish_bold"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="Privacy Policy"
+                    android:text="@string/privacy_policy"
                     android:textColor="@color/black"
 
                     android:textSize="@dimen/_12sdp" />

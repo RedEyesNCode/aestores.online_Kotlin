@@ -90,4 +90,27 @@
     <string name="my_info_u0026_settings"><![CDATA[My Info & Settings]]></string>
     <string name="add_cash">Add Cash</string>
     <string name="referral_code">Referral Code</string>
+    <string name="no_file_chosen">No File chosen</string>
+    <string name="account_profile">Account Profile</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="choose_file">Choose File</string>
+    <string name="no_file_chosen_for_profile_image">No File chosen for profile image</string>
+    <string name="hno_street">Hno/ Street</string>
+    <string name="postalcode_zip_optional">Postalcode/ ZIP (optional)</string>
+    <string name="aadhar_card_number">Aadhar Card Number</string>
+    <string name="kyc_details">KYC Details</string>
+    <string name="pan_card_number">PAN Card Number</string>
+    <string name="pan_card_front">Pan Card Front</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="account_name">Account Name</string>
+    <string name="account_number">Account Number</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="my_team">My Team</string>
+    <string name="earning_report">Earning Report</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="my_refferals">My Refferals</string>
+    <string name="direct_earnings">Direct Earnings</string>
+    <string name="my_offers">My Offers</string>
 </resources>

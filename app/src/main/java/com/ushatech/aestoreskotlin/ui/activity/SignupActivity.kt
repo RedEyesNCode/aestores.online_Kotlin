@@ -63,9 +63,8 @@ class SignupActivity : BaseActivity() {
 
             hideLoader()
             // Navigate to Home Screen after success signup.
-            if(bottomSheetDialog!=null){
-                bottomSheetDialog.dismiss()
-            }
+            bottomSheetDialog.dismiss()
+
             // User has siggned in.
             AppSession(this@SignupActivity).put(Constant.IS_LOGGED_IN,true)
             val IntentDashboard = Intent(this@SignupActivity,DashboardActivity::class.java)

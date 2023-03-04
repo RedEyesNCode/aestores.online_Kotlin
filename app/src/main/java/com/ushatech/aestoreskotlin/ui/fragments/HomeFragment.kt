@@ -31,7 +31,7 @@ private const val ARG_PARAM2 = "param2"
 
 
 
-class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
+class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory, ImageViewPagerTrendingAdapter.onEventTrendingViewPager {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -40,8 +40,11 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
     private lateinit var dashBoardViewModel:DashboardViewModel
 
 
-
-
+    override fun onProductClick(position: Int, productId: String) {
+        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
+            ProductDetailFragment.newInstance(productId,""),
+            ProductDetailFragment::class.java.canonicalName,false)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,7 +156,7 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory {
     }
 
     private fun setupTrendingViewPager(trending: java.util.ArrayList<HomeScreenResponse.Trending>?) {
-        binding.viewPagerTrending.adapter = ImageViewPagerTrendingAdapter(fragmentContext, trending!!)
+        binding.viewPagerTrending.adapter = ImageViewPagerTrendingAdapter(fragmentContext, trending!!,this)
         binding.viewPagerTrending.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
 

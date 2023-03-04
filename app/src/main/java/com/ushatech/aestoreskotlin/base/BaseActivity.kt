@@ -33,14 +33,10 @@ open class BaseActivity():AppCompatActivity() {
     }
     public fun showLog(message:String){
         Log.i("DEV_ASHUTOSH", "showLog: $message")
-
-
     }
 
     fun hideLoader(){
         commonProgressDialog.hide()
-
-
     }
 
     fun showToast(message:String){

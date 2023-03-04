@@ -26,17 +26,22 @@ import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerTrendingAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
 
-class DashboardActivity : BaseActivity() {
+class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTrendingViewPager {
 
     private lateinit var binding:ActivityMainBinding
     private lateinit var dashboardViewModel: DashboardViewModel
 
 
-
+    override fun onProductClick(position: Int, productId: String) {
+        FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
+            ProductDetailFragment.newInstance(productId,""),
+            ProductDetailFragment::class.java.canonicalName,false)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -211,6 +216,43 @@ class DashboardActivity : BaseActivity() {
             startActivity(Intent(this@DashboardActivity,EarningActivity::class.java))
 
         }
+
+        // My Team Layout clicks are placed here.
+        homeSideMenuBinding.myrefferals.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,MyRefferalActivity::class.java))
+        }
+
+        homeSideMenuBinding.teamRefferals.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,TeamReferActivity::class.java))
+
+        }
+
+        homeSideMenuBinding.tvDirectEarn.setOnClickListener {
+
+            binding.mainLayout.closeDrawer(GravityCompat.START)
+            startActivity(Intent(this@DashboardActivity,DirectEarningActivity::class.java))
+
+        }
+
+        homeSideMenuBinding.myTeamLayout.setOnClickListener {
+            if(homeSideMenuBinding.TeamLinearLayout.visibility==View.VISIBLE){
+                homeSideMenuBinding.ivDownTeam.visibility = View.VISIBLE
+                homeSideMenuBinding.ivUpTeam.visibility = View.GONE
+                homeSideMenuBinding.TeamLinearLayout.visibility = View.GONE
+            }else{
+                homeSideMenuBinding.ivDownTeam.visibility = View.GONE
+                homeSideMenuBinding.ivUpTeam.visibility = View.VISIBLE
+
+                homeSideMenuBinding.TeamLinearLayout.visibility = View.VISIBLE
+            }
+
+
+        }
+
+
+
     }
 
     private fun initHelpLayoutClicks(homeSideMenuBinding: HomeSideMenuBinding) {

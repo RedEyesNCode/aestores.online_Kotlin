@@ -10,7 +10,7 @@ import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.data.HomeScreenResponse
 import com.ushatech.aestoreskotlin.databinding.ImageItemBinding
 
-class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<HomeScreenResponse.Trending>) :RecyclerView.Adapter<ImageViewPagerTrendingAdapter.MyViewholder>(){
+class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<HomeScreenResponse.Trending>,var onEventActivity:onEventTrendingViewPager) :RecyclerView.Adapter<ImageViewPagerTrendingAdapter.MyViewholder>(){
 
     lateinit var binding: ImageItemBinding
 
@@ -25,6 +25,10 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
 
 
     }
+    interface onEventTrendingViewPager{
+        fun onProductClick(position:Int,productId:String)
+
+    }
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
         holder.binding.tvMaxPrice.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -35,6 +39,7 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
 //
 //        holder.binding.tvProductNameOne.text = array.get(position).name
 //        Glide.with(context).load(array.get(position).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+
 
         if(array.size%2==0){
 
@@ -47,10 +52,19 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
                 holder.binding.tvMaxPrice.text ="Rs ${array.get(position).mrp}"
                 holder.binding.tvRealPrice.text = "Rs ${array.get(position).price}"
 
+                holder.binding.ivProductImage1.setOnClickListener {
+                    onEventActivity.onProductClick(position,array.get(position).id.toString())
+
+                }
+
                 holder.binding.tvProductNameTwo.text = array.get(position+1).name
                 Glide.with(context).load(array.get(position+1).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage2)
                 holder.binding.tvMaxPriceTwo.text ="Rs ${array.get(position+1).mrp}"
                 holder.binding.tvRealPriceTwo.text = "Rs ${array.get(position+1).price}"
+                holder.binding.ivProductImage2.setOnClickListener {
+                    onEventActivity.onProductClick(position,array.get(position+1).id.toString())
+
+                }
             }else {
 
                 try {
@@ -58,11 +72,18 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
                     Glide.with(context).load(array.get(position+1).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
                     holder.binding.tvMaxPrice.text ="Rs ${array.get(position+1).mrp}"
                     holder.binding.tvRealPrice.text = "Rs ${array.get(position+1).price}"
+                    holder.binding.ivProductImage1.setOnClickListener {
+                        onEventActivity.onProductClick(position,array.get(position).id.toString())
 
+                    }
                     holder.binding.tvProductNameTwo.text = array.get(position+2).name
                     Glide.with(context).load(array.get(position+2).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage2)
                     holder.binding.tvMaxPriceTwo.text ="Rs ${array.get(position+2).mrp}"
                     holder.binding.tvRealPriceTwo.text = "Rs ${array.get(position+2).price}"
+                    holder.binding.ivProductImage2.setOnClickListener {
+                        onEventActivity.onProductClick(position,array.get(position+1).id.toString())
+
+                    }
                 }catch (e:java.lang.Exception){
                     e.printStackTrace()
                 }

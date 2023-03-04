@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.DirectEarningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.TeamReferActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.MyRefferalActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.EarningActivity"
             android:exported="false" />
         <activity
@@ -44,8 +53,8 @@
         </activity>
         <activity
             android:name=".ui.activity.DashboardActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
