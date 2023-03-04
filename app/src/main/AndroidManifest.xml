@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.TeamEarningActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.DirectEarningActivity"
             android:exported="false" />
         <activity

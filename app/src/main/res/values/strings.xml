@@ -122,4 +122,6 @@
     <string name="my_refferals">My Refferals</string>
     <string name="direct_earnings">Direct Earnings</string>
     <string name="my_offers">My Offers</string>
+    <string name="direct_earning">Direct Earning</string>
+    <string name="team_earning">Team Earning</string>
 </resources>

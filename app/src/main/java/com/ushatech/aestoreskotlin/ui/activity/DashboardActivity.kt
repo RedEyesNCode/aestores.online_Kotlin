@@ -251,6 +251,12 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
 
         }
 
+        homeSideMenuBinding.tvTeamEarn.setOnClickListener {
+            startActivity(Intent(this@DashboardActivity,TeamEarningActivity::class.java))
+
+
+        }
+
 
 
     }
