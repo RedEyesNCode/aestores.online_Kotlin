@@ -125,7 +125,7 @@
                 android:fontFamily="@font/mulish_regular"
                 android:gravity="center"
                 android:text="OR"
-
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp" />
 
@@ -136,6 +136,7 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
+                android:visibility="gone"
                 android:background="@drawable/background_green_solid"
                 android:text="@string/login"
                 android:textAllCaps="true"

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentWishlistBinding
+import com.ushatech.aestoreskotlin.session.AppSession
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.WishlistAdapter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,8 +58,21 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
 //        binding.mainWebView.loadUrl("https://aestores.online/login")
 
         // Setting up basic adapter
-        binding.recvWishlist.adapter =WishlistAdapter(fragmentContext,this)
-        binding.recvWishlist.layoutManager= GridLayoutManager(fragmentContext,2)
+        val isLoggedIn = AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)
+        if(isLoggedIn){
+
+            binding.recvWishlist.adapter =WishlistAdapter(fragmentContext,this)
+            binding.recvWishlist.layoutManager= GridLayoutManager(fragmentContext,2)
+
+            binding.recvWishlist.visibility = View.VISIBLE
+            binding.loginLayout.root.visibility = View.GONE
+        }else{
+            binding.recvWishlist.visibility = View.GONE
+            binding.loginLayout.root.visibility = View.VISIBLE
+
+        }
+
+
 
 
         return binding.root

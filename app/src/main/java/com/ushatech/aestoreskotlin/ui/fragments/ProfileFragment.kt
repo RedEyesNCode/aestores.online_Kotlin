@@ -8,6 +8,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.intuit.sdp.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentProfileBinding
+import com.ushatech.aestoreskotlin.session.AppSession
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.ViewPagerAdapter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,9 +43,31 @@ class ProfileFragment : BaseFragment() {
 
         binding = FragmentProfileBinding.inflate(layoutInflater)
 
+        checkLoginState()
         initClicks()
+
         setupTabLayout()
         return binding.root
+    }
+
+    private fun checkLoginState() {
+
+        val isLoggedIn = AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)
+        if(isLoggedIn){
+            // show the edit profile screen
+            binding.tabLayout.visibility = View.VISIBLE
+            binding.tabViewpager.visibility = View.VISIBLE
+            binding.loginLayout.root.visibility = View.GONE
+
+
+        }else{
+
+            binding.tabLayout.visibility = View.GONE
+            binding.tabViewpager.visibility = View.GONE
+            binding.loginLayout.root.visibility = View.VISIBLE
+
+        }
+
     }
 
     private fun setupTabLayout() {

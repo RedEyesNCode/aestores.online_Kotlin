@@ -261,7 +261,11 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         homeSideMenuBinding.myOffers.setOnClickListener {
             binding.mainLayout.closeDrawer(GravityCompat.START)
             startActivity(Intent(this@DashboardActivity,OffersActivity::class.java))
+        }
+        homeSideMenuBinding.unfinishedKyc.setOnClickListener {
+            binding.mainLayout.closeDrawer(GravityCompat.START)
 
+            startActivity(Intent(this@DashboardActivity,KycActivity::class.java))
 
         }
 

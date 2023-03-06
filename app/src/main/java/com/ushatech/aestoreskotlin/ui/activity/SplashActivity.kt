@@ -21,18 +21,10 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
 
         Handler().postDelayed(Runnable {
-            var isLoggedIn = AppSession(this@SplashActivity).getBoolean(Constant.IS_LOGGED_IN)
-            if(isLoggedIn){
-                val dashboardActivityIntent = Intent(this@SplashActivity, DashboardActivity::class.java
-                )
-                dashboardActivityIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(dashboardActivityIntent)
-            }else{
-                val loginActivityIntent = Intent(this@SplashActivity, LoginActivity::class.java
-                )
-                loginActivityIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(loginActivityIntent)
-            }
+            val dashboardActivityIntent = Intent(this@SplashActivity, DashboardActivity::class.java
+            )
+            dashboardActivityIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(dashboardActivityIntent)
 
 
         },2500)
