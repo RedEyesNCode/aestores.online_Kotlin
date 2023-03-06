@@ -1,5 +1,6 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.databinding.FragmentProfileBinding
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
+import com.ushatech.aestoreskotlin.ui.activity.SignupActivity
 import com.ushatech.aestoreskotlin.ui.adapter.ViewPagerAdapter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -111,6 +113,21 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun initClicks() {
+        binding.loginLayout.btnSignup.setOnClickListener {
+            val signupIntent = Intent(fragmentContext, SignupActivity::class.java)
+            startActivity(signupIntent)
+        }
+        binding.loginLayout.btnLogin.setOnClickListener {
+            if(binding.loginLayout.edtMobileNumber.text.toString().isEmpty()){
+                binding.loginLayout.edtMobileNumber.setError("Please enter your mobile number.")
+            }else{
+                // Call the login api and refresh the dashboard activity.
+
+
+            }
+
+        }
+
 
 
     }

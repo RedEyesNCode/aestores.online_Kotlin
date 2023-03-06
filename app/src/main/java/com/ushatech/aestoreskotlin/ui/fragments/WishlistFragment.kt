@@ -1,16 +1,24 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.databinding.FragmentWishlistBinding
+import com.ushatech.aestoreskotlin.presentation.WishListViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
+import com.ushatech.aestoreskotlin.ui.activity.DashboardActivity
+import com.ushatech.aestoreskotlin.ui.activity.SignupActivity
 import com.ushatech.aestoreskotlin.ui.adapter.WishlistAdapter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,6 +37,8 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
     private var param2: String? = null
 
     private lateinit var binding:FragmentWishlistBinding
+    private lateinit var viewModel:WishListViewModel
+    lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun onDeleteClick() {
 
@@ -58,6 +68,117 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
 //        binding.mainWebView.loadUrl("https://aestores.online/login")
 
         // Setting up basic adapter
+        checkLoginState()
+        initClicks()
+        setupViewModel()
+        attachObservers()
+
+
+
+        return binding.root
+    }
+
+    private fun setupViewModel() {
+        viewModel = WishListViewModel()
+        viewModel = ViewModelProvider(this).get(WishListViewModel::class.java)
+        binding.viewmodel = viewModel
+
+    }
+
+    private fun attachObservers() {
+        viewModel.isFailed.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                showToast(it)
+            }
+        }
+        viewModel.isSuccess.observe((viewLifecycleOwner)){
+            if(it){
+                showLoader()
+            }else{
+                hideLoader()
+            }
+        }
+        viewModel.otpSendResponse.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                showToast("${it.message}")
+            }
+            // Also save the User Id Generated into the session of android.
+            AppSession(fragmentContext).putString(Constant.USER_ID,it.data?.userid.toString())
+            showOtpVerificationSheet()
+
+
+
+        }
+        viewModel.loginUserResponse.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                AppSession(fragmentContext).put(Constant.IS_LOGGED_IN,true)
+                AppSession(fragmentContext).putObject(Constant.USER_INFO,it)
+                val IntentDashboard = Intent(fragmentContext, DashboardActivity::class.java)
+                IntentDashboard.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(IntentDashboard)
+            }else{
+                showToast(Constant.OOPS_SW)
+            }
+
+
+
+
+        }
+
+
+    }
+    private fun showOtpVerificationSheet() {
+        val bottomSheetVerifyOtpBinding = BottomSheetVerifyOtpBinding.inflate(LayoutInflater.from(fragmentContext))
+        bottomSheetDialog = BottomSheetDialog(fragmentContext,R.style.BottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(bottomSheetVerifyOtpBinding.root)
+        bottomSheetDialog.setCancelable(true)
+        bottomSheetDialog.show()
+
+        bottomSheetVerifyOtpBinding.btnVerifyOtp.setOnClickListener {
+            if(bottomSheetVerifyOtpBinding.otpView.otp?.length!! <4){
+                showToast("Please enter valid otp")
+            }else{
+                val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+                showLoader()
+                viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString())
+
+
+            }
+
+        }
+
+
+
+    }
+
+
+    private fun initClicks() {
+        binding.loginLayout.btnSignup.setOnClickListener {
+            val signupIntent = Intent(fragmentContext, SignupActivity::class.java)
+            startActivity(signupIntent)
+        }
+        binding.loginLayout.btnLogin.setOnClickListener {
+            if(binding.loginLayout.edtMobileNumber.text.toString().isEmpty()){
+                binding.loginLayout.edtMobileNumber.setError("Please enter your mobile number.")
+            }else{
+                // Call the login api and refresh the dashboard activity.
+
+
+
+
+            }
+
+        }
+
+
+
+
+    }
+
+    private fun checkLoginState() {
         val isLoggedIn = AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)
         if(isLoggedIn){
 
@@ -73,9 +194,6 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
         }
 
 
-
-
-        return binding.root
     }
 
     companion object {
