@@ -13,7 +13,8 @@
             android:text="Home"
             android:id="@+id/tvSubcategoryName"
             android:textColor="@color/green"
-            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+
             android:layout_marginTop="@dimen/_6sdp"
             android:fontFamily="@font/mulish_bold"
             android:textSize="@dimen/_13sdp"
@@ -46,8 +47,9 @@
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/_10sdp"
         android:visibility="visible"
+        android:layout_marginStart="@dimen/_5sdp"
+
         android:layout_marginTop="@dimen/_4sdp"
         tools:itemCount="5"
         tools:listitem="@layout/subcategory_item"

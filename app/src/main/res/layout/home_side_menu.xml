@@ -41,7 +41,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
 
                 android:fontFamily="@font/mulish_bold"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:layout_height="wrap_content"/>
 
 
@@ -85,10 +85,10 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:fontFamily="@font/mulish_bold"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:layout_height="wrap_content"/>
             <ImageView
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_15sdp"
                 android:src="@drawable/ic_dropdown"
                 android:padding="@dimen/_2sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
@@ -97,10 +97,10 @@
                 android:layout_marginTop="@dimen/_8sdp"
 
                 android:layout_alignParentEnd="true"
-                android:layout_height="@dimen/_25sdp"/>
+                android:layout_height="@dimen/_15sdp"/>
 
             <ImageView
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_15sdp"
                 android:src="@drawable/ic_dropdown"
                 android:padding="@dimen/_2sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
 
                 android:layout_alignParentEnd="true"
-                android:layout_height="@dimen/_25sdp"/>
+                android:layout_height="@dimen/_15sdp"/>
 
 
 
@@ -203,16 +203,16 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="@dimen/_15sdp"
+                    android:layout_width="@dimen/_12sdp"
                     android:src="@drawable/ic_dropdown"
                     android:padding="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_alignParentTop="true"
                     android:id="@+id/ivDownTeam"
                     android:layout_alignParentEnd="true"
-                    android:layout_height="@dimen/_15sdp"/>
+                    android:layout_height="@dimen/_12sdp"/>
                 <ImageView
-                    android:layout_width="@dimen/_15sdp"
+                    android:layout_width="@dimen/_12sdp"
                     android:src="@drawable/ic_dropdown"
                     android:padding="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
@@ -221,7 +221,7 @@
                     android:rotation="180"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_height="@dimen/_15sdp"/>
+                    android:layout_height="@dimen/_12sdp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -445,7 +445,7 @@
         <View
             android:layout_width="match_parent"
             android:background="@color/grey"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:layout_height="@dimen/_2sdp"/>
         <RelativeLayout
             android:orientation="vertical"
@@ -461,10 +461,10 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:id="@+id/tvHelpAndInfo"
                 android:fontFamily="@font/mulish_bold"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:layout_height="wrap_content"/>
             <ImageView
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_15sdp"
                 android:src="@drawable/ic_dropdown"
                 android:padding="@dimen/_2sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
@@ -473,10 +473,10 @@
                 android:layout_marginTop="@dimen/_8sdp"
 
                 android:layout_alignParentEnd="true"
-                android:layout_height="@dimen/_25sdp"/>
+                android:layout_height="@dimen/_15sdp"/>
 
             <ImageView
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_15sdp"
                 android:src="@drawable/ic_dropdown"
                 android:padding="@dimen/_2sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
@@ -487,7 +487,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
 
                 android:layout_alignParentEnd="true"
-                android:layout_height="@dimen/_25sdp"/>
+                android:layout_height="@dimen/_15sdp"/>
 
 
 

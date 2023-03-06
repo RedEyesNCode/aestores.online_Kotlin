@@ -15,14 +15,14 @@
             android:text="Home"
             android:layout_alignParentStart="true"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginStart="@dimen/_8sdp"
+
+            android:layout_marginStart="@dimen/_5sdp"
             android:id="@+id/tvCategoryName"
             android:fontFamily="@font/mulish_bold"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"/>
         <ImageView
-            android:layout_width="@dimen/_25sdp"
+            android:layout_width="@dimen/_15sdp"
             android:src="@drawable/ic_dropdown"
             android:padding="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_8sdp"
@@ -30,9 +30,9 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:id="@+id/ivDown"
             android:layout_alignParentEnd="true"
-            android:layout_height="@dimen/_25sdp"/>
+            android:layout_height="@dimen/_15sdp"/>
         <ImageView
-            android:layout_width="@dimen/_25sdp"
+            android:layout_width="@dimen/_15sdp"
             android:src="@drawable/ic_dropdown"
             android:padding="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_8sdp"
@@ -43,16 +43,14 @@
             android:layout_marginTop="@dimen/_8sdp"
 
             android:layout_alignParentEnd="true"
-            android:layout_height="@dimen/_25sdp"/>
+            android:layout_height="@dimen/_15sdp"/>
 
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_below="@id/tvCategoryName"
-        android:layout_marginStart="@dimen/_10sdp"
         android:visibility="visible"
-        android:layout_marginTop="@dimen/_4sdp"
         tools:itemCount="5"
         tools:listitem="@layout/subcategory_item"
         android:id="@+id/recvSubCategory"
@@ -60,7 +58,7 @@
     <View
         android:layout_width="match_parent"
         android:background="@color/grey"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_2sdp"
         android:layout_height="@dimen/_2sdp"/>
 
 
