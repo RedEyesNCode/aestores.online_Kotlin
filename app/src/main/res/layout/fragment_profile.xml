@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.ushatech.aestoreskotlin.presentation.ProfileViewModel" />
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".ui.fragments.ProfileFragment">
@@ -37,9 +43,5 @@
         android:layout_below="@id/tabLayout"
         android:id="@+id/tabViewpager"
         android:layout_height="match_parent"/>
-
-
-
-
-
 </RelativeLayout>
+</layout>

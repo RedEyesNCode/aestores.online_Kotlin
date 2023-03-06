@@ -116,6 +116,7 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
             if(it!=null){
                 AppSession(fragmentContext).put(Constant.IS_LOGGED_IN,true)
                 AppSession(fragmentContext).putObject(Constant.USER_INFO,it)
+                showToastLong("Login User Successfully ")
                 val IntentDashboard = Intent(fragmentContext, DashboardActivity::class.java)
                 IntentDashboard.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(IntentDashboard)
@@ -165,7 +166,8 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
                 binding.loginLayout.edtMobileNumber.setError("Please enter your mobile number.")
             }else{
                 // Call the login api and refresh the dashboard activity.
-
+                showLoader()
+                viewModel.loginUserStepOne(binding.loginLayout.edtMobileNumber.text.toString())
 
 
 

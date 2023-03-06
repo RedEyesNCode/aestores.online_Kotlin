@@ -25,8 +25,7 @@ class WishlistAdapter(var context:Context,var onEventWishlist:onEventWishlistAda
     override fun onBindViewHolder(holder: WistlistViewHolder, position: Int) {
 
 
-        Toast.makeText(context,"STATIC DATA SHOWN !",Toast.LENGTH_LONG).show()
-        Toast.makeText(context,"STATIC DATA SHOWN !",Toast.LENGTH_LONG).show()
+        Toast.makeText(context,"STATIC DATA SHOWN !",Toast.LENGTH_SHORT).show()
         binding.ivDelete.setOnClickListener {
             onEventWishlist.onDeleteClick()
         }
