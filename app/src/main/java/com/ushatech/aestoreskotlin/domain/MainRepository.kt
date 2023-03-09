@@ -1,13 +1,15 @@
 package com.ushatech.aestoreskotlin.domain
 
+import com.ushatech.aestoreskotlin.data.CartDataRemote
+
 class MainRepository {
     suspend fun signUpUserStepOne(fullName:String, mobile:String) = AndroidClient().apiInterface.registerUserStepOne(fullName, mobile)
-    suspend fun signUpUserStepTwo(userId:String,otp:String) = AndroidClient().apiInterface.registerUserStepTwo(userId, otp)
+    suspend fun signUpUserStepTwo(userId: String, otp: String, cartDataRemote: CartDataRemote) = AndroidClient().apiInterface.registerUserStepTwo(userId, otp,cartDataRemote)
 
     //Listing all the login api here's in this section
 
     suspend fun loginUserStepOne(mobileNumber:String) =AndroidClient().apiInterface.loginUserStepOne(mobileNumber)
-    suspend fun loginUserStepTwo(otp:String,userId: String) = AndroidClient().apiInterface.loginUserStepTwo(userId, otp)
+    suspend fun loginUserStepTwo(otp:String,userId: String,cartDataRemote: CartDataRemote) = AndroidClient().apiInterface.loginUserStepTwo(userId, otp,cartDataRemote)
 
     // Get home screen api is listed here
 

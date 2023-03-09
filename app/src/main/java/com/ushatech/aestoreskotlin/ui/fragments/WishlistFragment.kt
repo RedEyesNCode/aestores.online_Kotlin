@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.databinding.FragmentWishlistBinding
 import com.ushatech.aestoreskotlin.presentation.WishListViewModel
@@ -144,7 +144,16 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
             }else{
                 val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
                 showLoader()
-                viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString())
+
+                if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+                    val cartDataRemote = CartDataRemote()
+                    viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartDataRemote)
+
+                }else{
+                    viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)
+
+                }
+
 
 
             }

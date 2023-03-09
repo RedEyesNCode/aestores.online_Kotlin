@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.data.OtpSendResponse
 import com.ushatech.aestoreskotlin.data.RegisterUserStepTwoResponse
 import com.ushatech.aestoreskotlin.domain.MainRepository
@@ -34,16 +35,23 @@ class SignupViewModel():ViewModel() {
     var mainRepo: MainRepository = MainRepository()
 
 
-    fun registerUserStepTwo(userId:String,otp:String) = viewModelScope.launch {
+    fun registerUserStepTwo(userId:String, otp:String, cartDataRemote: CartDataRemote?) = viewModelScope.launch {
 
-        registerUserStepTwoCoroutine(userId, otp)
+        if (cartDataRemote != null) {
+            registerUserStepTwoCoroutine(userId, otp,cartDataRemote)
+
+        }else{
+            val cartDataRemoteTemp = CartDataRemote()
+            registerUserStepTwoCoroutine(userId, otp,cartDataRemoteTemp)
+
+        }
     }
 
-    private suspend fun registerUserStepTwoCoroutine(userId: String, otp: String) {
+    private suspend fun registerUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: CartDataRemote) {
 
         try {
 
-            val response = mainRepo.signUpUserStepTwo(userId, otp)
+            val response = mainRepo.signUpUserStepTwo(userId, otp,cartDataRemote)
             _isLoading.value = true
             response.enqueue(object : Callback<RegisterUserStepTwoResponse> {
 

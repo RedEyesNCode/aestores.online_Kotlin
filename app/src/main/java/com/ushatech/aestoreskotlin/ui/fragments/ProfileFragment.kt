@@ -10,10 +10,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.intuit.sdp.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.databinding.FragmentProfileBinding
 import com.ushatech.aestoreskotlin.presentation.ProfileViewModel
-import com.ushatech.aestoreskotlin.presentation.WishListViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.activity.DashboardActivity
@@ -119,7 +119,17 @@ class ProfileFragment : BaseFragment() {
             }else{
                 val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
                 showLoader()
-                viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString())
+
+                // Pass the local data to remote if present upon login of user.
+
+                if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+                    val cartData = CartDataRemote()
+                    viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartData)
+
+                }else{
+                    viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)
+
+                }
 
 
             }

@@ -17,7 +17,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/v1/register")
-    fun registerUserStepTwo(@Field("userid") userId:String, @Field("otp") otp:String):Call<RegisterUserStepTwoResponse>
+    fun registerUserStepTwo(@Field("userid") userId:String, @Field("otp") otp:String,@Field("cartData") cartDataRemote: CartDataRemote):Call<RegisterUserStepTwoResponse>
 
 
     @FormUrlEncoded
@@ -26,7 +26,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/v1/login")
-    fun loginUserStepTwo(@Field("userid") userId: String,@Field("otp") otp:String):Call<LoginUserResponse>
+    fun loginUserStepTwo(@Field("userid") userId: String,@Field("otp") otp:String, @Field("cartData") carData:CartDataRemote):Call<LoginUserResponse>
 
 
     @GET("api/v1/homescreen")

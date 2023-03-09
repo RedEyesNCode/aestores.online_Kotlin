@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.data.LoginUserResponse
 import com.ushatech.aestoreskotlin.data.OtpSendResponse
 import com.ushatech.aestoreskotlin.domain.MainRepository
@@ -28,9 +29,16 @@ class WishListViewModel():ViewModel() {
 
     val mainRepo = MainRepository()
 
-    fun loginUserStepTwo(userId: String,otp:String) = viewModelScope.launch {
+    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: CartDataRemote?) = viewModelScope.launch {
+        if(cartDataRemote==null){
+            val cartDataRemoteTemp = CartDataRemote()
+            loginUserStepTwoCoroutine(userId,otp,cartDataRemoteTemp)
 
-        loginUserStepTwoCoroutine(userId,otp)
+        }else{
+            loginUserStepTwoCoroutine(userId,otp,cartDataRemote)
+
+        }
+
 
 
 
@@ -38,10 +46,10 @@ class WishListViewModel():ViewModel() {
 
     }
 
-    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String) {
+    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: CartDataRemote) {
         try {
 
-            val response = mainRepo.loginUserStepTwo(otp, userId)
+            val response = mainRepo.loginUserStepTwo(otp, userId,cartDataRemote)
             _isLoading.value = true
             response.enqueue(object : Callback<LoginUserResponse> {
 

@@ -1,13 +1,13 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.databinding.ActivitySignupBinding
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.presentation.SignupViewModel
@@ -94,7 +94,15 @@ class SignupActivity : BaseActivity() {
             }else{
                 val userId = AppSession(this@SignupActivity).getString(Constant.USER_ID)
                 showLoader()
-                signupViewModel.registerUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString())
+                // If the user has cart data then send it to backend api.
+                if(AppSession(this@SignupActivity).getBoolean(Constant.IS_LOGGED_IN)){
+                    val cartData = CartDataRemote()
+                    signupViewModel.registerUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartData)
+
+                }else{
+                    signupViewModel.registerUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)
+
+                }
 
 
             }

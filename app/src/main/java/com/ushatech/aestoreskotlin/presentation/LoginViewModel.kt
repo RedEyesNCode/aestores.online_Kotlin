@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.data.LoginUserResponse
 import com.ushatech.aestoreskotlin.data.OtpSendResponse
-import com.ushatech.aestoreskotlin.data.RegisterUserStepTwoResponse
 import com.ushatech.aestoreskotlin.domain.MainRepository
 import com.ushatech.aestoreskotlin.session.Constant
 import kotlinx.coroutines.launch
@@ -33,9 +33,16 @@ class LoginViewModel():ViewModel() {
 
 
 
-    fun loginUserStepTwo(userId: String,otp:String) = viewModelScope.launch {
+    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: CartDataRemote?) = viewModelScope.launch {
 
-        loginUserStepTwoCoroutine(userId,otp)
+        if(cartDataRemote==null){
+            var cartDateTemp = CartDataRemote()
+            loginUserStepTwoCoroutine(userId,otp,cartDateTemp)
+        }else{
+            loginUserStepTwoCoroutine(userId,otp,cartDataRemote)
+
+        }
+
 
 
 
@@ -43,10 +50,10 @@ class LoginViewModel():ViewModel() {
 
     }
 
-    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String) {
+    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: CartDataRemote) {
         try {
 
-            val response = mainRepo.loginUserStepTwo(otp, userId)
+            val response = mainRepo.loginUserStepTwo(otp, userId,cartDataRemote)
             _isLoading.value = true
             response.enqueue(object : Callback<LoginUserResponse> {
 

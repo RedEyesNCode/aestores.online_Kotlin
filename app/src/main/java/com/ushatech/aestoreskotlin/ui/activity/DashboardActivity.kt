@@ -139,7 +139,14 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         binding.mainLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         val homeSideMenuBinding = HomeSideMenuBinding.bind(homeNav)
         val userData =  AppSession(this@DashboardActivity).getUser()
-        homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
+        if("${userData?.data?.name}"==null){
+            homeSideMenuBinding.tvName.text = "Please Login"
+
+        }else{
+            homeSideMenuBinding.tvName.text = "Hi, ${userData?.data?.name}"
+
+
+        }
         setupNavClicks(homeSideMenuBinding)
         initMyAccountClicks(homeSideMenuBinding)
         initHelpLayoutClicks(homeSideMenuBinding)

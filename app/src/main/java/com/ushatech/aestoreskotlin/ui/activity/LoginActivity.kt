@@ -1,13 +1,13 @@
 package com.ushatech.aestoreskotlin.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
+import com.ushatech.aestoreskotlin.data.CartDataRemote
 import com.ushatech.aestoreskotlin.databinding.ActivityLoginBinding
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.presentation.LoginViewModel
@@ -94,7 +94,15 @@ class LoginActivity : BaseActivity() {
             }else{
                 val userId = AppSession(this@LoginActivity).getString(Constant.USER_ID)
                 showLoader()
-                loginViewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString())
+                if(AppSession(this@LoginActivity).getBoolean(Constant.IS_LOGGED_IN)){
+                    // send the local cart daqta to the backend api.
+                    val cartData = CartDataRemote()
+                    loginViewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartData)
+                }else{
+                    loginViewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)
+
+                }
+
 
 
             }
