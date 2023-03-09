@@ -314,6 +314,7 @@
                             android:padding="@dimen/_5sdp"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_3sdp"
+                            android:id="@+id/ivDecre"
                             android:layout_marginTop="@dimen/_3sdp"
                             android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_marginBottom="@dimen/_3sdp"
@@ -327,6 +328,7 @@
                             android:fontFamily="@font/mulish_regular"
                             android:lineSpacingExtra="@dimen/_5sdp"
                             android:text="@string/_1"
+                            android:id="@+id/tvQuantity"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_15sdp" />
 
@@ -338,6 +340,8 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/_3sdp"
                             android:layout_marginTop="@dimen/_3sdp"
+                            android:id="@+id/ivIncre"
+
                             android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_marginBottom="@dimen/_3sdp"
                             android:background="@color/grey2"

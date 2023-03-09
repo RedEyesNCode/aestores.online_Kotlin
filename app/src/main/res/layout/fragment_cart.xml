@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:text="Clear all items"
-                    android:id="@+id/tvNumberImages"
+                    android:id="@+id/btnClearAll"
                     android:paddingVertical="@dimen/_8sdp"
                     android:textColor="@color/green"
                     android:fontFamily="@font/mulish_bold"

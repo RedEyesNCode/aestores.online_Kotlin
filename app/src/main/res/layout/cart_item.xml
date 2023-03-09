@@ -94,6 +94,7 @@
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_marginBottom="@dimen/_3sdp"
+                    android:id="@+id/tvDecre"
                     android:background="@color/grey2"
                     android:src="@drawable/ic_minus" />
 
@@ -101,6 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:id="@+id/tvCartItemQuantity"
                     android:fontFamily="@font/mulish_regular"
                     android:lineSpacingExtra="@dimen/_5sdp"
                     android:text="@string/_1"
@@ -113,6 +115,7 @@
                     android:layout_alignParentEnd="true"
                     android:padding="@dimen/_5sdp"
                     android:layout_centerVertical="true"
+                    android:id="@+id/tvIncre"
                     android:layout_marginStart="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_3sdp"

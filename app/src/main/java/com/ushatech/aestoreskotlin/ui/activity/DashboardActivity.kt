@@ -25,6 +25,7 @@ import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerTrendingAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
@@ -76,6 +77,7 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
             }
         }
         dashboardViewModel.categoryResponse.observe((this)){
+            hideLoader()
             setupCategoryInSideBar(it)
 
 
@@ -392,7 +394,6 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
 
 
-        bottomNavigationView.getOrCreateBadge(R.id.cartFragment).number = 2
         // Using manual clicks to test along with webview in android.
 //        NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
@@ -409,10 +410,10 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
                 }else if(item.itemId==R.id.homeFragment){
                     // ADDING CHECKS FOR THE BACK STACK MANAGE.
 
-                    val fm: FragmentManager = supportFragmentManager
-                    for (i in 0 until fm.getBackStackEntryCount()) {
-                        fm.popBackStack()
-                    }
+//                    val fm: FragmentManager = supportFragmentManager
+//                    for (i in 0 until fm.getBackStackEntryCount()) {
+//                        fm.popBackStack()
+//                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
 
 //                    if(supportFragmentManager.backStackEntryCount==1){
@@ -453,7 +454,18 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
                     for (i in 0 until fm.getBackStackEntryCount()) {
                         fm.popBackStack()
                     }
-                    FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,false)
+
+                    if(AppSession(this@DashboardActivity).getBoolean(Constant.IS_LOGGED_IN)){
+                        FragmentUtils().replaceFragmentBackStack(supportFragmentManager,
+                            com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
+                    }else{
+                        FragmentUtils().replaceFragmentBackStack(supportFragmentManager,
+                            com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","true"),CartFragment::class.java.canonicalName,true)
+
+
+                    }
+
+
 
                 }
 

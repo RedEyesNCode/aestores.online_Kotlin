@@ -10,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.data.ProductDetailResponseData
+import com.ushatech.aestoreskotlin.data.room.AppDatabase
+import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.FragmentProductDetailBinding
 import com.ushatech.aestoreskotlin.databinding.ImageDialogBinding
 import com.ushatech.aestoreskotlin.presentation.ProductDetailViewModel
@@ -22,6 +24,9 @@ import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.ProductImageAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 private const val ARG_PARAM1 = "param1"
@@ -36,7 +41,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
     private lateinit var viewModel:ProductDetailViewModel
 
-
+    private lateinit var productLocal: ProductDetailResponseData
 
 
     override fun onImageClick(position: Int, drawable: String) {
@@ -120,6 +125,16 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
     }
 
     private fun updateUi(product: ProductDetailResponseData) {
+
+        if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+            // Call the addtoCartApi.
+            showToast("Will Call AddToCart API.")
+        }else{
+            showToast("Using local DB.")
+            makeLocalCartItem(product)
+        }
+        productLocal = product
+
         binding.tvProductName.text = product.data?.name
         binding.tvMaxPrice.text = "Rs ${product.data?.mrp}"
         binding.tvRealPrice.text = "Rs ${product.data?.price}"
@@ -149,6 +164,31 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
     }
 
+    private fun makeLocalCartItem(product: ProductDetailResponseData) :UserCartTable{
+        val priceTotal = (product.data?.price?.toInt()
+            ?.times(binding.tvQuantity.text.toString().toInt())).toString()
+        val userCartTable = UserCartTable(productId = product.data?.id.toString(), priceProduct = product.data?.price.toString(), quantity = binding.tvQuantity.text.toString(), imageUrl =  product.data?.image.toString(), priceTotal = priceTotal, productName = product.data?.name.toString(), userId = "-1")
+
+        userCartTable.productId = product.data?.id.toString()
+        userCartTable.priceProduct = product.data?.price.toString()
+        userCartTable.quantity =binding.tvQuantity.text.toString()
+        userCartTable.imageUrl = product.data?.image.toString()
+
+        // Could Cause issues if values received from backend is null
+
+        userCartTable.productName = product.data?.name.toString()
+
+        if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+            userCartTable.userId = AppSession(fragmentContext).getUser()?.data?.id.toString()
+        }else{
+            // for local userId is always -1
+            userCartTable.userId = "-1"
+
+        }
+        return userCartTable
+
+    }
+
     private fun setupViewModel() {
         viewModel = ProductDetailViewModel()
         viewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
@@ -158,11 +198,45 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
     private fun initClicks() {
         binding.addToCartLayout.setOnClickListener {
-            FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
-                com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment(),CartFragment::class.java.canonicalName,true)
+
+            // Call api if logged in else add to local db
+            if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+
+
+
+                FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
+                    com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
+
+
+            }else{
+                addItemToRoomDatabase(makeLocalCartItem(productLocal))
+
+            }
+
+
+
 
 
         }
+        binding.ivIncre.setOnClickListener {
+            val currentQuantity = binding.tvQuantity.text.toString().toInt()
+            if(currentQuantity>=1){
+                binding.tvQuantity.text = (currentQuantity+1).toString()
+                makeLocalCartItem(productLocal)
+            }
+
+        }
+        binding.ivDecre.setOnClickListener {
+            val currentQuantity =  binding.tvQuantity.text.toString().toInt()
+            if(currentQuantity>1){
+                binding.tvQuantity.text = (currentQuantity-1).toString()
+                makeLocalCartItem(productLocal)
+
+            }
+
+        }
+
+
         binding.ivMainProductImage.setOnClickListener {
             val dialogBinding = ImageDialogBinding.inflate(LayoutInflater.from(fragmentContext))
             val dialog = Dialog(fragmentContext)
@@ -188,6 +262,60 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         val content = SpannableString("DESCRIPTION")
         content.setSpan(UnderlineSpan(), 0, content.length, 0)
         binding.tvTitleDescription.text = content
+
+    }
+
+
+
+    private fun addItemToRoomDatabase(userCartTable: UserCartTable) {
+        GlobalScope.launch {
+            val db = Room.databaseBuilder(
+                fragmentContext, AppDatabase::class.java, "aestores_online.db"
+            ).build()
+            // Make the cart Object and store in Room Db
+
+            // Add check if product already added to local then dont add.
+            var isAlreadyAdded = false
+            if(db.userCartDao().getUserCartLocal().isEmpty()){
+                db.userCartDao().addProductToLocal(userCartTable)
+
+            }else{
+                for(cart in db.userCartDao().getUserCartLocal()){
+                    if(cart.productId==productLocal.data?.id){
+                        // Don't add the product again.
+                        isAlreadyAdded = true
+                        break
+                    }else{
+                        db.userCartDao().addProductToLocal(userCartTable)
+
+                        break
+                    }
+
+                }
+
+            }
+
+
+
+
+
+
+            launch (Dispatchers.Main){
+
+                if(isAlreadyAdded){
+                    showToast("Already added to cart")
+                }else{
+                    showToast("Added to cart successfully ! [LOCAL]")
+
+                }
+
+                FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
+                    com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","true"),CartFragment::class.java.canonicalName,true)
+                }
+
+
+
+        }
 
     }
 

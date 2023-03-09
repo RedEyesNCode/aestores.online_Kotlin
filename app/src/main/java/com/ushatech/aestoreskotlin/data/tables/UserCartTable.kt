@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class UserCartTable(
 
     @PrimaryKey(autoGenerate = true)
-    var note_id:Int,
+    var cart_id:Int =0,
 
     @ColumnInfo(name = "productId") var productId:String,
     @ColumnInfo(name = "quantity") var quantity:String,

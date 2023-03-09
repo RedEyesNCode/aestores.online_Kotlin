@@ -25,5 +25,6 @@ interface UserCartDao {
     fun updateCartItem(vararg user_cart: UserCartTable)
 
 
-
+    @Query("DELETE FROM user_cart")
+    fun deletUserCart()
 }
