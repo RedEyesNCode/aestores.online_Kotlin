@@ -42,6 +42,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
     private lateinit var viewModel:ProductDetailViewModel
 
     private lateinit var productLocal: ProductDetailResponseData
+    var isAvailable = false
 
 
     override fun onImageClick(position: Int, drawable: String) {
@@ -111,12 +112,26 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         viewModel.commonResponseData.observe((viewLifecycleOwner)){
             hideLoader()
             if(it.status==1){
+                isAvailable = true
               showToastLong(it.message.toString())
 
             }else{
                 showToastLong(it.message.toString())
             }
 
+
+
+
+        }
+        viewModel.userCartResponse.observe((viewLifecycleOwner)){
+            hideLoader()
+            showToast(it.message.toString())
+
+            if(it.status==1){
+                // Only upon success addition will move to cart fragment
+                FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
+                    com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
+            }
 
 
 
@@ -198,20 +213,30 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
     private fun initClicks() {
         binding.addToCartLayout.setOnClickListener {
+            if(isAvailable){
+                if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+
+                    // Calling the api addToCart
+                    showLoader()
+                    val userId = AppSession(fragmentContext).getUser()?.data?.id.toString()
+                    viewModel.addToCart(userId,productLocal.data?.id.toString(),binding.tvQuantity.text.toString())
+
+
+
+                }else{
+                    addItemToRoomDatabase(makeLocalCartItem(productLocal))
+
+                }
+            }else if(binding.edtPincode.text.toString().isEmpty()){
+                showToast("Please check pincode to proceed.")
+            }else if(!binding.edtPincode.text.toString().isEmpty()){
+              binding.btnCheckPincode.performClick()
+            }else{
+                showToast("Not available in your area.")
+            }
 
             // Call api if logged in else add to local db
-            if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
 
-
-
-                FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
-                    com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
-
-
-            }else{
-                addItemToRoomDatabase(makeLocalCartItem(productLocal))
-
-            }
 
 
 

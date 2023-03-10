@@ -67,6 +67,26 @@ interface ApiService {
 
     @GET("api/v1/cities")
     fun getCities(@Query("stateId") stateId:String):Call<SelectionResponseData>
+    
+    
+    // Cart Webservices are placed here
+    @GET("api/v1/cart")
+    fun getUserCart(@Query("userid") userId: String):Call<CartUserResponse>
+
+    @POST("api/v1/cart/add")
+    fun addToCart(@Query("userid") userId: String,@Query("productId") productId: String,@Query("quantity") quantity:String):Call<CommonResponseData>
+
+    @POST("api/v1/cart/update")
+    fun updateCart(@Query("userid") userId:String,@Query("cartId") cartId:String,@Query("quantity") quantity:String) :Call<CommonResponseData>
+
+    @POST("api/v1/cart/delete")
+    fun deleteCart(@Query("userid") userId:String,@Query("cartId") cartId:String):Call<CommonResponseData>
+
+    @POST("api/v1/cart/clearCart")
+    fun deletAllItems(@Query("userid") userId:String):Call<CommonResponseData>
+
+
+
 }
 
 

@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ushatech.aestoreskotlin.data.CartUserResponse
 import com.ushatech.aestoreskotlin.data.CommonResponseData
 import com.ushatech.aestoreskotlin.data.ProductDetailResponseData
-import com.ushatech.aestoreskotlin.data.SelectionResponseData
 import com.ushatech.aestoreskotlin.domain.MainRepository
 import com.ushatech.aestoreskotlin.session.Constant
 import kotlinx.coroutines.launch
@@ -30,6 +30,60 @@ class ProductDetailViewModel(): ViewModel() {
 
     private val _commonResponse = MutableLiveData<CommonResponseData>()
     val commonResponseData :LiveData<CommonResponseData> = _commonResponse
+
+    private val _userCartResponse = MutableLiveData<CommonResponseData>()
+    val userCartResponse:LiveData<CommonResponseData> = _userCartResponse
+
+
+    fun addToCart(userId: String,productId: String,quantity:String) = viewModelScope.launch {
+        addToCartCoroutine(userId,productId,quantity)
+
+
+    }
+
+    private suspend fun addToCartCoroutine(userId: String, productId: String, quantity: String) {
+
+        try {
+
+            val response = mainRepository.addToCart(userId,productId, quantity)
+            _isLoading.value = true
+            response.enqueue(object : Callback<CommonResponseData> {
+
+                override fun onResponse(
+                    call: Call<CommonResponseData>,
+                    response: Response<CommonResponseData>
+                ) {
+                    _isLoading.value = false
+                    if (response.code() == 200) {
+                        _userCartResponse.postValue(response.body())
+                    } else {
+                        _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
+                    }
+                }
+
+                override fun onFailure(call: Call<CommonResponseData>, t: Throwable) {
+                    _isFailed.value = t.message
+                }
+            })
+        } catch (t: Throwable) {
+
+            when (t) {
+                is IOException -> {
+                    _isFailed.value = "IO Exception"
+                }
+                else -> {
+                    _isFailed.value = "Exception." + t.message
+
+                    Log.i("RETROFIT", t.message!!)
+                }
+
+
+            }
+
+        }
+
+    }
+
 
     fun checkPincode(productId: String,pincode:String) = viewModelScope.launch {
 

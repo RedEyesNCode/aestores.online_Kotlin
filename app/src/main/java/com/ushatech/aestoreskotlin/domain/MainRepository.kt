@@ -36,5 +36,16 @@ class MainRepository {
 
     suspend fun checkPincode(productId:String,pincode:String) = AndroidClient().apiInterface.checkPincode(productId, pincode)
 
+    // Cart webservices are placed here.
+
+
+    suspend fun getUserCart(userId:String) = AndroidClient().apiInterface.getUserCart(userId)
+
+    suspend fun addToCart(userId: String,productId:String,quantity:String) = AndroidClient().apiInterface.addToCart(userId, productId, quantity)
+
+    suspend fun deleteItemCart(cartId:String,userId:String) = AndroidClient().apiInterface.deleteCart(userId, cartId)
+
+    suspend fun deleteCompleteCart(userId: String) = AndroidClient().apiInterface.deletAllItems(userId)
+
 
 }
