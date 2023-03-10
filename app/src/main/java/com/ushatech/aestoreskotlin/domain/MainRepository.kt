@@ -4,12 +4,16 @@ import com.ushatech.aestoreskotlin.data.CartDataRemote
 
 class MainRepository {
     suspend fun signUpUserStepOne(fullName:String, mobile:String) = AndroidClient().apiInterface.registerUserStepOne(fullName, mobile)
-    suspend fun signUpUserStepTwo(userId: String, otp: String, cartDataRemote: CartDataRemote) = AndroidClient().apiInterface.registerUserStepTwo(userId, otp,cartDataRemote)
+    suspend fun signUpUserStepTwo(userId: String, otp: String, cartDataRemote: ArrayList<CartDataRemote>) = AndroidClient().apiInterface.registerUserStepTwo(userId, otp,cartDataRemote)
 
     //Listing all the login api here's in this section
 
     suspend fun loginUserStepOne(mobileNumber:String) =AndroidClient().apiInterface.loginUserStepOne(mobileNumber)
-    suspend fun loginUserStepTwo(otp:String,userId: String,cartDataRemote: CartDataRemote) = AndroidClient().apiInterface.loginUserStepTwo(userId, otp,cartDataRemote)
+    suspend fun loginUserStepTwo(
+        otp:String,
+        userId: String,
+        cartDataRemote: ArrayList<CartDataRemote>?
+    ) = AndroidClient().apiInterface.loginUserStepTwo(userId, otp,cartDataRemote)
 
     // Get home screen api is listed here
 
@@ -43,7 +47,7 @@ class MainRepository {
 
     suspend fun addToCart(userId: String,productId:String,quantity:String) = AndroidClient().apiInterface.addToCart(userId, productId, quantity)
 
-    suspend fun deleteItemCart(cartId:String,userId:String) = AndroidClient().apiInterface.deleteCart(userId, cartId)
+    suspend fun deleteItemCart(userId: String,cartId:String) = AndroidClient().apiInterface.deleteCart(userId, cartId)
 
     suspend fun deleteCompleteCart(userId: String) = AndroidClient().apiInterface.deletAllItems(userId)
 

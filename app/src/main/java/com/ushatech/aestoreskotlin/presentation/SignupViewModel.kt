@@ -35,19 +35,22 @@ class SignupViewModel():ViewModel() {
     var mainRepo: MainRepository = MainRepository()
 
 
-    fun registerUserStepTwo(userId:String, otp:String, cartDataRemote: CartDataRemote?) = viewModelScope.launch {
+    fun registerUserStepTwo(userId:String, otp:String, cartDataRemote: ArrayList<CartDataRemote>?) = viewModelScope.launch {
 
         if (cartDataRemote != null) {
             registerUserStepTwoCoroutine(userId, otp,cartDataRemote)
 
         }else{
-            val cartDataRemoteTemp = CartDataRemote()
+            val cartDataRemoteTemp = ArrayList<CartDataRemote>()
             registerUserStepTwoCoroutine(userId, otp,cartDataRemoteTemp)
 
         }
     }
 
-    private suspend fun registerUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: CartDataRemote) {
+    private suspend fun registerUserStepTwoCoroutine(
+        userId: String, otp: String,
+        cartDataRemote: ArrayList<CartDataRemote>
+    ) {
 
         try {
 

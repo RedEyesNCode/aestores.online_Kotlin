@@ -29,9 +29,9 @@ class WishListViewModel():ViewModel() {
 
     val mainRepo = MainRepository()
 
-    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: CartDataRemote?) = viewModelScope.launch {
+    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: ArrayList<CartDataRemote>?) = viewModelScope.launch {
         if(cartDataRemote==null){
-            val cartDataRemoteTemp = CartDataRemote()
+            val cartDataRemoteTemp = ArrayList<CartDataRemote>()
             loginUserStepTwoCoroutine(userId,otp,cartDataRemoteTemp)
 
         }else{
@@ -46,7 +46,10 @@ class WishListViewModel():ViewModel() {
 
     }
 
-    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: CartDataRemote) {
+    private suspend fun loginUserStepTwoCoroutine(
+        userId: String, otp: String,
+        cartDataRemote: ArrayList<CartDataRemote>?
+    ) {
         try {
 
             val response = mainRepo.loginUserStepTwo(otp, userId,cartDataRemote)

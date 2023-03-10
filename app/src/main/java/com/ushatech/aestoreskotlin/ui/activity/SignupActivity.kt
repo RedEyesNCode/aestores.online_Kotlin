@@ -4,15 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
 import com.ushatech.aestoreskotlin.data.CartDataRemote
+import com.ushatech.aestoreskotlin.data.room.AppDatabase
+import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.ActivitySignupBinding
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.presentation.SignupViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SignupActivity : BaseActivity() {
 
@@ -87,6 +92,20 @@ class SignupActivity : BaseActivity() {
         bottomSheetDialog.setContentView(bottomSheetVerifyOtpBinding.root)
         bottomSheetDialog.setCancelable(true)
         bottomSheetDialog.show()
+        var cartLocal:List<UserCartTable>
+        var cartDataRemotes = ArrayList<CartDataRemote>()
+        GlobalScope.launch {
+            val db = Room.databaseBuilder(
+                this@SignupActivity, AppDatabase::class.java, "aestores_online.db"
+            ).build()
+            cartDataRemotes = ArrayList<CartDataRemote>()
+            cartLocal = db.userCartDao().getUserCartLocal()
+            for (cart in cartLocal){
+                cartDataRemotes.add(CartDataRemote(cart.productId.toInt(),cart.quantity.toInt()))
+
+
+            }
+        }
 
         bottomSheetVerifyOtpBinding.btnVerifyOtp.setOnClickListener {
             if(bottomSheetVerifyOtpBinding.otpView.otp?.length!! <4){
@@ -96,8 +115,10 @@ class SignupActivity : BaseActivity() {
                 showLoader()
                 // If the user has cart data then send it to backend api.
                 if(AppSession(this@SignupActivity).getBoolean(Constant.IS_LOGGED_IN)){
-                    val cartData = CartDataRemote()
-                    signupViewModel.registerUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartData)
+
+
+
+                    signupViewModel.registerUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartDataRemotes)
 
                 }else{
                     signupViewModel.registerUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)

@@ -33,10 +33,10 @@ class LoginViewModel():ViewModel() {
 
 
 
-    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: CartDataRemote?) = viewModelScope.launch {
+    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: ArrayList<CartDataRemote>?) = viewModelScope.launch {
 
         if(cartDataRemote==null){
-            var cartDateTemp = CartDataRemote()
+            var cartDateTemp = ArrayList<CartDataRemote>()
             loginUserStepTwoCoroutine(userId,otp,cartDateTemp)
         }else{
             loginUserStepTwoCoroutine(userId,otp,cartDataRemote)
@@ -50,7 +50,7 @@ class LoginViewModel():ViewModel() {
 
     }
 
-    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: CartDataRemote) {
+    private suspend fun loginUserStepTwoCoroutine(userId: String, otp: String,cartDataRemote: ArrayList<CartDataRemote>) {
         try {
 
             val response = mainRepo.loginUserStepTwo(otp, userId,cartDataRemote)

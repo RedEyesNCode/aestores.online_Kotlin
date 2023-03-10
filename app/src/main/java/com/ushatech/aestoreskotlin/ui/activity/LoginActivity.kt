@@ -4,15 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
 import com.ushatech.aestoreskotlin.data.CartDataRemote
+import com.ushatech.aestoreskotlin.data.room.AppDatabase
+import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.ActivityLoginBinding
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.presentation.LoginViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : BaseActivity() {
 
@@ -87,6 +92,20 @@ class LoginActivity : BaseActivity() {
         bottomSheetDialog.setContentView(bottomSheetVerifyOtpBinding.root)
         bottomSheetDialog.setCancelable(true)
         bottomSheetDialog.show()
+        var cartLocal:List<UserCartTable>
+        var cartDataRemotes = ArrayList<CartDataRemote>()
+        GlobalScope.launch {
+            val db = Room.databaseBuilder(
+                this@LoginActivity, AppDatabase::class.java, "aestores_online.db"
+            ).build()
+            cartDataRemotes = ArrayList<CartDataRemote>()
+            cartLocal = db.userCartDao().getUserCartLocal()
+            for (cart in cartLocal){
+                cartDataRemotes.add(CartDataRemote(cart.productId.toInt(),cart.quantity.toInt()))
+
+
+            }
+        }
 
         bottomSheetVerifyOtpBinding.btnVerifyOtp.setOnClickListener {
             if(bottomSheetVerifyOtpBinding.otpView.otp?.length!! <4){
@@ -96,8 +115,7 @@ class LoginActivity : BaseActivity() {
                 showLoader()
                 if(AppSession(this@LoginActivity).getBoolean(Constant.IS_LOGGED_IN)){
                     // send the local cart daqta to the backend api.
-                    val cartData = CartDataRemote()
-                    loginViewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartData)
+                    loginViewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartDataRemotes)
                 }else{
                     loginViewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)
 

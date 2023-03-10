@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.intuit.sdp.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.data.CartDataRemote
+import com.ushatech.aestoreskotlin.data.room.AppDatabase
+import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.BottomSheetVerifyOtpBinding
 import com.ushatech.aestoreskotlin.databinding.FragmentProfileBinding
 import com.ushatech.aestoreskotlin.presentation.ProfileViewModel
@@ -19,6 +22,8 @@ import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.activity.DashboardActivity
 import com.ushatech.aestoreskotlin.ui.activity.SignupActivity
 import com.ushatech.aestoreskotlin.ui.adapter.ViewPagerAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -112,6 +117,21 @@ class ProfileFragment : BaseFragment() {
         bottomSheetDialog.setContentView(bottomSheetVerifyOtpBinding.root)
         bottomSheetDialog.setCancelable(true)
         bottomSheetDialog.show()
+        var cartLocal:List<UserCartTable>
+        var cartDataRemotes = ArrayList<CartDataRemote>()
+        GlobalScope.launch {
+            val db = Room.databaseBuilder(
+                fragmentContext, AppDatabase::class.java, "aestores_online.db"
+            ).build()
+            cartDataRemotes = ArrayList<CartDataRemote>()
+            cartLocal = db.userCartDao().getUserCartLocal()
+            for (cart in cartLocal){
+                cartDataRemotes.add(CartDataRemote(cart.productId.toInt(),cart.quantity.toInt()))
+
+
+            }
+        }
+
 
         bottomSheetVerifyOtpBinding.btnVerifyOtp.setOnClickListener {
             if(bottomSheetVerifyOtpBinding.otpView.otp?.length!! <4){
@@ -124,7 +144,7 @@ class ProfileFragment : BaseFragment() {
 
                 if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
                     val cartData = CartDataRemote()
-                    viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartData)
+                    viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),cartDataRemotes)
 
                 }else{
                     viewModel.loginUserStepTwo(userId.toString(),bottomSheetVerifyOtpBinding.otpView.otp.toString(),null)

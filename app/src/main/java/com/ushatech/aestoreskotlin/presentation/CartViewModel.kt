@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ushatech.aestoreskotlin.data.CartDataRemote
-import com.ushatech.aestoreskotlin.data.LoginUserResponse
-import com.ushatech.aestoreskotlin.data.OtpSendResponse
+import com.ushatech.aestoreskotlin.data.CartUserResponse
+import com.ushatech.aestoreskotlin.data.CommonResponseData
 import com.ushatech.aestoreskotlin.domain.MainRepository
 import com.ushatech.aestoreskotlin.session.Constant
 import kotlinx.coroutines.launch
@@ -16,60 +15,56 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
-class ProfileViewModel():ViewModel() {
+class CartViewModel():ViewModel() {
+
+
     private val _isFailed = MutableLiveData<String>()
     val isFailed: LiveData<String> = _isFailed
     private val _isLoading = MutableLiveData<Boolean>()
     val isSuccess: LiveData<Boolean> = _isLoading
-    private val _otpSendResponse = MutableLiveData<OtpSendResponse>()
-    val otpSendResponse : LiveData<OtpSendResponse> = _otpSendResponse
-
-    private val _loginUserResponse = MutableLiveData<LoginUserResponse> ()
-    val loginUserResponse: LiveData<LoginUserResponse> = _loginUserResponse
-
-    val mainRepo = MainRepository()
-
-    fun loginUserStepTwo(userId: String, otp:String, cartDataRemote: ArrayList<CartDataRemote>?) = viewModelScope.launch {
-
-        if(cartDataRemote==null){
-            var cartDataRemoteTemp =ArrayList<CartDataRemote>()
-            loginUserStepTwoCoroutine(userId,otp,cartDataRemoteTemp)
-
-        }else{
-            loginUserStepTwoCoroutine(userId,otp,cartDataRemote)
-
-        }
 
 
+    val mainRepository = MainRepository()
+    private val _commonResponseData = MutableLiveData<CommonResponseData>()
+    val commonResponseData :LiveData<CommonResponseData> = _commonResponseData
+    private val _deleteItemResponse = MutableLiveData<CommonResponseData>()
+    val deleteItemResponse :LiveData<CommonResponseData> = _deleteItemResponse
 
+
+    private val _userCartResponse = MutableLiveData<CartUserResponse>()
+    val userCartUserResponse :LiveData<CartUserResponse> = _userCartResponse
+
+
+    fun getUserCart(userId:String) = viewModelScope.launch {
+        getUserCartCoroutine(userId)
+
+    }
+
+    fun deleteCartItem(userId:String,cartId:String) = viewModelScope.launch {
+        deleteCartItemCoroutine(userId,cartId)
 
 
     }
 
-    private suspend fun loginUserStepTwoCoroutine(
-        userId: String,
-        otp: String,
-        cartDataRemote: ArrayList<CartDataRemote>
-    ) {
+    private suspend fun deleteCartItemCoroutine(userId: String, cartId: String) {
         try {
-
-            val response = mainRepo.loginUserStepTwo(otp, userId,cartDataRemote)
+            val response = mainRepository.deleteItemCart(userId,cartId)
             _isLoading.value = true
-            response.enqueue(object : Callback<LoginUserResponse> {
+            response.enqueue(object : Callback<CommonResponseData> {
 
                 override fun onResponse(
-                    call: Call<LoginUserResponse>,
-                    response: Response<LoginUserResponse>
+                    call: Call<CommonResponseData>,
+                    response: Response<CommonResponseData>
                 ) {
                     _isLoading.value = false
                     if (response.code() == 200) {
-                        _loginUserResponse.postValue(response.body())
+                        _deleteItemResponse.postValue(response.body())
                     } else {
                         _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
                     }
                 }
 
-                override fun onFailure(call: Call<LoginUserResponse>, t: Throwable) {
+                override fun onFailure(call: Call<CommonResponseData>, t: Throwable) {
                     _isFailed.value = t.message
                 }
             })
@@ -94,34 +89,26 @@ class ProfileViewModel():ViewModel() {
 
     }
 
-    fun loginUserStepOne(mobileNumber:String) = viewModelScope.launch {
-        loginUserStepOneCoroutine(mobileNumber)
 
-
-    }
-
-    private suspend fun loginUserStepOneCoroutine(mobileNumber: String) {
-        // To be implemented api call.
-
+    private suspend fun getUserCartCoroutine(userId: String) {
         try {
-
-            val response = mainRepo.loginUserStepOne(mobileNumber)
+            val response = mainRepository.getUserCart(userId)
             _isLoading.value = true
-            response.enqueue(object : Callback<OtpSendResponse> {
+            response.enqueue(object : Callback<CartUserResponse> {
 
                 override fun onResponse(
-                    call: Call<OtpSendResponse>,
-                    response: Response<OtpSendResponse>
+                    call: Call<CartUserResponse>,
+                    response: Response<CartUserResponse>
                 ) {
                     _isLoading.value = false
                     if (response.code() == 200) {
-                        _otpSendResponse.postValue(response.body())
+                        _userCartResponse.postValue(response.body())
                     } else {
                         _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
                     }
                 }
 
-                override fun onFailure(call: Call<OtpSendResponse>, t: Throwable) {
+                override fun onFailure(call: Call<CartUserResponse>, t: Throwable) {
                     _isFailed.value = t.message
                 }
             })
@@ -141,6 +128,9 @@ class ProfileViewModel():ViewModel() {
             }
 
         }
+
+
+
     }
 
 

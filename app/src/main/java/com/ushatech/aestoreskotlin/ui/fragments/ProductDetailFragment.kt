@@ -126,12 +126,10 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         viewModel.userCartResponse.observe((viewLifecycleOwner)){
             hideLoader()
             showToast(it.message.toString())
+            FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
+                com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
 
-            if(it.status==1){
-                // Only upon success addition will move to cart fragment
-                FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
-                    com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
-            }
+
 
 
 
@@ -143,7 +141,8 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
         if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
             // Call the addtoCartApi.
-            showToast("Will Call AddToCart API.")
+            showToast("Using Webservices.")
+            val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
         }else{
             showToast("Using local DB.")
             makeLocalCartItem(product)
@@ -218,11 +217,8 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
                     // Calling the api addToCart
                     showLoader()
-                    val userId = AppSession(fragmentContext).getUser()?.data?.id.toString()
-                    viewModel.addToCart(userId,productLocal.data?.id.toString(),binding.tvQuantity.text.toString())
-
-
-
+                    val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+                    viewModel.addToCart(userId!!,productLocal.data?.id.toString(),binding.tvQuantity.text.toString())
                 }else{
                     addItemToRoomDatabase(makeLocalCartItem(productLocal))
 
@@ -230,7 +226,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
             }else if(binding.edtPincode.text.toString().isEmpty()){
                 showToast("Please check pincode to proceed.")
             }else if(!binding.edtPincode.text.toString().isEmpty()){
-              binding.btnCheckPincode.performClick()
+                showToast("Please check pincode to proceed.")
             }else{
                 showToast("Not available in your area.")
             }

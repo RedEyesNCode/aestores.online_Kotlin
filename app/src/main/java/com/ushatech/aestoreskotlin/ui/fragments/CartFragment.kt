@@ -1,22 +1,23 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
+import com.ushatech.aestoreskotlin.data.CartUserResponse
 import com.ushatech.aestoreskotlin.data.room.AppDatabase
 import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.FragmentCartBinding
+import com.ushatech.aestoreskotlin.presentation.CartViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
-import com.ushatech.aestoreskotlin.ui.activity.LoginActivity
 import com.ushatech.aestoreskotlin.ui.adapter.CartAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.RoomCartAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
@@ -34,12 +35,36 @@ private const val ARG_PARAM2 = "param2"
  * Use the [CartFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent {
+class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.onApiCartEvent {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var binding:FragmentCartBinding
+
+    private lateinit var viewModel:CartViewModel
+    override fun onDeleteItemApi(cartTable: CartUserResponse.Items, quantity: Int) {
+        val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+        val alertDialog = AlertDialog.Builder(fragmentContext)
+        alertDialog.setTitle("Delete cart item ?")
+        alertDialog.setCancelable(true)
+        alertDialog.setPositiveButton("Yes",{dialog, which ->
+            run {
+                viewModel.deleteCartItem(userId.toString(),cartTable.cartId.toString())
+            }
+        })
+        alertDialog.setNegativeButton("No",null)
+        alertDialog.create()
+
+        alertDialog.show()
+
+
+    }
+
+    override fun onUpdateItemApi(cartTable: CartUserResponse.Items, quantity: Int) {
+        showToast("To be implemented 500 from backend")
+
+    }
 
     override fun onDeleteItem(cartTable: UserCartTable, position: Int) {
         // show alert dialog before delete cart item
@@ -76,10 +101,6 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent {
             //update items for room adapter after delete.
             updateRoomRecycler()
 
-
-
-
-
         }
 
     }
@@ -114,11 +135,11 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent {
         savedInstanceState: Bundle?
     ): View? {
 
-        checkRecyclerAdapter()
         binding = FragmentCartBinding.inflate(LayoutInflater.from(fragmentContext),container,false)
-
-
         initClicks()
+        setupViewModel()
+        attachObservers()
+        checkRecyclerAdapter()
         if(fragmentManager?.backStackEntryCount==3){
             binding.btnContinueShopping.visibility=View.VISIBLE
         }else{
@@ -129,17 +150,62 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent {
 
     }
 
+    private fun attachObservers() {
+        viewModel.isFailed.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                showToast(it)
+            }
+        }
+        viewModel.isSuccess.observe((viewLifecycleOwner)){
+            if(it){
+                showLoader()
+            }else{
+                hideLoader()
+            }
+        }
+        viewModel.userCartUserResponse.observe(viewLifecycleOwner){
+            hideLoader()
+            if(it!=null){
+                updateRemoteRecycler(it)
+            }
+        }
+        viewModel.deleteItemResponse.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it.status==1){
+                val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+                viewModel.getUserCart(userId.toString())
+            }
+        }
+
+    }
+
+    private fun setupViewModel() {
+
+        viewModel = CartViewModel()
+        viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
+        binding.viewmodel = viewModel
+
+
+
+
+
+    }
+
     private fun checkRecyclerAdapter() {
         if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
-            updateRemoteRecycler()
+            val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+            showLoader()
+            viewModel.getUserCart(userId.toString())
         }else{
             updateRoomRecycler()
         }
     }
 
-    private fun updateRemoteRecycler() {
-        binding = FragmentCartBinding.inflate(LayoutInflater.from(fragmentContext))
-        binding.recvCart.adapter = CartAdapter(fragmentContext)
+    private fun updateRemoteRecycler(cartUserResponse: CartUserResponse) {
+
+
+        binding.recvCart.adapter = CartAdapter(fragmentContext,cartUserResponse.items,this)
         binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
 
 

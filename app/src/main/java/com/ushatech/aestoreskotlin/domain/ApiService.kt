@@ -17,7 +17,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/v1/register")
-    fun registerUserStepTwo(@Field("userid") userId:String, @Field("otp") otp:String,@Field("cartData") cartDataRemote: CartDataRemote):Call<RegisterUserStepTwoResponse>
+    fun registerUserStepTwo(@Field("userid") userId:String, @Field("otp") otp:String, @Field("cartData") cartDataRemote: ArrayList<CartDataRemote>):Call<RegisterUserStepTwoResponse>
 
 
     @FormUrlEncoded
@@ -26,7 +26,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/v1/login")
-    fun loginUserStepTwo(@Field("userid") userId: String,@Field("otp") otp:String, @Field("cartData") carData:CartDataRemote):Call<LoginUserResponse>
+    fun loginUserStepTwo(@Field("userid") userId: String, @Field("otp") otp:String, @Field("cartData") cartData: ArrayList<CartDataRemote>?):Call<LoginUserResponse>
 
 
     @GET("api/v1/homescreen")
@@ -73,17 +73,22 @@ interface ApiService {
     @GET("api/v1/cart")
     fun getUserCart(@Query("userid") userId: String):Call<CartUserResponse>
 
+
+    @FormUrlEncoded
     @POST("api/v1/cart/add")
-    fun addToCart(@Query("userid") userId: String,@Query("productId") productId: String,@Query("quantity") quantity:String):Call<CommonResponseData>
+    fun addToCart(@Field("userid") userId: String,@Field("productId") productId: String,@Field("quantity") quantity:String):Call<CommonResponseData>
 
     @POST("api/v1/cart/update")
     fun updateCart(@Query("userid") userId:String,@Query("cartId") cartId:String,@Query("quantity") quantity:String) :Call<CommonResponseData>
 
-    @POST("api/v1/cart/delete")
-    fun deleteCart(@Query("userid") userId:String,@Query("cartId") cartId:String):Call<CommonResponseData>
 
+    @FormUrlEncoded
+    @POST("api/v1/cart/delete")
+    fun deleteCart(@Field("userid") userId:String,@Field("cartId") cartId:String):Call<CommonResponseData>
+
+    @FormUrlEncoded
     @POST("api/v1/cart/clearCart")
-    fun deletAllItems(@Query("userid") userId:String):Call<CommonResponseData>
+    fun deletAllItems(@Field("userid") userId:String):Call<CommonResponseData>
 
 
 

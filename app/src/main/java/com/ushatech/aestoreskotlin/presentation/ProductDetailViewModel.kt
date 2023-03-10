@@ -37,14 +37,10 @@ class ProductDetailViewModel(): ViewModel() {
 
     fun addToCart(userId: String,productId: String,quantity:String) = viewModelScope.launch {
         addToCartCoroutine(userId,productId,quantity)
-
-
     }
 
     private suspend fun addToCartCoroutine(userId: String, productId: String, quantity: String) {
-
         try {
-
             val response = mainRepository.addToCart(userId,productId, quantity)
             _isLoading.value = true
             response.enqueue(object : Callback<CommonResponseData> {
