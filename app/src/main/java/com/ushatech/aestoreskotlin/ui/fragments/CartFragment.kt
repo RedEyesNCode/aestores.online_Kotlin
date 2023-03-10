@@ -177,6 +177,16 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
                 viewModel.getUserCart(userId.toString())
             }
         }
+        viewModel.deleteCompleteItemResponse.observe(viewLifecycleOwner){
+            hideLoader()
+            if(it.status==1){
+                val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+                viewModel.getUserCart(userId.toString())
+            }
+
+
+
+        }
 
     }
 
@@ -247,21 +257,31 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
 
         binding.btnClearAll.setOnClickListener {
 
-            val alertDialog = AlertDialog.Builder(fragmentContext)
-            alertDialog.setTitle("Delete All cart items ?")
-            alertDialog.setCancelable(true)
-            alertDialog.setPositiveButton("Yes",{dialog, which ->
-                run {
 
-                    deleteUserCartRoom()
+            if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
+                val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+                showLoader()
+                viewModel.deleteEntireCart(userId.toString())
+
+            }else{
+                val alertDialog = AlertDialog.Builder(fragmentContext)
+                alertDialog.setTitle("Delete All cart items ?")
+                alertDialog.setCancelable(true)
+                alertDialog.setPositiveButton("Yes",{dialog, which ->
+                    run {
+
+                        deleteUserCartRoom()
 
 
-                }
-            })
-            alertDialog.setNegativeButton("No",null)
-            alertDialog.create()
+                    }
+                })
+                alertDialog.setNegativeButton("No",null)
+                alertDialog.create()
 
-            alertDialog.show()
+                alertDialog.show()
+            }
+
+
 
 
 

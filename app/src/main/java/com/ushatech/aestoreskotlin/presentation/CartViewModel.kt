@@ -30,6 +30,9 @@ class CartViewModel():ViewModel() {
     private val _deleteItemResponse = MutableLiveData<CommonResponseData>()
     val deleteItemResponse :LiveData<CommonResponseData> = _deleteItemResponse
 
+    private val _deleteCompleteItemResponse = MutableLiveData<CommonResponseData>()
+    val deleteCompleteItemResponse :LiveData<CommonResponseData> = _deleteCompleteItemResponse
+
 
     private val _userCartResponse = MutableLiveData<CartUserResponse>()
     val userCartUserResponse :LiveData<CartUserResponse> = _userCartResponse
@@ -37,6 +40,56 @@ class CartViewModel():ViewModel() {
 
     fun getUserCart(userId:String) = viewModelScope.launch {
         getUserCartCoroutine(userId)
+
+    }
+    fun deleteEntireCart(userId: String) = viewModelScope.launch {
+
+        deleteEntireCouroutine(userId)
+
+    }
+
+    private suspend fun deleteEntireCouroutine(userId: String) {
+        try {
+            val response = mainRepository.deleteCompleteCart(userId)
+            _isLoading.value = true
+            response.enqueue(object : Callback<CommonResponseData> {
+
+                override fun onResponse(
+                    call: Call<CommonResponseData>,
+                    response: Response<CommonResponseData>
+                ) {
+                    _isLoading.value = false
+                    if (response.code() == 200) {
+                        _deleteCompleteItemResponse.postValue(response.body())
+                    } else {
+                        _isFailed.value = "${Constant.OOPS_SW} ${response.code()}"
+                    }
+                }
+
+                override fun onFailure(call: Call<CommonResponseData>, t: Throwable) {
+                    _isFailed.value = t.message
+                }
+            })
+        } catch (t: Throwable) {
+
+            when (t) {
+                is IOException -> {
+                    _isFailed.value = "IO Exception"
+                }
+                else -> {
+                    _isFailed.value = "Exception." + t.message
+
+                    Log.i("RETROFIT", t.message!!)
+                }
+
+
+            }
+
+        }
+
+
+
+
 
     }
 

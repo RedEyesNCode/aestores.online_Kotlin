@@ -6,7 +6,7 @@ data class CartUserResponse(@SerializedName("items"             ) var items     
                             @SerializedName("total"             ) var total           : Int?             = null,
                             @SerializedName("total_price"       ) var totalPrice      : Int?             = null,
                             @SerializedName("total_tax"         ) var totalTax        : Int?             = null,
-                            @SerializedName("total_shipping"    ) var totalShipping   : Int?             = null,
+                            @SerializedName("total_shipping"    ) var totalShipping   : String?             = null,
                             @SerializedName("total_shipping_ck" ) var totalShippingCk : Int?             = null,
                             @SerializedName("loyalty_points"    ) var loyaltyPoints   : Int?             = null,
                             @SerializedName("max_redeem_bonus"  ) var maxRedeemBonus  : Int?             = null,

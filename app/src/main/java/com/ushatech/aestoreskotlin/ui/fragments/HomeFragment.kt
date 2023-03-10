@@ -41,9 +41,9 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory, Im
 
 
     override fun onProductClick(position: Int, productId: String) {
-        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
+        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
             ProductDetailFragment.newInstance(productId,""),
-            ProductDetailFragment::class.java.canonicalName,false)
+            ProductDetailFragment::class.java.canonicalName,true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -211,7 +211,7 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory, Im
     }
 
     override fun onCategoryClick(position: Int) {
-        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
+        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
     }
 
     private fun setupRecyler() {

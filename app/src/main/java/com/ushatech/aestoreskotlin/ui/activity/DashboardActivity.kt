@@ -364,7 +364,7 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
     }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount==0){
+        if(supportFragmentManager.backStackEntryCount>0){
 
             val alertDialog = AlertDialog.Builder(this@DashboardActivity)
             alertDialog.setTitle("Exit App ?")
@@ -402,67 +402,28 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 if(item.itemId==R.id.wishListFragment){
                     val fm: FragmentManager = supportFragmentManager
-                    for (i in 0 until fm.getBackStackEntryCount()) {
-                        fm.popBackStack()
-                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,WishlistFragment(),WishlistFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.homeFragment){
                     // ADDING CHECKS FOR THE BACK STACK MANAGE.
-
-//                    val fm: FragmentManager = supportFragmentManager
-//                    for (i in 0 until fm.getBackStackEntryCount()) {
-//                        fm.popBackStack()
-//                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,HomeFragment(),HomeFragment::class.java.canonicalName,false)
-
-//                    if(supportFragmentManager.backStackEntryCount==1){
-//                        supportFragmentManager.popBackStack()
-//                        // Means only CategoryProduct stack is present.
-//                    }else if(supportFragmentManager.backStackEntryCount==2){
-//                        //Means CategoryProduct , Product details stacks are present
-//                        supportFragmentManager.popBackStack()
-//                        supportFragmentManager.popBackStack()
-//                    }else if(supportFragmentManager.backStackEntryCount==3){
-//                        //Means CategoryProduct , Product details, Cart screens (3) stacks are present
-//                        supportFragmentManager.popBackStack()
-//                        supportFragmentManager.popBackStack()
-//                        supportFragmentManager.popBackStack()
-//                    }else{
-//
-//                    }
-
-
 
                 }else if(item.itemId==R.id.categoryFragment){
 //                    binding.mainLayout.openDrawer(binding.drawerCategory)
                     val fm: FragmentManager = supportFragmentManager
-                    for (i in 0 until fm.getBackStackEntryCount()) {
-                        fm.popBackStack()
-                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,CategoryFragment(),CategoryFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.profileFragment){
                     val fm: FragmentManager = supportFragmentManager
-                    for (i in 0 until fm.getBackStackEntryCount()) {
-                        fm.popBackStack()
-                    }
                     FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,ProfileFragment(),ProfileFragment::class.java.canonicalName,false)
 
                 }else if(item.itemId==R.id.cartFragment){
-                    val fm: FragmentManager = supportFragmentManager
-                    for (i in 0 until fm.getBackStackEntryCount()) {
-                        fm.popBackStack()
-                    }
-
                     if(AppSession(this@DashboardActivity).getBoolean(Constant.IS_LOGGED_IN)){
                         FragmentUtils().replaceFragmentBackStack(supportFragmentManager,
                             com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","false"),CartFragment::class.java.canonicalName,true)
                     }else{
                         FragmentUtils().replaceFragmentBackStack(supportFragmentManager,
                             com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","true"),CartFragment::class.java.canonicalName,true)
-
-
                     }
 
 
