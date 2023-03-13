@@ -31,6 +31,8 @@
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:indeterminateTint="@color/green"
             android:progressTint="@color/green"
+            android:progressBackgroundTint="@color/green"
+            android:id="@+id/progressIndicators"
             android:progress="34"
             android:layout_height="wrap_content"/>
 

@@ -555,6 +555,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="0"
+                        android:id="@+id/tvAvgRatingCount"
                         android:gravity="start"
                         android:textColor="@color/green"
                         android:fontFamily="@font/mulish_bold"
@@ -565,6 +566,7 @@
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvTotalRatings"
                         android:text="@string/avg_star_rating_0_ratings"
                         android:gravity="start"
                         android:textColor="@color/black"
@@ -574,25 +576,37 @@
                     <include
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/_8sdp"
+                        android:id="@+id/progressOneStar"
+                        android:layout_height="wrap_content"
+                        layout="@layout/star_progress"/>
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:id="@+id/progressTwoStar"
+
                         android:layout_height="wrap_content"
                         layout="@layout/star_progress"/>
                     <include
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_height="wrap_content"
+                        android:id="@+id/progressThreeStar"
+
                         layout="@layout/star_progress"/>
                     <include
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_height="wrap_content"
-                        layout="@layout/star_progress"/>
-                    <include
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/progressFourStar"
+
                         layout="@layout/star_progress"/>
 
-
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressFiveStar"
+                        layout="@layout/star_progress"/>
                 </LinearLayout>
 
 

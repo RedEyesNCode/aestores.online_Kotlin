@@ -100,6 +100,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
             }
         }
         viewModel.productResponse.observe((viewLifecycleOwner)){
+            hideLoader()
             if(it!=null){
                 updateUi(it)
 
@@ -156,6 +157,10 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
         binding.tvMaxPrice.setPaintFlags(binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
 
+        setupRatingBars(product)
+
+
+
         Glide.with(fragmentContext).load(product.data?.image).placeholder(R.drawable.ic_banner_home).into(binding.ivMainProductImage)
 
         if(product.data!!.moreImages.isEmpty()){
@@ -175,6 +180,28 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
 
 
+
+    }
+
+    private fun setupRatingBars(product: ProductDetailResponseData) {
+
+        if(product.data?.ratingCount!=0){
+            binding.tvTotalRatings.text = "Avg. Star Rating (${product.data?.ratingCount.toString()} Rating)"
+        }
+        if(product.data?.avgRating!=null){
+            binding.tvAvgRatingCount.text = "${product.data?.avgRating}"
+        }
+
+        binding.progressOneStar.tvStarNumber.text = "1 Star"
+        binding.progressTwoStar.tvStarNumber.text = "2 Star"
+        binding.progressThreeStar.tvStarNumber.text = "3 Star"
+        binding.progressFourStar.tvStarNumber.text = "4 Star"
+        binding.progressFiveStar.tvStarNumber.text = "5 Star"
+        binding.progressOneStar.tvStarPercentage.text = "${product.data?.rating1PercentCount.toString()} Percentage"
+        binding.progressTwoStar.tvStarPercentage.text = "${product.data?.rating2PercentCount.toString()} Percentage"
+        binding.progressThreeStar.tvStarPercentage.text = "${product.data?.rating3percentCount.toString()} Percentage"
+        binding.progressFourStar.tvStarPercentage.text = "${product.data?.rating4PercentCount.toString()} Percentage"
+        binding.progressFiveStar.tvStarPercentage.text = "${product.data?.rating5PercentCount.toString()} Percentage"
 
     }
 

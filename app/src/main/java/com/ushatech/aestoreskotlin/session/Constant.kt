@@ -10,5 +10,6 @@ object Constant {
         const val USER_ID:String = "USER_ID"
         const val IS_LOGGED_IN:String = "IS_LOGGED_IN"
         const val USER_INFO = "USER_INFO"
+        const val Youtube_image_Url = "https://img.youtube.com/vi/"
 
 }

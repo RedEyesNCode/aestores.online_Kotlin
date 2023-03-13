@@ -83,7 +83,7 @@
     <string name="signup">Signup</string>
     <string name="help_u0026_info"><![CDATA[Help & Info]]></string>
     <string name="description"><![CDATA[<u>Description</u>.]]></string>
-    <string name="reviews"><![CDATA[<u>Reviews</u>.]]></string>
+    <string name="reviews">Reviews</string>
     <string name="agree_to_terms_u0026_conditons"><![CDATA[Agree to Terms & Conditons.]]></string>
     <string name="profile_information">Profile Information.</string>
     <string name="address_details">Address Details</string>

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.data.HomeScreenResponse
 import com.ushatech.aestoreskotlin.databinding.ImageItemBinding
+import com.ushatech.aestoreskotlin.uitls.AppUtils
 
 class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<HomeScreenResponse.Trending>,var onEventActivity:onEventTrendingViewPager) :RecyclerView.Adapter<ImageViewPagerTrendingAdapter.MyViewholder>(){
 
@@ -39,6 +40,8 @@ class ImageViewPagerTrendingAdapter(var context:Context, var array:ArrayList<Hom
 //
 //        holder.binding.tvProductNameOne.text = array.get(position).name
 //        Glide.with(context).load(array.get(position).image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage1)
+
+
 
 
         if(array.size%2==0){
