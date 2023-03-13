@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="@dimen/_85sdp"
             android:src="@drawable/ic_banner_home"
-            android:id="@+id/ivProductImage1"
+            android:id="@+id/ivProductImage"
             android:background="@drawable/background_grey_box"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
@@ -27,7 +27,7 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_6sdp"
 
-            android:id="@+id/tvProductNameOne"
+            android:id="@+id/tvProductName"
             android:text="500 gms"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
@@ -42,7 +42,7 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:gravity="center"
             android:layout_marginStart="@dimen/_6sdp"
-            android:id="@+id/tvWeight"
+            android:id="@+id/tvProductPrice"
             android:textColor="@color/black"
             android:fontFamily="@font/mulish_regular"
             android:lineSpacingExtra="@dimen/_5sdp"
