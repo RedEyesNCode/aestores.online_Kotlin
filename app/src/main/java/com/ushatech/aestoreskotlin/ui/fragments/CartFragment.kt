@@ -207,18 +207,26 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
             val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
             showLoader()
             viewModel.getUserCart(userId.toString())
+            binding.layoutItemPrice.visibility = View.VISIBLE
         }else{
             updateRoomRecycler()
+            binding.layoutItemPrice.visibility = View.GONE
+
         }
     }
 
     private fun updateRemoteRecycler(cartUserResponse: CartUserResponse) {
 
-
-        binding.recvCart.adapter = CartAdapter(fragmentContext,cartUserResponse.items,this)
-        binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
-
-
+        if(cartUserResponse.items.isEmpty()){
+            showNoItemsPresent()
+        }else{
+            binding.recvCart.adapter = CartAdapter(fragmentContext,cartUserResponse.items,this)
+            binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
+            binding.tvWholeTotal.text = "Rs ${cartUserResponse.total.toString()}"
+            binding.tvShippingCharge.text = "Rs ${cartUserResponse.totalShipping.toString()}"
+            binding.tvTaxPrice.text = "Rs ${cartUserResponse.totalTax.toString()}"
+            binding.tvCartTotal.text = "Rs ${cartUserResponse.totalPrice.toString()}"
+        }
     }
 
     private fun updateRoomRecycler() {
@@ -233,11 +241,17 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
 
 
             launch (Dispatchers.Main){
+                if(cartDataLocal.isEmpty()){
+                  showNoItemsPresent()
 
-                binding.recvCart.adapter = RoomCartAdapter(fragmentContext,
-                    cartDataLocal as ArrayList<UserCartTable>
-                ,this@CartFragment)
-                binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
+                }else{
+                    binding.recvCart.adapter = RoomCartAdapter(fragmentContext,
+                        cartDataLocal as ArrayList<UserCartTable>
+                        ,this@CartFragment)
+                    binding.recvCart.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
+
+                }
+
 
 
             }
@@ -245,6 +259,18 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
 
 
         }
+        // We also need to set the cartCalculation layout.
+
+
+
+    }
+
+    private fun showNoItemsPresent() {
+        binding.cartMainLayout.visibility = View.GONE
+        binding.tvNoCartItem.visibility = View.VISIBLE
+        binding.recvCart.visibility = View.GONE
+
+
     }
 
     private fun initClicks() {
@@ -314,6 +340,7 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
 
 
             launch (Dispatchers.Main){
+                showNoItemsPresent()
 
                 binding.recvCart.adapter = RoomCartAdapter(fragmentContext,
                      cartDataLocal as ArrayList<UserCartTable>

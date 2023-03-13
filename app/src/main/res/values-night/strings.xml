@@ -123,4 +123,5 @@
     <string name="personal_volume">Personal Volume</string>
     <string name="refferal_code">Refferal Code</string>
     <string name="similar_products">Similar Products :</string>
+    <string name="clear_all_items">Clear all items</string>
 </resources>

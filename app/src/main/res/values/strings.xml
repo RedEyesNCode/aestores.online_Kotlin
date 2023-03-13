@@ -134,4 +134,5 @@
     <string name="refferal_code">Refferal Code</string>
     <string name="uncompleted_kyc">Uncompleted KYC</string>
     <string name="similar_products">Similar Products :</string>
+    <string name="clear_all_items">Clear all items</string>
 </resources>

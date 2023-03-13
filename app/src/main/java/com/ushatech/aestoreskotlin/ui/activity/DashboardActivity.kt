@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseActivity
@@ -20,6 +21,8 @@ import com.ushatech.aestoreskotlin.data.AllCategoryResponse
 import com.ushatech.aestoreskotlin.data.CategorySubCategoryData
 import com.ushatech.aestoreskotlin.data.MasterCategoryModel
 import com.ushatech.aestoreskotlin.data.SubSuperCategoryData
+import com.ushatech.aestoreskotlin.data.room.AppDatabase
+import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
 import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
@@ -28,8 +31,12 @@ import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerTrendingAdapter
+import com.ushatech.aestoreskotlin.ui.adapter.RoomCartAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTrendingViewPager {
@@ -152,6 +159,14 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         setupNavClicks(homeSideMenuBinding)
         initMyAccountClicks(homeSideMenuBinding)
         initHelpLayoutClicks(homeSideMenuBinding)
+        if(AppSession(this@DashboardActivity).getBoolean(Constant.IS_LOGGED_IN)){
+            homeSideMenuBinding.btnLogout.visibility = View.VISIBLE
+        }else{
+            homeSideMenuBinding.btnLogout.visibility = View.GONE
+
+        }
+
+
 
         homeSideMenuBinding.btnLogout.setOnClickListener {
             val alertDialog = AlertDialog.Builder(this@DashboardActivity)
@@ -160,17 +175,38 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
             alertDialog.setPositiveButton("Yes",{dialog, which ->
                 run {
                     AppSession(this@DashboardActivity).clear()
-                    showToast("Logged Out !")
-                    val loginIntent = Intent(this@DashboardActivity,LoginActivity::class.java)
-
-                    loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(loginIntent)
+                    deleteUserCartRoom()
                 }
             })
+
             alertDialog.setNegativeButton("CANCEL",null)
             alertDialog.create()
 
             alertDialog.show()
+
+
+
+        }
+
+
+    }
+    private fun deleteUserCartRoom() {
+        GlobalScope.launch {
+            val db = Room.databaseBuilder(
+                this@DashboardActivity, AppDatabase::class.java, "aestores_online.db"
+            ).build()
+            // Make the cart Object and store in Room Db
+
+
+            db.userCartDao().deletUserCart()
+            val cartDataLocal = db.userCartDao().getUserCartLocal()
+            launch(Dispatchers.Main) {
+                showToast("Logged Out !")
+                val loginIntent = Intent(this@DashboardActivity,DashboardActivity::class.java)
+                loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(loginIntent)
+
+            }
 
 
 

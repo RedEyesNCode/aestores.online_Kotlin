@@ -26,15 +26,35 @@
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/cart_item"
                 android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/tvNoCartItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:fontFamily="@font/mulish_bold"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:text="No Cart Item"
+                android:layout_gravity="center"
+
+                android:visibility="gone"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_18sdp" />
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="@dimen/_18sdp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
+                android:id="@+id/cartMainLayout"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Clear all items"
+                    android:text="@string/clear_all_items"
                     android:id="@+id/btnClearAll"
                     android:paddingVertical="@dimen/_8sdp"
                     android:textColor="@color/green"
@@ -104,6 +124,7 @@
                 <RelativeLayout
                     android:id="@+id/layout_item_price"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@color/grey"
@@ -113,26 +134,18 @@
                         android:id="@+id/tv_item_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:fontFamily="@font/mulish_regular"
-                        android:text="Cart Total"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_9ssp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@+id/tv_price"
-                        android:fontFamily="@font/mulish_regular"
-                        android:text="$"
+                        android:text="@string/cart_total"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_9ssp" />
 
                     <TextView
-                        android:id="@+id/tv_price"
+                        android:id="@+id/tvCartTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:fontFamily="@font/mulish_regular"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_9ssp" />
@@ -141,7 +154,7 @@
                         android:id="@+id/viewline1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/tv_price"
+                        android:layout_below="@id/tvCartTotal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@color/grey_dark" />
 
@@ -163,20 +176,12 @@
                             android:text="Tax (included)"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_9ssp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/tv_spg_price"
-                            android:fontFamily="@font/mulish_regular"
-                            android:text="@strig/dollar"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_9ssp" />
 
                         <TextView
-                            android:id="@+id/tv_spg_price"
+                            android:id="@+id/tvTaxPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_marginLeft="@dimen/_4sdp"
                             android:fontFamily="@font/mulish_regular"
                             android:textColor="@color/black"
@@ -186,7 +191,7 @@
                             android:id="@+id/viewline2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_below="@id/tv_spg_price"
+                            android:layout_below="@id/tvTaxPrice"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:background="@color/grey_dark" />
 
@@ -202,7 +207,6 @@
                         android:background="@color/grey">
 
                         <TextView
-                            android:id="@+id/tv_t_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -212,16 +216,7 @@
                             android:textSize="@dimen/_9ssp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/tv_total_price"
-                            android:fontFamily="@font/mulish_regular"
-                            android:text="$"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_9ssp" />
-
-                        <TextView
-                            android:id="@+id/tv_total_price"
+                            android:id="@+id/tvShippingCharge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -232,8 +227,9 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_below="@id/tv_total_price"
                             android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_below="@id/tvShippingCharge"
+
                             android:background="@color/grey_dark" />
                     </RelativeLayout>
 
@@ -252,30 +248,22 @@
                             android:fontFamily="@font/mulish_regular"
                             android:text="@string/whole_total"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_9ssp" />
+                            android:textSize="@dimen/_14ssp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/mulish_regular"
-                            android:text="$"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_9ssp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tvItemCount"
+                            android:id="@+id/tvWholeTotal"
                             android:layout_alignParentEnd="true"
                             android:layout_marginStart="@dimen/_4sdp"
-                            android:fontFamily="@font/mulish_regular"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_9ssp" />
+                            android:fontFamily="@font/mulish_bold"
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_14ssp" />
                         <View
                             android:id="@+id/viewline3"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_below="@id/tvItemCount"
+                            android:layout_below="@id/tvWholeTotal"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:background="@color/grey_dark" />
                     </RelativeLayout>
