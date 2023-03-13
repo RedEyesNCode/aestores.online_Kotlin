@@ -27,8 +27,8 @@ class SearchProductAdapter(var context:Context,var resultList:ArrayList<SearchPr
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
         val productDetail = resultList.get(position)
         holder.binding.tvMaxPrice.setPaintFlags(holder.binding.tvMaxPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
-        holder.binding.tvRealPrice.text = productDetail.price
-        holder.binding.tvMaxPrice.text = productDetail.mrp
+        holder.binding.tvRealPrice.text = "Rs ${productDetail.price}"
+        holder.binding.tvMaxPrice.text = "Rs ${productDetail.mrp}"
         holder.binding.tvProductName.text = productDetail.name
         Glide.with(context).load(productDetail.image).placeholder(R.drawable.ic_banner_home).into(holder.binding.ivProductImage)
 

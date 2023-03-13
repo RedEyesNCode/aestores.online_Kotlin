@@ -9,7 +9,7 @@ import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.data.ProductDetailResponseData
 import com.ushatech.aestoreskotlin.databinding.VariationItemBinding
 
-class SimilarProductAdapter(var context: Context,var data:ArrayList<ProductDetailResponseData.SimilarProducts>):RecyclerView.Adapter<SimilarProductAdapter.SimilarProductViewHolder>() {
+class SimilarProductAdapter(var context: Context,var data:ArrayList<ProductDetailResponseData.SimilarProducts>,var onEventActivity:onEventSimilarProduct):RecyclerView.Adapter<SimilarProductAdapter.SimilarProductViewHolder>() {
 
 
     lateinit var binding: VariationItemBinding
@@ -27,12 +27,24 @@ class SimilarProductAdapter(var context: Context,var data:ArrayList<ProductDetai
 
 
 
+        holder.binding.mainLayout.setOnClickListener {
+
+            onEventActivity.onProductClick(position,data.get(position).id.toString())
+
+
+        }
 
     }
 
     override fun getItemCount(): Int {
 
         return data.size
+
+    }
+
+    public interface onEventSimilarProduct{
+
+        fun onProductClick(position: Int,productId:String)
 
     }
 

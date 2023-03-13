@@ -44,7 +44,7 @@ import java.util.ArrayList
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
+class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent,SimilarProductAdapter.onEventSimilarProduct {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -55,7 +55,14 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
 
     private lateinit var productLocal: ProductDetailResponseData
     var isAvailable = false
+    override fun onProductClick(position: Int, productId: String) {
 
+        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
+            newInstance(productId,""),
+            ProductDetailFragment::class.java.canonicalName,true)
+
+
+    }
 
     override fun onImageClick(position: Int, drawable: String) {
         Glide.with(fragmentContext).load(drawable).placeholder(R.drawable.ic_banner_home).into(binding.ivMainProductImage)
@@ -204,7 +211,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
     }
 
     private fun setupSimilarProducts(similarProducts: ArrayList<ProductDetailResponseData.SimilarProducts>) {
-        binding.recvSimilarProduct.adapter = SimilarProductAdapter(fragmentContext,similarProducts)
+        binding.recvSimilarProduct.adapter = SimilarProductAdapter(fragmentContext,similarProducts,this)
         binding.recvSimilarProduct.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.HORIZONTAL,false)
     }
 
@@ -229,7 +236,9 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    TODO("Not yet implemented")
+                    showLog("Youtube Thumbnail is loaded.")
+                    return true
+
                 }
             }).into(binding.ivYoutubeThumbnail)
 
