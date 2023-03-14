@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
@@ -39,11 +40,22 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTrendingViewPager {
+class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTrendingViewPager,DrawerAdapter.onEvent {
 
     private lateinit var binding:ActivityMainBinding
     private lateinit var dashboardViewModel: DashboardViewModel
 
+    override fun categoryClick(position: Int, categoryId: String) {
+        showLog("Category is clicked.")
+    }
+
+    override fun onShowCategoryProducts(position: Int, categoryId: String) {
+        binding.mainLayout.closeDrawer(GravityCompat.START)
+        FragmentUtils().addFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
+            CategoryProductFragment.newInstance(categoryId,""),
+            CategoryProductFragment::class.java.canonicalName,false)
+
+    }
 
     override fun onProductClick(position: Int, productId: String) {
         FragmentUtils().replaceFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
@@ -127,7 +139,7 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         }
 
 
-        homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity,it!!,subCategoriesSubAdapter,masterCategoryModelMutableList)
+        homeSideMenuBinding.recvNavDrawer.adapter = DrawerAdapter(this@DashboardActivity,it!!,subCategoriesSubAdapter,masterCategoryModelMutableList,this)
         homeSideMenuBinding.recvNavDrawer.layoutManager = LinearLayoutManager(this)
 
 

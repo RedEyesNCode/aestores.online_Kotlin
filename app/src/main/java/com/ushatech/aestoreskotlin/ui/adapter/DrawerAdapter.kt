@@ -20,6 +20,7 @@ class DrawerAdapter(
     var allCategoryResponse: AllCategoryResponse,
     var subCategories: ArrayList<AllCategoryResponse.Subcategories>,
     var masterCategoryModel:MutableList<MasterCategoryModel>,
+    var onEventActivity:DrawerAdapter.onEvent
 ) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var categoryBinding: CategoryItemBinding
@@ -51,6 +52,15 @@ class DrawerAdapter(
                 (holder as CategoryViewHolder).categoryItemBinding.tvCategoryName.text = masterCategoryModel.category.name
 
 
+                holder.categoryItemBinding.tvCategoryName.setOnClickListener {
+                    //navigate to categoryProductFragment with categoryId.
+
+                    onEventActivity.onShowCategoryProducts(position,masterCategoryModel.category.id.toString())
+
+
+                }
+
+
                 holder.categoryItemBinding.ivUp.setOnClickListener {
                     holder.categoryItemBinding.ivUp.visibility = View.GONE
                     holder.categoryItemBinding.ivDown.visibility = View.VISIBLE
@@ -70,7 +80,7 @@ class DrawerAdapter(
                         if(it!=null){
                             Log.i("DEV_ASHUTOSH", "showLog: SET SUB ADAPTER")
 
-                            (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.adapter =SubcategoryAdapter(context,it.data,it.data.size,masterCategoryModel)
+                            (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.adapter =SubcategoryAdapter(context,it.data,it.data.size,masterCategoryModel,onEventActivity)
                             (holder as CategoryViewHolder).categoryItemBinding.recvSubCategory.layoutManager =LinearLayoutManager(context)
                         }
                     })
@@ -95,6 +105,7 @@ class DrawerAdapter(
 
     public interface onEvent{
         fun categoryClick(position: Int,categoryId:String)
+        fun onShowCategoryProducts(position: Int, categoryId: String)
 
     }
 

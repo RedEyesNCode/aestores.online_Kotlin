@@ -22,6 +22,9 @@ class SuperCategoryAdapter(var context: Context,var superCategories:ArrayList<Su
     override fun onBindViewHolder(holder: SuperCategoryViewHolder, position: Int) {
         holder.binding.tvSuperCategoryName.text = superCategories.get(position).name
 
+
+
+
     }
 
     override fun getItemCount(): Int {

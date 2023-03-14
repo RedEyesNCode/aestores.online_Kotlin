@@ -17,7 +17,8 @@ class SubcategoryAdapter(
     var context: Context,
     var subcategories: ArrayList<SubCateogryResponse.Data>,
     var size: Int,
-    var masterCategoryModel: MasterCategoryModel
+    var masterCategoryModel: MasterCategoryModel,
+    var onEventActivity:DrawerAdapter.onEvent
 ):RecyclerView.Adapter<RecyclerView.ViewHolder> (){
 
 
@@ -37,6 +38,13 @@ class SubcategoryAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as MyViewholder).subcategoryItemBinding.tvSubcategoryName.text = subcategories.get(position).name
+
+
+        holder.subcategoryItemBinding.tvSubcategoryName.setOnClickListener {
+
+            onEventActivity.onShowCategoryProducts(position,subcategories.get(position).id.toString())
+
+        }
 
         holder.subcategoryItemBinding.ivDown.setOnClickListener {
 

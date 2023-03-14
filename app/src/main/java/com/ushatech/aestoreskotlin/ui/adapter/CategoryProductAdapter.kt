@@ -55,7 +55,7 @@ class CategoryProductAdapter(var context: Context,var data:SearchProductResponse
 
     override fun getItemCount(): Int {
 
-        return 5
+        return data.products.size
     }
 
     public interface onClickEvent{

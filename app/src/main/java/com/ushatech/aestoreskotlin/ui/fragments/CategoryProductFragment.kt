@@ -92,7 +92,9 @@ class CategoryProductFragment : BaseFragment(),CategoryProductAdapter.onClickEve
                     setupRecyclerView(it.data)
 
                 }else{
-                    showToast(Constant.OOPS_SW)
+                    binding.recvCategoryProduct.visibility = View.GONE
+                    binding.tvNoCartItem.visibility = View.VISIBLE
+                    showToast(it.message.toString())
 
                 }
             }else{

@@ -14,6 +14,21 @@
     android:background="@color/white"
     tools:context=".ui.fragments.CategoryProductFragment">
 
+    <TextView
+        android:id="@+id/tvNoCartItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/mulish_bold"
+        android:lineSpacingExtra="@dimen/_5sdp"
+        android:text="No Products Found !"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/green"
+        android:textSize="@dimen/_18sdp" />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recvCategoryProduct"
