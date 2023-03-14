@@ -13,6 +13,7 @@ import com.ushatech.aestoreskotlin.data.MasterCategoryModel
 import com.ushatech.aestoreskotlin.databinding.CategoryItemBinding
 import com.ushatech.aestoreskotlin.databinding.SubcategoryItemBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
+import com.ushatech.aestoreskotlin.session.Constant
 
 
 class DrawerAdapter(
@@ -55,7 +56,7 @@ class DrawerAdapter(
                 holder.categoryItemBinding.tvCategoryName.setOnClickListener {
                     //navigate to categoryProductFragment with categoryId.
 
-                    onEventActivity.onShowCategoryProducts(position,masterCategoryModel.category.id.toString())
+                    onEventActivity.onShowCategoryProducts(position,masterCategoryModel.category.id.toString(),Constant.CATEGORY_KEY)
 
 
                 }
@@ -105,7 +106,7 @@ class DrawerAdapter(
 
     public interface onEvent{
         fun categoryClick(position: Int,categoryId:String)
-        fun onShowCategoryProducts(position: Int, categoryId: String)
+        fun onShowCategoryProducts(position: Int, categoryId: String, categoryKey: Int)
 
     }
 

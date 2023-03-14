@@ -61,7 +61,13 @@ class CategoryProductFragment : BaseFragment(),CategoryProductAdapter.onClickEve
 
     private fun initialApiCall() {
         showLoader()
-        viewModel.searchProduct(null,param1?.toInt(),null,null)
+        if(param2?.toInt()==Constant.CATEGORY_KEY){
+            viewModel.searchProduct(null,param1?.toInt(),null,null)
+
+        }else{
+            viewModel.searchProduct(null,null,param1?.toInt(),null)
+
+        }
 
 
     }

@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
@@ -23,16 +22,13 @@ import com.ushatech.aestoreskotlin.data.CategorySubCategoryData
 import com.ushatech.aestoreskotlin.data.MasterCategoryModel
 import com.ushatech.aestoreskotlin.data.SubSuperCategoryData
 import com.ushatech.aestoreskotlin.data.room.AppDatabase
-import com.ushatech.aestoreskotlin.data.tables.UserCartTable
 import com.ushatech.aestoreskotlin.databinding.ActivityMainBinding
-import com.ushatech.aestoreskotlin.databinding.CategorySideMenuBinding
 import com.ushatech.aestoreskotlin.databinding.HomeSideMenuBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
 import com.ushatech.aestoreskotlin.session.AppSession
 import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.DrawerAdapter
 import com.ushatech.aestoreskotlin.ui.adapter.ImageViewPagerTrendingAdapter
-import com.ushatech.aestoreskotlin.ui.adapter.RoomCartAdapter
 import com.ushatech.aestoreskotlin.ui.fragments.*
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 import kotlinx.coroutines.Dispatchers
@@ -49,10 +45,10 @@ class DashboardActivity : BaseActivity(),ImageViewPagerTrendingAdapter.onEventTr
         showLog("Category is clicked.")
     }
 
-    override fun onShowCategoryProducts(position: Int, categoryId: String) {
+    override fun onShowCategoryProducts(position: Int, categoryId: String, categoryKey: Int) {
         binding.mainLayout.closeDrawer(GravityCompat.START)
         FragmentUtils().addFragmentBackStack(supportFragmentManager,R.id.activity_main_nav_host_fragment,
-            CategoryProductFragment.newInstance(categoryId,""),
+            CategoryProductFragment.newInstance(categoryId,categoryKey.toString()),
             CategoryProductFragment::class.java.canonicalName,false)
 
     }

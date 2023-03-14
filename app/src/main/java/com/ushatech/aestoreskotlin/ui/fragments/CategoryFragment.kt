@@ -12,6 +12,7 @@ import com.ushatech.aestoreskotlin.base.BaseFragment
 import com.ushatech.aestoreskotlin.data.HomeScreenResponse
 import com.ushatech.aestoreskotlin.databinding.FragmentCategoryBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.FeaturedCategoryAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
@@ -33,8 +34,10 @@ class CategoryFragment : BaseFragment() , FeaturedCategoryAdapter.onClickCategor
     private lateinit var binding:FragmentCategoryBinding
 
     private lateinit var viewModel:DashboardViewModel
-    override fun onCategoryClick(position: Int, toString: String) {
-        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
+    override fun onCategoryClick(position: Int, categoryId: String) {
+        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
+            CategoryProductFragment.newInstance(categoryId,Constant.CATEGORY_KEY.toString()),
+            CategoryProductFragment::class.java.canonicalName,false)
 
     }
 

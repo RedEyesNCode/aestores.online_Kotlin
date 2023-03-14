@@ -1,7 +1,6 @@
 package com.ushatech.aestoreskotlin.ui.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import com.ushatech.aestoreskotlin.data.MasterCategoryModel
 import com.ushatech.aestoreskotlin.data.SubCateogryResponse
 import com.ushatech.aestoreskotlin.databinding.SubcategoryItemBinding
 import com.ushatech.aestoreskotlin.presentation.DashboardViewModel
+import com.ushatech.aestoreskotlin.session.Constant
 
 class SubcategoryAdapter(
     var context: Context,
@@ -42,7 +42,11 @@ class SubcategoryAdapter(
 
         holder.subcategoryItemBinding.tvSubcategoryName.setOnClickListener {
 
-            onEventActivity.onShowCategoryProducts(position,subcategories.get(position).id.toString())
+            onEventActivity.onShowCategoryProducts(
+                position,
+                subcategories.get(position).id.toString(),
+                Constant.SUB_CATEGORY_KEY
+            )
 
         }
 
