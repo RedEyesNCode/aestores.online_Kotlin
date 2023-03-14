@@ -10,7 +10,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.permissionx.guolindev.PermissionX
 import com.ushatech.aestoreskotlin.R
@@ -41,9 +40,9 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory, Im
 
 
     override fun onProductClick(position: Int, productId: String) {
-        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
-            ProductDetailFragment.newInstance(productId,""),
-            ProductDetailFragment::class.java.canonicalName,true)
+            FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
+                ProductDetailFragment.newInstance(productId,""),
+                ProductDetailFragment::class.java.canonicalName,true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -210,8 +209,9 @@ class HomeFragment : BaseFragment(), FeaturedCategoryAdapter.onClickCategory, Im
 
     }
 
-    override fun onCategoryClick(position: Int) {
-        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment(),CategoryProductFragment::class.java.canonicalName,true)
+    override fun onCategoryClick(position: Int, categoryId: String) {
+
+        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,CategoryProductFragment.newInstance(categoryId,"HOME"),CategoryProductFragment::class.java.canonicalName,true)
     }
 
     private fun setupRecyler() {

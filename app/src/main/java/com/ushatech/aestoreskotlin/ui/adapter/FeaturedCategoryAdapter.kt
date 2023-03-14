@@ -31,7 +31,7 @@ class FeaturedCategoryAdapter(var context: Context, var data:ArrayList<HomeScree
         holder.binding.tvItemCount.text = "${data.get(position).productCounts.toString()} Items. "
 
         binding.mainLayout.setOnClickListener {
-            onClickEvent.onCategoryClick(position)
+            onClickEvent.onCategoryClick(position,data.get(position).id.toString())
 
         }
 
@@ -44,7 +44,7 @@ class FeaturedCategoryAdapter(var context: Context, var data:ArrayList<HomeScree
 
     }
     public interface onClickCategory{
-        fun onCategoryClick(position:Int)
+        fun onCategoryClick(position: Int, toString: String)
 
     }
 

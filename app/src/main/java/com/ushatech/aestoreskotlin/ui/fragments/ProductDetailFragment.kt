@@ -101,6 +101,7 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent,Simila
             viewModel.getProductDetail(param1!!,userId.toString())
         }else{
             showToast("Showing static screen.")
+            binding.addToCartLayout.visibility = View.GONE
         }
     }
 
@@ -161,10 +162,10 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent,Simila
 
         if(AppSession(fragmentContext).getBoolean(Constant.IS_LOGGED_IN)){
             // Call the addtoCartApi.
-            showToast("Using Webservices.")
+//            showToast("Using Webservices.")
             val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
         }else{
-            showToast("Using local DB.")
+//            showToast("Using local DB.")
             makeLocalCartItem(product)
         }
         productLocal = product
@@ -431,12 +432,12 @@ class ProductDetailFragment : BaseFragment(), ProductImageAdapter.onEvent,Simila
 
             launch (Dispatchers.Main){
 
-                if(isAlreadyAdded){
-                    showToast("Already added to cart")
-                }else{
-                    showToast("Added to cart successfully ! [LOCAL]")
-
-                }
+//                if(isAlreadyAdded){
+//                    showToast("Already added to cart")
+//                }else{
+//                    showToast("Added to cart successfully ! [LOCAL]")
+//
+//                }
 
                 FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),
                     com.ushatech.aestoreskotlin.R.id.activity_main_nav_host_fragment,CartFragment.newInstance("local","true"),CartFragment::class.java.canonicalName,true)

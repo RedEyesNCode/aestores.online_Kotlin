@@ -153,8 +153,6 @@ class WishlistFragment : BaseFragment(),WishlistAdapter.onEventWishlistAdapter {
             cartLocal = db.userCartDao().getUserCartLocal()
             for (cart in cartLocal){
                 cartDataRemotes.add(CartDataRemote(cart.productId.toInt(),cart.quantity.toInt()))
-
-
             }
         }
 

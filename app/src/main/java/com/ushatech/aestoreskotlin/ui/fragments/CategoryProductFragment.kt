@@ -1,15 +1,17 @@
 package com.ushatech.aestoreskotlin.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.ushatech.aestoreskotlin.R
 import com.ushatech.aestoreskotlin.base.BaseFragment
-import com.ushatech.aestoreskotlin.databinding.FragmentCategoryBinding
+import com.ushatech.aestoreskotlin.data.SearchProductResponse
 import com.ushatech.aestoreskotlin.databinding.FragmentCategoryProductBinding
+import com.ushatech.aestoreskotlin.presentation.CategoryProductViewModel
+import com.ushatech.aestoreskotlin.session.Constant
 import com.ushatech.aestoreskotlin.ui.adapter.CategoryProductAdapter
 import com.ushatech.aestoreskotlin.uitls.FragmentUtils
 
@@ -26,9 +28,12 @@ class CategoryProductFragment : BaseFragment(),CategoryProductAdapter.onClickEve
 
 
     private lateinit var binding:FragmentCategoryProductBinding
+    private lateinit var viewModel:CategoryProductViewModel
 
-    override fun onProductClick(position: Int) {
-        FragmentUtils().replaceFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,ProductDetailFragment(),ProductDetailFragment::class.java.canonicalName,true)
+    override fun onProductClick(position: Int,productId:String) {
+        FragmentUtils().addFragmentBackStack(requireFragmentManager(),R.id.activity_main_nav_host_fragment,
+            ProductDetailFragment.newInstance(productId,""),
+            ProductDetailFragment::class.java.canonicalName,true)
 
     }
 
@@ -46,16 +51,75 @@ class CategoryProductFragment : BaseFragment(),CategoryProductAdapter.onClickEve
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCategoryProductBinding.inflate(layoutInflater)
-        setupRecyclerView()
-
+        initClicks()
+        setupViewModel()
+        attachObservers()
+        initialApiCall()
 
         return binding.root
     }
 
-    private fun setupRecyclerView() {
-        binding.recvCategoryProduct.adapter = CategoryProductAdapter(fragmentContext,this)
+    private fun initialApiCall() {
+        showLoader()
+        viewModel.searchProduct(null,param1?.toInt(),null,null)
 
-        binding.recvCategoryProduct.layoutManager = LinearLayoutManager(fragmentContext,LinearLayoutManager.VERTICAL,false)
+
+    }
+
+    private fun setupViewModel() {
+        viewModel = CategoryProductViewModel()
+        viewModel = ViewModelProvider(this).get(CategoryProductViewModel::class.java)
+        binding.viewmodel = viewModel
+    }
+    private fun attachObservers(){
+        viewModel.isFailed.observe((viewLifecycleOwner)){
+            hideLoader()
+            if(it!=null){
+                showToast(it)
+            }
+        }
+        viewModel.isSuccess.observe((viewLifecycleOwner)){
+            if(it){
+                showLoader()
+            }else{
+                hideLoader()
+            }
+        }
+        viewModel.searchProductResponse.observe(viewLifecycleOwner){
+            hideLoader()
+            if(it!=null){
+                if(it.status==1){
+                    setupRecyclerView(it.data)
+
+                }else{
+                    showToast(Constant.OOPS_SW)
+
+                }
+            }else{
+                showToast(Constant.OOPS_SW)
+            }
+
+
+
+        }
+
+
+
+
+
+    }
+
+    private fun initClicks() {
+
+
+
+
+    }
+
+    private fun setupRecyclerView(data: SearchProductResponse.Data?) {
+        binding.recvCategoryProduct.adapter = CategoryProductAdapter(fragmentContext, data!!,this)
+
+        binding.recvCategoryProduct.layoutManager = GridLayoutManager(fragmentContext,2)
 
 
     }
