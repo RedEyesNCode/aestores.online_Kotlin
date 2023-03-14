@@ -12,4 +12,9 @@ object Constant {
         const val USER_INFO = "USER_INFO"
         const val Youtube_image_Url = "https://img.youtube.com/vi/"
 
+
+        const val CATEGORY_KEY = 11
+        const val SUB_CATEGORY_KEY = 12
+
+
 }
