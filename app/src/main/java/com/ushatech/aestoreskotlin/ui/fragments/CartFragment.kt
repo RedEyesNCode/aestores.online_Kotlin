@@ -62,7 +62,9 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
     }
 
     override fun onUpdateItemApi(cartTable: CartUserResponse.Items, quantity: Int) {
-        showToast("To be implemented 500 from backend")
+        val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+
+        viewModel.updateUserCart(userId.toString(),cartTable.id.toString(),quantity.toString())
 
     }
 
@@ -106,7 +108,7 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
     }
 
     override fun onUpdateItem(cartTable: UserCartTable, position: Int) {
-        updateCartItemRoom(cartTable)
+//        updateCartItemRoom(cartTable)
 
     }
 
@@ -183,9 +185,13 @@ class CartFragment : BaseFragment(),RoomCartAdapter.onRoomCartEvent,CartAdapter.
                 val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
                 viewModel.getUserCart(userId.toString())
             }
-
-
-
+        }
+        viewModel.updateItemResponse.observe(viewLifecycleOwner){
+            hideLoader()
+            if(it.status==1){
+                val userId = AppSession(fragmentContext).getString(Constant.USER_ID)
+                viewModel.getUserCart(userId.toString())
+            }
         }
 
     }

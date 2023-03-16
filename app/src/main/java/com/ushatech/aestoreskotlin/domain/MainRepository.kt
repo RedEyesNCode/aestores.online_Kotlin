@@ -47,6 +47,9 @@ class MainRepository {
 
     suspend fun addToCart(userId: String,productId:String,quantity:String) = AndroidClient().apiInterface.addToCart(userId, productId, quantity)
 
+
+    suspend fun updateCart(userId: String,cartId: String,Quantity:String) = AndroidClient().apiInterface.updateCart(userId,cartId,Quantity)
+
     suspend fun deleteItemCart(userId: String,cartId:String) = AndroidClient().apiInterface.deleteCart(userId, cartId)
 
     suspend fun deleteCompleteCart(userId: String) = AndroidClient().apiInterface.deletAllItems(userId)
